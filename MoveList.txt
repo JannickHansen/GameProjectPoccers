@@ -1,0 +1,23 @@
+ ,0,0,Normal,
+Tackle,35,0,Normal,
+Scratch,40,0,Normal,
+Wrap,15,0,Normal,
+Quick Attack,40,1,Normal,
+Pound,40,0,Normal,
+
+Fire Spin,10,0,Fire,
+Ember,40,0,Fire,
+
+Absorb,20,0,Grass,
+Leech Seed,0,0,Grass,
+Vine Whip,45,0,Grass,
+
+Bubble,20,0,Water,
+Water Gun,40,0,Water,
+
+Gust,40,0,Flying,
+Peck,35,0,Flying,
+
+Poison Sting,15,0,Poison,
+
+Bug Bite,60,0,Bug,
