@@ -77,5 +77,11 @@ public class PokemonMoveList {
         convertReadBasePower.put("110", 110);
         convertReadBasePower.put("115", 115);
         convertReadBasePower.put("120", 120);
+        convertReadBasePower.put("125", 125);
+        convertReadBasePower.put("130", 130);
+        convertReadBasePower.put("135", 135);
+        convertReadBasePower.put("140", 140);
+        convertReadBasePower.put("145", 145);
+        convertReadBasePower.put("150", 150);
     }
 }

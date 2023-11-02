@@ -4,10 +4,10 @@ import java.util.concurrent.ThreadLocalRandom;
 public class MoveChecks {
     MoveChecks() {
     }
-    public int checkSpecialMoveEffect(String usedMove) throws IOException {
+    public int checkSpecialMoveEffect(String usedMove) {
         int effectType = 0;
         effectType = switch (usedMove) {
-            case "Absorb" -> 1;
+            case "Absorb", "Mega Drain", "Giga Drain" -> 1;
             case "Wrap" -> 2;
             case "Fire Spin" -> 2;
             case "Leech Seed" -> 3;
@@ -15,7 +15,7 @@ public class MoveChecks {
         };
         return effectType;
     }
-    void performMoveEffect(String usedMove, GeneratedPokemon moveUser, GeneratedPokemon moveTarget, int damageDone) throws IOException {
+    void performMoveEffect(String usedMove, GeneratedPokemon moveUser, GeneratedPokemon moveTarget, int damageDone) {
         int checkResult = checkSpecialMoveEffect(usedMove);
         switch (checkResult) {
             case 1:
@@ -45,6 +45,25 @@ public class MoveChecks {
         }
 
     }
+    public int calcNewBasePower(String usedMove, int basePower, GeneratedPokemon moveUser) {
+        int checkResult = checkSpecialMoveEffect(usedMove);
+        switch (checkResult) {
+            case 4:
+            if (moveUser.remainingHp < moveUser.hp * 0.04) {
+                basePower = 200;
+            } else if (moveUser.remainingHp < moveUser.hp * 0.11) {
+                basePower = 150;
+            } else if (moveUser.remainingHp < moveUser.hp * 0.35) {
+                basePower = 80;
+            } else if (moveUser.remainingHp < moveUser.hp * 0.67) {
+                basePower = 40;
+            } else basePower = 20;
+            break;
+            default:
+                break;
+        }
+        return basePower;
+    }
     void endOfTurnEffects(GeneratedPokemon affectedPokemon, GeneratedPokemon opposingPokemon, int damageDone) {
         if (affectedPokemon.repeatedMove >= 1) {
             int fireSpinDamage = (affectedPokemon.hp/16);
@@ -64,7 +83,7 @@ public class MoveChecks {
         decreaseEffectCounter(opposingPokemon);
     }
     void decreaseEffectCounter(GeneratedPokemon moveTarget) {
-        if (moveTarget.repeatedMove < 1) {moveTarget.repeatedMove--;}
+        if (moveTarget.repeatedMove > 1) {moveTarget.repeatedMove--;}
         else if (moveTarget.repeatedMove == 1) {
             moveTarget.repeatedMove--;
             System.out.println(moveTarget.repeatingMove+" has fallen off!");

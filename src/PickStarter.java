@@ -1,27 +1,34 @@
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class PickStarter {
     String opposingPokemon = "";
     int firstBattleLevel = 5;
-    GeneratedPokemon uniqueStarter;
-    GeneratedPokemon uniqueOpponent;
+    List<GeneratedPokemon> playerPokemonParty;
+    List<GeneratedPokemon> opponentPokemonParty;
+    GeneratedPokemon playerPokemon = new GeneratedPokemon();
+    GeneratedPokemon opponentPokemon = new GeneratedPokemon();
+    PlayerBag playerBag;
     Scanner tastatur = new Scanner(System.in);
     String starterPick;
     String op2;
     boolean op3 = false;
-    PickStarter(GeneratedPokemon uniqueStarter, GeneratedPokemon uniqueOpponent){
-        this.uniqueStarter = uniqueStarter;
-        this.uniqueOpponent = uniqueOpponent;
+    PickStarter(List<GeneratedPokemon> playerPokemonParty, List<GeneratedPokemon> opponentPokemonParty, PlayerBag playerBag){
+        this.playerPokemonParty = playerPokemonParty;
+        this.opponentPokemonParty = opponentPokemonParty;
+        this.playerBag = playerBag;
     }
     public String spellingControl(String str) {
         if (str == null || str.isEmpty()) return str;
         return str.substring(0,1).toUpperCase() + str.substring(1);
     }
+
     void setImportData(GeneratedPokemon inputPokemon, String pokemonName) throws IOException {
         inputPokemon.setImportPokemonData(pokemonName,firstBattleLevel);
         PokemonLearnSet getLearnSet = new PokemonLearnSet();
-        getLearnSet.LearnSet(uniqueStarter);
+        getLearnSet.LearnSet(playerPokemon);
     }
     static void printSummery(GeneratedPokemon inputPokemon) {
         System.out.println(inputPokemon);
@@ -29,7 +36,7 @@ public class PickStarter {
     }
     void selectionStart() throws IOException {
         System.out.println("Welcome to project1.");
-        System.out.println("During your playthrough you will be able to have 1 pokemon in your party.");
+        System.out.println("During your playthrough you will be able to have 6 pokemon in your party.");
         System.out.println("Please note that pokemon Type does matter in this game in regards to combat.");
 
         while (true) {
@@ -41,27 +48,31 @@ public class PickStarter {
             System.out.print("Please write the name of the pokemon you choose: ");
             System.out.println();
             starterPick = spellingControl(tastatur.next());
-            if (starterPick.equals("Charmander") || starterPick.equals("Squirtle") || starterPick.equals("Bulbasaur")) {
-                pickStarter(starterPick);
-                setImportData(uniqueStarter, starterPick); //Sets unique stats for "uniqueStarter"
-                printSummery(uniqueStarter);  //Summery to show player what pokemon they've got
-
-                System.out.println("Now that you have your pokemon, let's try battling.");
-
-                System.out.println("Press a to continue.");
-                op2 = tastatur.next();
-
-                firstBattle();
-                setImportData(uniqueOpponent, opposingPokemon);
-                PokemonLearnSet getMoves = new PokemonLearnSet();
-                getMoves.LearnSet(uniqueOpponent);
-                break;
-            } else
-                System.out.println("\nPlease make a valid choice.\n");
+            pickStarter(starterPick);
         }
+        if (starterPick.equals("Charmander") || starterPick.equals("Squirtle") || starterPick.equals("Bulbasaur") || starterPick.equals("75306128")) {
+            if (starterPick.equals("75306128")) starterPick = "Spheal";
+            pickStarter(starterPick);
+            setImportData(playerPokemon, starterPick); //Sets unique stats for "uniqueStarter"
+            printSummery(playerPokemon);  //Summery to show player what pokemon they've got
+
+            System.out.println("Now that you have your pokemon, let's try battling.");
+
+            System.out.println("Press a to continue.");
+            tastatur.next();
+
+            firstBattle();
+            setImportData(opponentPokemon, opposingPokemon);
+            PokemonLearnSet getMoves = new PokemonLearnSet();
+            getMoves.LearnSet(opponentPokemon);
+            playerPokemonParty.set(0, playerPokemon);
+            opponentPokemonParty.set(0, opponentPokemon);
+        } else
+                System.out.println("\nPlease make a valid choice.\n");
     }
 
     void pickStarter(String op1) {
+        if (starterPick.equals("Charmander") || starterPick.equals("Squirtle") || starterPick.equals("Bulbasaur") || starterPick.equals("75306128")) {
         while (true) {
             if (op3) break;
             System.out.println(op1 + ", Great choice!");
@@ -79,13 +90,14 @@ public class PickStarter {
                 System.out.println("Please make a valid choice.");
             }
         }
+        }
 
     }
     void firstBattle() {
         switch (starterPick) {
             case "Charmander" -> opposingPokemon = "Squirtle";
             case "Squirtle" -> opposingPokemon = "Bulbasaur";
-            case "Bulbasaur" -> opposingPokemon = "Charmander";
+            case "Bulbasaur", "Spheal" -> opposingPokemon = "Charmander";
         }
     }
     void postFirstBattle() {
@@ -100,6 +112,13 @@ public class PickStarter {
         System.out.println("During your journey, you will come across pokemon gyms.");
         System.out.println("These consist of a mix of trainers with a specific speciality, and a Gym-Leader with the same speciality.");
         System.out.println("Winning against the Gym-Leader is mandatory to proceed to the next route.");
+        System.out.println("Press a to continue");
+        tastatur.next();
+        System.out.println("Trainers will grant you money upon winning a battle, and some might even give you an item!");
+        System.out.println("Items can be anything from pokeballs to potions, handy things to have in battle.");
+        System.out.println("You'll get 5 pokeballs right now! Do use them wisely.");
+        playerBag.pokeballs = 5;
+        playerBag.potion = 1;
         System.out.println("Press a to continue");
         tastatur.next();
         System.out.println("Now its time for you to proceed to route 1!");

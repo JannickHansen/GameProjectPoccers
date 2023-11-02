@@ -1,29 +1,24 @@
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class BattleController {
     MoveChecks checkMove = new MoveChecks();
     PokemonLearnSet getMoves = new PokemonLearnSet();
+    List<GeneratedPokemon> playerPokemonParty;
+    List<GeneratedPokemon> opponentPokemonParty;
+    PlayerBag playerBag;
     int playerBasePower;
     int opponentBasePower;
     GeneratedPokemon activePlayerPokemon;
     GeneratedPokemon activeOpponentPokemon;
-    GeneratedPokemon playerPokemon1;
-    GeneratedPokemon playerPokemon2;
-    GeneratedPokemon playerPokemon3;
-    GeneratedPokemon playerPokemon4;
-    GeneratedPokemon playerPokemon5;
-    GeneratedPokemon playerPokemon6;
-    GeneratedPokemon opponentPokemon1;
-    GeneratedPokemon opponentPokemon2;
-    GeneratedPokemon opponentPokemon3;
-    GeneratedPokemon opponentPokemon4;
-    GeneratedPokemon opponentPokemon5;
-    GeneratedPokemon opponentPokemon6;
     Scanner tastatur = new Scanner(System.in);
     String playerUseMove;
     int idealMove;
-    String saveMoveName ="";
+    String saveMoveName = "";
     String playerMoveType;
     String opponentMoveType;
     int playerDamage;
@@ -31,41 +26,72 @@ public class BattleController {
     boolean priorityCheckOpponent;
     boolean priorityCheck = true;
     boolean foundWinner = false;
+    boolean pokemonFainted = false;
+    boolean trainer;
     String op1;
     boolean op2 = false;
-    BattleController(GeneratedPokemon uniqueStarter, GeneratedPokemon playerPokemon2, GeneratedPokemon playerPokemon3, GeneratedPokemon playerPokemon4, GeneratedPokemon playerPokemon5, GeneratedPokemon playerPokemon6, GeneratedPokemon opponentPokemon1, GeneratedPokemon opponentPokemon2, GeneratedPokemon opponentPokemon3, GeneratedPokemon opponentPokemon4, GeneratedPokemon opponentPokemon5, GeneratedPokemon opponentPokemon6) {
-        this.playerPokemon1 = uniqueStarter;
-        this.playerPokemon2 = playerPokemon2;
-        this.playerPokemon3 = playerPokemon3;
-        this.playerPokemon4 = playerPokemon4;
-        this.playerPokemon5 = playerPokemon5;
-        this.playerPokemon6 = playerPokemon6;
-        this.opponentPokemon1 = opponentPokemon1;
-        this.opponentPokemon2 = opponentPokemon2;
-        this.opponentPokemon3 = opponentPokemon3;
-        this.opponentPokemon4 = opponentPokemon4;
-        this.opponentPokemon5 = opponentPokemon5;
-        this.opponentPokemon6 = opponentPokemon6;
+    boolean op3 = false;
+    boolean isCaught = false;
+    boolean playerUsedItem;
+    boolean opponentUsedItem;
+
+    BattleController(List<GeneratedPokemon> playerPokemonParty, List<GeneratedPokemon> opponentPokemonParty, PlayerBag playerBag) {
+        this.playerPokemonParty = playerPokemonParty;
+        this.opponentPokemonParty = opponentPokemonParty;
+        this.playerBag = playerBag;
     }
 
-    void mainBattleController() throws IOException {
+    boolean mainBattleController() throws IOException {
 
         startCombat();
 
         while (true) {
             printBattleState();
             opponentBasicAI();
+            if (foundWinner) {
+                break;
+            }
             playTurn();
             if (foundWinner) {
                 break;
             }
         }
+        return op3;
     }
+
+    void printBattleState() throws IOException {
+        System.out.println();
+        System.out.println(activePlayerPokemon.pokemonName);
+        System.out.println("Lvl: " + activePlayerPokemon.lvl);
+        System.out.println("Hp: " + activePlayerPokemon.hp + "/" + activePlayerPokemon.remainingHp);
+        System.out.println();
+        System.out.println(activeOpponentPokemon.pokemonName);
+        System.out.println("Lvl: " + activeOpponentPokemon.lvl);
+        System.out.println("Hp: " + activeOpponentPokemon.hp + "/" + activeOpponentPokemon.remainingHp);
+        System.out.println();
+        chooseMove();
+    }
+
     void playTurn() throws IOException {
+        pokemonFainted = false;
         int moveFirst = speedCalc(activePlayerPokemon.spd, activeOpponentPokemon.spd);
-        if (moveFirst == 0 && !foundWinner) {
+        if (isCaught) {
+            foundWinner = true;
+        } else if (playerUsedItem) { // IF PLAYER USED AN ITEM // CAN MAKE DUPLICATE IF OPPONENT USE ITEM
+            if (saveMoveName.equals("Leech Seed") && !foundWinner) {
+                System.out.println("The opposing " + activeOpponentPokemon.pokemonName + " uses " + saveMoveName + "!");
+                checkMove.performMoveEffect(saveMoveName, activeOpponentPokemon, activePlayerPokemon, idealMove);
+            } else if (!foundWinner) {
+                System.out.println("The opposing " + activeOpponentPokemon.pokemonName + " uses " + saveMoveName + " for " + idealMove + " damage!");
+                activePlayerPokemon.remainingHp = activePlayerPokemon.remainingHp - idealMove;
+                checkMove.performMoveEffect(saveMoveName, activeOpponentPokemon, activePlayerPokemon, idealMove);
+                if (activePlayerPokemon.remainingHp <= 0) {
+                    ifPlayerLose();
+                }
+            }
+        } else if (moveFirst == 0 && !foundWinner) { //IF PLAYER IS FASTER
             if (playerUseMove.equals("Leech Seed")) {
-                System.out.println(activePlayerPokemon.pokemonName+" uses "+playerUseMove+"!");
+                System.out.println(activePlayerPokemon.pokemonName + " uses " + playerUseMove + "!");
                 checkMove.performMoveEffect(playerUseMove, activePlayerPokemon, activeOpponentPokemon, playerDamage);
             } else {
                 System.out.println(activePlayerPokemon.pokemonName + " uses " + playerUseMove + " for " + playerDamage + " damage!");
@@ -75,10 +101,10 @@ public class BattleController {
                     ifOpponentLose();
                 }
             }
-            if (saveMoveName.equals("Leech Seed") && !foundWinner) {
-                System.out.println("The opposing "+ activeOpponentPokemon.pokemonName+" uses "+saveMoveName+"!");
+            if (saveMoveName.equals("Leech Seed") && !foundWinner && !pokemonFainted) {
+                System.out.println("The opposing " + activeOpponentPokemon.pokemonName + " uses " + saveMoveName + "!");
                 checkMove.performMoveEffect(saveMoveName, activeOpponentPokemon, activePlayerPokemon, idealMove);
-            } else if (!foundWinner){
+            } else if (!foundWinner && !pokemonFainted) {
                 System.out.println("The opposing " + activeOpponentPokemon.pokemonName + " uses " + saveMoveName + " for " + idealMove + " damage!");
                 activePlayerPokemon.remainingHp = activePlayerPokemon.remainingHp - idealMove;
                 checkMove.performMoveEffect(saveMoveName, activeOpponentPokemon, activePlayerPokemon, idealMove);
@@ -86,8 +112,7 @@ public class BattleController {
                     ifPlayerLose();
                 }
             }
-        }
-        else if (moveFirst == 1 && !foundWinner) {
+        } else if (moveFirst == 1 && !foundWinner) { // IF OPPONENT IS FASTER
             if (saveMoveName.equals("Leech Seed")) {
                 System.out.println("The opposing " + activeOpponentPokemon.pokemonName + " uses " + saveMoveName + "!");
                 checkMove.performMoveEffect(saveMoveName, activeOpponentPokemon, activePlayerPokemon, idealMove);
@@ -99,10 +124,10 @@ public class BattleController {
                     ifPlayerLose();
                 }
             }
-            if (playerUseMove.equals("Leech Seed") && !foundWinner) {
+            if (playerUseMove.equals("Leech Seed") && !foundWinner && !pokemonFainted) {
                 System.out.println(activePlayerPokemon.pokemonName + " uses " + playerUseMove + "!");
                 checkMove.performMoveEffect(playerUseMove, activePlayerPokemon, activeOpponentPokemon, playerDamage);
-            } else if (!foundWinner) {
+            } else if (!foundWinner && !pokemonFainted) {
                 System.out.println(activePlayerPokemon.pokemonName + " uses " + playerUseMove + " for " + playerDamage + " damage!");
                 activeOpponentPokemon.remainingHp = activeOpponentPokemon.remainingHp - playerDamage;
                 checkMove.performMoveEffect(playerUseMove, activePlayerPokemon, activeOpponentPokemon, playerDamage);
@@ -112,37 +137,36 @@ public class BattleController {
             }
         }
         System.out.println();
-        if (!foundWinner) {
+        if (!foundWinner && !pokemonFainted) {
             checkMove.endOfTurnEffects(activePlayerPokemon, activeOpponentPokemon, playerDamage);
             if (activeOpponentPokemon.remainingHp <= 0 && !foundWinner) {
                 ifOpponentLose();
+            }
         }
-        }
-        if (!foundWinner) {
+        if (!foundWinner && !pokemonFainted) {
             checkMove.endOfTurnEffects(activeOpponentPokemon, activePlayerPokemon, idealMove);
             if (activePlayerPokemon.remainingHp <= 0 && !foundWinner) {
                 ifPlayerLose();
-        }
+            }
         }
     }
 
     void opponentBasicAI() throws IOException {
         opponentMoveType = callMove(activeOpponentPokemon.move1).moveType;
         opponentBasePower = callMove(activeOpponentPokemon.move1).basePower;
-        int move1 = damageCalc(opponentBasePower, activeOpponentPokemon.atk, activePlayerPokemon.def, activeOpponentPokemon.lvl, opponentMoveType, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2);
+        int move1 = damageCalc(opponentBasePower, activeOpponentPokemon.atk, activePlayerPokemon.def, activeOpponentPokemon.lvl, opponentMoveType, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.move1, activeOpponentPokemon);
 
         opponentMoveType = callMove(activeOpponentPokemon.move2).moveType;
         opponentBasePower = callMove(activeOpponentPokemon.move2).basePower;
+        int move2 = damageCalc(opponentBasePower, activeOpponentPokemon.atk, activePlayerPokemon.def, activeOpponentPokemon.lvl, opponentMoveType, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.move2, activeOpponentPokemon);
 
-        int move2 = damageCalc(opponentBasePower, activeOpponentPokemon.atk, activePlayerPokemon.def, activeOpponentPokemon.lvl, opponentMoveType, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2);
         opponentMoveType = callMove(activeOpponentPokemon.move3).moveType;
         opponentBasePower = callMove(activeOpponentPokemon.move3).basePower;
+        int move3 = damageCalc(opponentBasePower, activeOpponentPokemon.atk, activePlayerPokemon.def, activeOpponentPokemon.lvl, opponentMoveType, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.move3, activeOpponentPokemon);
 
-        int move3 = damageCalc(opponentBasePower, activeOpponentPokemon.atk, activePlayerPokemon.def, activeOpponentPokemon.lvl, opponentMoveType, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2);
         opponentMoveType = callMove(activeOpponentPokemon.move4).moveType;
         opponentBasePower = callMove(activeOpponentPokemon.move4).basePower;
-
-        int move4 = damageCalc(opponentBasePower, activeOpponentPokemon.atk, activePlayerPokemon.def, activeOpponentPokemon.lvl, opponentMoveType, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2);
+        int move4 = damageCalc(opponentBasePower, activeOpponentPokemon.atk, activePlayerPokemon.def, activeOpponentPokemon.lvl, opponentMoveType, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.move4, activeOpponentPokemon);
 
         if (activePlayerPokemon.repeatedMove > 0 || activePlayerPokemon.leechSeed) {
             if (activeOpponentPokemon.move1.equals("Fire Spin") || activeOpponentPokemon.move1.equals("Wrap") || activeOpponentPokemon.move1.equals("Leech Seed")) {
@@ -155,107 +179,408 @@ public class BattleController {
                 move4 = 0;
             }
         }
-        idealMove = Math.max(move1, Math.max(move2,Math.max(move3, move4)));
-            if (priorityCheck == callMove(activeOpponentPokemon.move1).priorityMove && move1 >= activePlayerPokemon.remainingHp) {
-                idealMove = move1;
-                saveMoveName = activeOpponentPokemon.move1;
+        idealMove = Math.max(move1, Math.max(move2, Math.max(move3, move4)));
+        if (priorityCheck == callMove(activeOpponentPokemon.move1).priorityMove && move1 >= activePlayerPokemon.remainingHp) {
+            idealMove = move1;
+            saveMoveName = activeOpponentPokemon.move1;
+            priorityCheckOpponent = true;
+        } else if (priorityCheck == callMove(activeOpponentPokemon.move2).priorityMove && move2 >= activePlayerPokemon.remainingHp) {
+            idealMove = move2;
+            saveMoveName = activeOpponentPokemon.move2;
+            priorityCheckOpponent = true;
+        } else if (priorityCheck == callMove(activeOpponentPokemon.move3).priorityMove && move3 >= activePlayerPokemon.remainingHp) {
+            idealMove = move3;
+            saveMoveName = activeOpponentPokemon.move3;
+            priorityCheckOpponent = true;
+        } else if (priorityCheck == callMove(activeOpponentPokemon.move4).priorityMove && move4 >= activePlayerPokemon.remainingHp) {
+            idealMove = move4;
+            saveMoveName = activeOpponentPokemon.move4;
+            priorityCheckOpponent = true;
+        } else if (idealMove == move1) {
+            saveMoveName = activeOpponentPokemon.move1;
+            if (priorityCheck == callMove(activeOpponentPokemon.move1).priorityMove) {
                 priorityCheckOpponent = true;
             }
-            else if (priorityCheck == callMove(activeOpponentPokemon.move2).priorityMove && move2 >= activePlayerPokemon.remainingHp) {
-                idealMove = move2;
-                saveMoveName = activeOpponentPokemon.move2;
+        } else if (idealMove == move2) {
+            saveMoveName = activeOpponentPokemon.move2;
+            if (priorityCheck == callMove(activeOpponentPokemon.move2).priorityMove) {
                 priorityCheckOpponent = true;
             }
-            else if (priorityCheck == callMove(activeOpponentPokemon.move3).priorityMove && move3 >= activePlayerPokemon.remainingHp) {
-                idealMove = move3;
-                saveMoveName = activeOpponentPokemon.move3;
+        } else if (idealMove == move3) {
+            saveMoveName = activeOpponentPokemon.move3;
+            if (priorityCheck == callMove(activeOpponentPokemon.move3).priorityMove) {
                 priorityCheckOpponent = true;
             }
-            else if (priorityCheck == callMove(activeOpponentPokemon.move4).priorityMove && move4 >= activePlayerPokemon.remainingHp) {
-                idealMove = move4;
-                saveMoveName = activeOpponentPokemon.move4;
+        } else if (idealMove == move4) {
+            saveMoveName = activeOpponentPokemon.move4;
+            if (priorityCheck == callMove(activeOpponentPokemon.move4).priorityMove) {
                 priorityCheckOpponent = true;
             }
-            else
-                if (idealMove == move1) {
-                    saveMoveName = activeOpponentPokemon.move1;
-                } else if (idealMove == move2) {
-                    saveMoveName = activeOpponentPokemon.move2;
-                } else if (idealMove == move3) {
-                    saveMoveName = activeOpponentPokemon.move3;
-                } else if (idealMove == move4) {
-                    saveMoveName = activeOpponentPokemon.move4;
-                }
-                else if (idealMove == 0) {
-                    idealMove = 1;
-                    saveMoveName = activeOpponentPokemon.move1;
-                }
-
+        } else if (idealMove == 0) {
+            idealMove = 1;
+            saveMoveName = activeOpponentPokemon.move1;
+            if (priorityCheck == callMove(activeOpponentPokemon.move1).priorityMove) {
+                priorityCheckOpponent = true;
             }
-    public int damageCalc(int basePower, int atk, int def, int lvl, String attackType, String userType1, String userType2, String opponentType1, String opponentType2) {
-        double STAB;
-        double effectiveness = (checkMove.checkEffective(attackType,opponentType1)*checkMove.checkEffective(attackType,opponentType2));
-        if (attackType.equals(userType1) || attackType.equals(userType2)) {
-            STAB  = 1.5;
         }
-        else STAB = 1;
-        double resultDamage = (((double) ((((2 * lvl) / 5) + 2) * basePower * (atk / def)) /50)+2)*STAB*effectiveness;
-        return (int) Math.round(resultDamage);
 
     }
-    public int expCalc() {
-        return ((activeOpponentPokemon.expYield* activeOpponentPokemon.lvl)/6);
-    }
+
     void chooseMove() throws IOException {
-            System.out.println("Choose your move:");
-            System.out.println("1. " + activePlayerPokemon.move1);
-            System.out.println("2. " + activePlayerPokemon.move2);
-            System.out.println("3. " + activePlayerPokemon.move3);
-            System.out.println("4. " + activePlayerPokemon.move4);
-            while (true) {
-                if (op2) break;
-                op1 = tastatur.next();
-                if ((op1.equals("1") && !activePlayerPokemon.move1.equals(" ")) || (op1.equals("2") && !activePlayerPokemon.move2.equals(" ")) || (op1.equals("3") && !activePlayerPokemon.move3.equals(" ")) || (op1.equals("4") && !activePlayerPokemon.move4.equals(" "))) break;
-                else System.out.println("Please make a valid choice.");
-            }
+        String itemName;
+        playerUsedItem = false;
+
+        System.out.println("Choose your move:");
+        System.out.println("1. " + activePlayerPokemon.move1);
+        System.out.println("2. " + activePlayerPokemon.move2);
+        System.out.println("3. " + activePlayerPokemon.move3);
+        System.out.println("4. " + activePlayerPokemon.move4);
+        System.out.println("5. Open Bag");
+        while (true) {
+            if (op2) break;
+            op1 = tastatur.next();
+            if ((op1.equals("1") && !activePlayerPokemon.move1.equals(" ")) || (op1.equals("2") && !activePlayerPokemon.move2.equals(" ")) || (op1.equals("3") && !activePlayerPokemon.move3.equals(" ")) || (op1.equals("4") && !activePlayerPokemon.move4.equals(" ")) || op1.equals("5"))
+                break;
+            else System.out.println("Please make a valid choice.");
+        }
+        switch (op1) {
+            case "1":
+                playerUseMove = activePlayerPokemon.move1;
+                priorityCheckPlayer = callMove(playerUseMove).priorityMove;
+                playerMoveType = callMove(playerUseMove).moveType;
+                playerBasePower = callMove(playerUseMove).basePower;
+                playerDamage = damageCalc(playerBasePower, activePlayerPokemon.atk, activeOpponentPokemon.def, activePlayerPokemon.lvl, playerMoveType, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, playerUseMove, activePlayerPokemon);
+                break;
+            case "2":
+                playerUseMove = activePlayerPokemon.move2;
+                priorityCheckPlayer = callMove(playerUseMove).priorityMove;
+                playerMoveType = callMove(playerUseMove).moveType;
+                playerBasePower = callMove(playerUseMove).basePower;
+                playerDamage = damageCalc(playerBasePower, activePlayerPokemon.atk, activeOpponentPokemon.def, activePlayerPokemon.lvl, playerMoveType, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, playerUseMove, activePlayerPokemon);
+                break;
+            case "3":
+                playerUseMove = activePlayerPokemon.move3;
+                playerBasePower = callMove(playerUseMove).basePower;
+                playerMoveType = callMove(playerUseMove).moveType;
+                priorityCheckPlayer = callMove(playerUseMove).priorityMove;
+                playerDamage = damageCalc(playerBasePower, activePlayerPokemon.atk, activeOpponentPokemon.def, activePlayerPokemon.lvl, playerMoveType, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, playerUseMove, activePlayerPokemon);
+                break;
+            case "4":
+                playerUseMove = activePlayerPokemon.move4;
+                playerBasePower = callMove(playerUseMove).basePower;
+                playerMoveType = callMove(playerUseMove).moveType;
+                priorityCheckPlayer = callMove(playerUseMove).priorityMove;
+                playerDamage = damageCalc(playerBasePower, activePlayerPokemon.atk, activeOpponentPokemon.def, activePlayerPokemon.lvl, playerMoveType, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, playerUseMove, activePlayerPokemon);
+                break;
+            case "5":
+                while (true) {
+                    playerBag.printPlayerBag();
+                    System.out.println("9. Back");
+                    String op4 = tastatur.next();
+                    if (op4.equals("9")) {
+                        chooseMove();
+                        break;
+                    } else if (op4.equals("1") || op4.equals("2") || op4.equals("3") || op4.equals("4") || op4.equals("5") || op4.equals("6") || op4.equals("7") || op4.equals("8")) {
+                        itemName = playerBag.nameOfItemsInInventory.get(playerBag.itemSlotCounter.get(convertReadIntInput.getOrDefault(op4, 0)));
+                        System.out.println("Use " + itemName + "? Yes / No");
+                        String op5 = tastatur.next();
+                        op5 = spellingControl(op5);
+                        if (op5.equals("No")) ;
+                        else if (op5.equals("Yes") && ((itemName.equals("Pokeball") && !trainer) || (itemName.equals("Greatball") && !trainer) || (itemName.equals("Ultraball") && !trainer))) {
+                            playerBag.pokeballs = playerBag.pokeballs - 1;
+                            boolean op6 = usePokeballs(itemName);
+                            if (playerPokemonParty.get(1).pokemonName.equals(" ") && op6) {
+                                transferData(playerPokemonParty, activeOpponentPokemon, 1);
+                                System.out.println("\nYou caught the " + playerPokemonParty.get(1).pokemonName + "!");
+                                System.out.println("The pokemon have been added to your party.");
+                                isCaught = true;
+                                System.out.println("Press a to continue");
+                                tastatur.next();
+                                break;
+                            } else if (playerPokemonParty.get(2).pokemonName.equals(" ") && op6) {
+                                transferData(playerPokemonParty, activeOpponentPokemon, 2);
+                                System.out.println("\nYou caught the " + playerPokemonParty.get(2).pokemonName + "!");
+                                System.out.println("The pokemon have been added to your party.");
+                                isCaught = true;
+                                System.out.println("Press a to continue");
+                                tastatur.next();
+                                break;
+                            } else if (playerPokemonParty.get(3).pokemonName.equals(" ") && op6) {
+                                transferData(playerPokemonParty, activeOpponentPokemon, 3);
+                                System.out.println("\nYou caught the " + playerPokemonParty.get(3).pokemonName + "!");
+                                System.out.println("The pokemon have been added to your party.");
+                                isCaught = true;
+                                System.out.println("Press a to continue");
+                                tastatur.next();
+                                break;
+                            } else if (playerPokemonParty.get(4).pokemonName.equals(" ") && op6) {
+                                transferData(playerPokemonParty, activeOpponentPokemon, 4);
+                                System.out.println("\nYou caught the " + playerPokemonParty.get(4).pokemonName + "!");
+                                System.out.println("The pokemon have been added to your party.");
+                                isCaught = true;
+                                System.out.println("Press a to continue");
+                                tastatur.next();
+                                break;
+                            } else if (playerPokemonParty.get(5).pokemonName.equals(" ") && op6) {
+                                transferData(playerPokemonParty, activeOpponentPokemon, 5);
+                                System.out.println("\nYou caught the " + playerPokemonParty.get(5).pokemonName + "!");
+                                System.out.println("The pokemon have been added to your party.");
+                                isCaught = true;
+                                System.out.println("Press a to continue");
+                                tastatur.next();
+                                break;
+                            } else if (!op6) {
+                                System.out.println("The pokemon broke free!");
+                                playerUsedItem = true;
+                                break;
+                            }
+                        } else if (trainer && (itemName.equals("Pokeball") || itemName.equals("Greatball") || itemName.equals("Ultraball"))) {
+                            System.out.println("You can not catch another trainers pokemon!");
+                        }
+                        else if (itemName.equals("Potion")) {
+                            playerBag.potion = playerBag.potion - 1;
+                            System.out.println("You used a "+itemName+" on your "+activePlayerPokemon.pokemonName+"!");
+                            System.out.println("The "+itemName+" healed your "+activePlayerPokemon.pokemonName+" for 20hp!");
+                            activePlayerPokemon.remainingHp = activePlayerPokemon.remainingHp + 20;
+                            if (activePlayerPokemon.remainingHp > activePlayerPokemon.hp) {
+                                activePlayerPokemon.remainingHp = activePlayerPokemon.hp;
+                            }
+                            playerUsedItem = true;
+                            break;
+                        } else if (itemName.equals("Super Potion")) {
+                            playerBag.potion = playerBag.superPotion - 1;
+                            System.out.println("You used a "+itemName+" on your "+activePlayerPokemon.pokemonName+"!");
+                            System.out.println("The "+itemName+" healed your "+activePlayerPokemon.pokemonName+" for 50hp!");
+                            activePlayerPokemon.remainingHp = activePlayerPokemon.remainingHp + 50;
+                            if (activePlayerPokemon.remainingHp > activePlayerPokemon.hp) {
+                                activePlayerPokemon.remainingHp = activePlayerPokemon.hp;
+                            }
+                            playerUsedItem = true;
+                            break;
+                        } else if (itemName.equals("Hyper Potion")) {
+                            playerBag.potion = playerBag.hyperPotion - 1;
+                            System.out.println("You used a "+itemName+" on your "+activePlayerPokemon.pokemonName+"!");
+                            System.out.println("The "+itemName+" healed your "+activePlayerPokemon.pokemonName+" for 200hp!");
+                            activePlayerPokemon.remainingHp = activePlayerPokemon.remainingHp + 200;
+                            if (activePlayerPokemon.remainingHp > activePlayerPokemon.hp) {
+                                activePlayerPokemon.remainingHp = activePlayerPokemon.hp;
+                            }
+                            playerUsedItem = true;
+                            break;
+                        }
+                    } else System.out.println("Make a valid choice.");
+                    }
+                }
+        }
+    void transferData(List<GeneratedPokemon> playerPokemonParty, GeneratedPokemon activeOpponentPokemon, int i) {
+        playerPokemonParty.get(i).pokemonName = activeOpponentPokemon.pokemonName;
+        playerPokemonParty.get(i).hasBeenGenerated = true;
+        playerPokemonParty.get(i).lvl = activeOpponentPokemon.lvl;
+        playerPokemonParty.get(i).expToNextLvl = activeOpponentPokemon.expToNextLvl;
+        playerPokemonParty.get(i).pokemonType1 = activeOpponentPokemon.pokemonType1;
+        playerPokemonParty.get(i).pokemonType2 = activeOpponentPokemon.pokemonType2;
+        playerPokemonParty.get(i).atk = activeOpponentPokemon.atk;
+        playerPokemonParty.get(i).def = activeOpponentPokemon.def;
+        playerPokemonParty.get(i).spd = activeOpponentPokemon.spd;
+        playerPokemonParty.get(i).hp = activeOpponentPokemon.hp;
+        playerPokemonParty.get(i).IVAtk = activeOpponentPokemon.IVAtk;
+        playerPokemonParty.get(i).IVDef = activeOpponentPokemon.IVDef;
+        playerPokemonParty.get(i).IVSpd = activeOpponentPokemon.IVSpd;
+        playerPokemonParty.get(i).IVHp = activeOpponentPokemon.IVHp;
+        playerPokemonParty.get(i).pokemonNature = activeOpponentPokemon.pokemonNature;
+        playerPokemonParty.get(i).natureStatsAtk = activeOpponentPokemon.natureStatsAtk;
+        playerPokemonParty.get(i).natureStatsDef = activeOpponentPokemon.natureStatsDef;
+        playerPokemonParty.get(i).natureStatsSpd = activeOpponentPokemon.natureStatsSpd;
+        playerPokemonParty.get(i).expYield = activeOpponentPokemon.expYield;
+        playerPokemonParty.get(i).catchRate = activeOpponentPokemon.catchRate;
+        playerPokemonParty.get(i).move1 = activeOpponentPokemon.move1;
+        playerPokemonParty.get(i).move2 = activeOpponentPokemon.move2;
+        playerPokemonParty.get(i).move3 = activeOpponentPokemon.move3;
+        playerPokemonParty.get(i).move4 = activeOpponentPokemon.move4;
+
+    }
+
+    public String spellingControl(String str) {
+        if (str == null || str.isEmpty()) return str;
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
+    }
+
+    boolean usePokeballs(String usedPokeball) {
+        double ballModifier = 0;
+        int hpFactor = (3 * activeOpponentPokemon.hp - 2 * activeOpponentPokemon.remainingHp) / (3 * activeOpponentPokemon.hp);
+        if (usedPokeball.equals("Pokeball")) {
+            ballModifier = 1;
+        } else if (usedPokeball.equals("Greatball")) {
+            ballModifier = 1.5;
+        } else if (usedPokeball.equals("Ultraball")) {
+            ballModifier = 2;
+        }
+        double catchProbability = ((1 - hpFactor) * ballModifier * activeOpponentPokemon.catchRate / 255);
+        double rollAttempt = Math.random();
+
+        return rollAttempt <= catchProbability;
+    }
+
+    void ifPlayerLose() {
+        String op1;
+        pokemonFainted = true;
+        boolean validChoice = false;
+        if (activePlayerPokemon.remainingHp < 0) {
+            activePlayerPokemon.remainingHp = 0;
+        }
+        System.out.println();
+        System.out.println(activePlayerPokemon.pokemonName);
+        System.out.println("Lvl: " + activePlayerPokemon.lvl);
+        System.out.println("Hp: " + activePlayerPokemon.hp + "/" + activePlayerPokemon.remainingHp + "\n");
+        System.out.println(activeOpponentPokemon.pokemonName);
+        System.out.println("Lvl: " + activeOpponentPokemon.lvl);
+        System.out.println("Hp: " + activeOpponentPokemon.hp + "/" + activeOpponentPokemon.remainingHp + "\n");
+        System.out.println("Your " + activePlayerPokemon.pokemonName + " fainted!");
+        if (playerPokemonParty.get(0).remainingHp <= 0 && playerPokemonParty.get(1).remainingHp <= 0 && playerPokemonParty.get(2).remainingHp <= 0 && playerPokemonParty.get(3).remainingHp <= 0 && playerPokemonParty.get(4).remainingHp <= 0 && playerPokemonParty.get(5).remainingHp <= 0) {
+            foundWinner = true;
+            op3 = false;
+            System.out.println("Press a to continue");
+            tastatur.next();
+            System.out.println("You whited out...");
+            System.out.println("Press a to continue");
+        } else
+            while (!validChoice) {
+            System.out.println("\nPlease select the next pokemon to send in:");
+        if (playerPokemonParty.get(0).remainingHp > 0) {
+            System.out.println("1. " + playerPokemonParty.get(0).pokemonName);
+        }
+        if (playerPokemonParty.get(1).remainingHp > 0) {
+            System.out.println("2. " + playerPokemonParty.get(1).pokemonName);
+        }
+        if (playerPokemonParty.get(2).remainingHp > 0) {
+            System.out.println("3. " + playerPokemonParty.get(2).pokemonName);
+        }
+        if (playerPokemonParty.get(3).remainingHp > 0) {
+            System.out.println("4. " + playerPokemonParty.get(3).pokemonName);
+        }
+        if (playerPokemonParty.get(4).remainingHp > 0) {
+            System.out.println("5. " + playerPokemonParty.get(4).pokemonName);
+        }
+        if (playerPokemonParty.get(5).remainingHp > 0) {
+            System.out.println("6. " + playerPokemonParty.get(5).pokemonName);
+        }
+        while (true) {
+            op1 = tastatur.next();
+            if (op1.equals("1") || op1.equals("2") || op1.equals("3") || op1.equals("4") || op1.equals("5") || op1.equals("6")) {
                 switch (op1) {
                     case "1":
-                        playerUseMove = activePlayerPokemon.move1;
-                        priorityCheckPlayer = callMove(playerUseMove).priorityMove;
-                        playerMoveType = callMove(playerUseMove).moveType;
-                        playerBasePower = callMove(playerUseMove).basePower;
-                        playerDamage = damageCalc(playerBasePower, activePlayerPokemon.atk, activeOpponentPokemon.def, activePlayerPokemon.lvl, playerMoveType, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2);
+                        if (playerPokemonParty.get(0).remainingHp > 0) {
+                            activePlayerPokemon = playerPokemonParty.get(0);
+                            activePlayerPokemon.remainingHp = activePlayerPokemon.hp;
+                            System.out.println("You send out " + activePlayerPokemon.pokemonName + "!");
+                            validChoice = true;
+                        }
                         break;
                     case "2":
-                        playerUseMove = activePlayerPokemon.move2;
-                        priorityCheckPlayer = callMove(playerUseMove).priorityMove;
-                        playerMoveType = callMove(playerUseMove).moveType;
-                        playerBasePower = callMove(playerUseMove).basePower;
-                        playerDamage = damageCalc(playerBasePower, activePlayerPokemon.atk, activeOpponentPokemon.def, activePlayerPokemon.lvl, playerMoveType, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2);
+                        if (playerPokemonParty.get(1).remainingHp > 0) {
+                            activePlayerPokemon = playerPokemonParty.get(1);
+                            activePlayerPokemon.remainingHp = activePlayerPokemon.hp;
+                            System.out.println("You send out " + activePlayerPokemon.pokemonName + "!");
+                            validChoice = true;
+                        }
                         break;
                     case "3":
-                        playerUseMove = activePlayerPokemon.move3;
-                        playerBasePower = callMove(playerUseMove).basePower;
-                        playerMoveType = callMove(playerUseMove).moveType;
-                        priorityCheckPlayer = callMove(playerUseMove).priorityMove;
-                        playerDamage = damageCalc(playerBasePower, activePlayerPokemon.atk, activeOpponentPokemon.def, activePlayerPokemon.lvl, playerMoveType, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2);
+                        if (playerPokemonParty.get(2).remainingHp > 0) {
+                            activePlayerPokemon = playerPokemonParty.get(2);
+                            activePlayerPokemon.remainingHp = activePlayerPokemon.hp;
+                            System.out.println("You send out " + activePlayerPokemon.pokemonName + "!");
+                            validChoice = true;
+                        }
                         break;
                     case "4":
-                        playerUseMove = activePlayerPokemon.move4;
-                        playerBasePower = callMove(playerUseMove).basePower;
-                        playerMoveType = callMove(playerUseMove).moveType;
-                        priorityCheckPlayer = callMove(playerUseMove).priorityMove;
-                        playerDamage = damageCalc(playerBasePower, activePlayerPokemon.atk, activeOpponentPokemon.def, activePlayerPokemon.lvl, playerMoveType, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2);
+                        if (playerPokemonParty.get(3).remainingHp > 0) {
+                            activePlayerPokemon = playerPokemonParty.get(3);
+                            activePlayerPokemon.remainingHp = activePlayerPokemon.hp;
+                            System.out.println("You send out " + activePlayerPokemon.pokemonName + "!");
+                            validChoice = true;
+                        }
+                        break;
+                    case "5":
+                        if (playerPokemonParty.get(4).remainingHp > 0) {
+                            activePlayerPokemon = playerPokemonParty.get(4);
+                            activePlayerPokemon.remainingHp = activePlayerPokemon.hp;
+                            System.out.println("You send out " + activePlayerPokemon.pokemonName + "!");
+                            validChoice = true;
+                        }
+                        break;
+                    case "6":
+                        if (playerPokemonParty.get(5).remainingHp > 0) {
+                            activePlayerPokemon = playerPokemonParty.get(5);
+                            activePlayerPokemon.remainingHp = activePlayerPokemon.hp;
+                            System.out.println("You send out " + activePlayerPokemon.pokemonName + "!");
+                            validChoice = true;
+                        }
                         break;
                 }
+                break;
+            } else
+                System.out.println("Make a valid choice");
+        }
+        }
     }
-    void LevelUp(GeneratedPokemon insertPokemon) throws IOException {
-        insertPokemon.StatGainLevelUp(insertPokemon);
-        getMoves.LearnSet(insertPokemon);
-        System.out.println(insertPokemon);
+
+    void ifOpponentLose() throws IOException {
+        pokemonFainted = true;
+        if (activeOpponentPokemon.remainingHp < 0) {
+            activeOpponentPokemon.remainingHp = 0;
+        }
+        System.out.println();
+        System.out.println(activePlayerPokemon.pokemonName);
+        System.out.println("Lvl: " + activePlayerPokemon.lvl);
+        System.out.println("Hp: " + activePlayerPokemon.hp + "/" + activePlayerPokemon.remainingHp + "\n");
+        System.out.println(activeOpponentPokemon.pokemonName);
+        System.out.println("Lvl: " + activeOpponentPokemon.lvl);
+        System.out.println("Hp: " + activeOpponentPokemon.hp + "/" + activeOpponentPokemon.remainingHp + "\n");
+        System.out.println("The opposing " + activeOpponentPokemon.pokemonName + " fainted!");
         System.out.println("Press a to continue");
         tastatur.next();
+        System.out.println("\nYour " + activePlayerPokemon.pokemonName + " gained " + expCalc() + " exp!");
+        System.out.println("Press a to continue");
+        tastatur.next();
+        partyGainsExp();
+
+        if (opponentPokemonParty.get(0).remainingHp <= 0 && opponentPokemonParty.get(1).remainingHp <= 0 && opponentPokemonParty.get(2).remainingHp <= 0 && opponentPokemonParty.get(3).remainingHp <= 0 && opponentPokemonParty.get(4).remainingHp <= 0 && opponentPokemonParty.get(5).remainingHp <= 0) {
+            foundWinner = true;
+        } else if (opponentPokemonParty.get(0).remainingHp > 0) {
+            activeOpponentPokemon = opponentPokemonParty.get(0);
+            activeOpponentPokemon.remainingHp = activeOpponentPokemon.hp;
+            System.out.println("Your opponent sends out " + activeOpponentPokemon.pokemonName + "!");
+        } else if (opponentPokemonParty.get(1).remainingHp > 0) {
+            activeOpponentPokemon = opponentPokemonParty.get(1);
+            activeOpponentPokemon.remainingHp = activeOpponentPokemon.hp;
+            System.out.println("Your opponent sends out " + activeOpponentPokemon.pokemonName + "!");
+        } else if (opponentPokemonParty.get(2).remainingHp > 0) {
+            activeOpponentPokemon = opponentPokemonParty.get(2);
+            System.out.println("Your opponent sends out " + activeOpponentPokemon.pokemonName + "!");
+        } else if (opponentPokemonParty.get(3).remainingHp > 0) {
+            activeOpponentPokemon = opponentPokemonParty.get(3);
+            System.out.println("Your opponent sends out " + activeOpponentPokemon.pokemonName + "!");
+        } else if (opponentPokemonParty.get(4).remainingHp > 0) {
+            activeOpponentPokemon = opponentPokemonParty.get(4);
+            System.out.println("Your opponent sends out " + activeOpponentPokemon.pokemonName + "!");
+        } else if (opponentPokemonParty.get(5).remainingHp > 0) {
+            activeOpponentPokemon = opponentPokemonParty.get(5);
+            System.out.println("Your opponent sends out " + activeOpponentPokemon.pokemonName + "!");
+        }
+        op3 = true;
     }
+
+    public int damageCalc(int basePower, int atk, int def, int lvl, String attackType, String userType1, String userType2, String opponentType1, String opponentType2, String moveUsed, GeneratedPokemon moveUser) {
+        double STAB;
+        double effectiveness = (checkMove.checkEffective(attackType, opponentType1) * checkMove.checkEffective(attackType, opponentType2));
+        if (attackType.equals(userType1) || attackType.equals(userType2)) {
+            STAB = 1.5;
+        } else STAB = 1;
+        basePower = checkMove.calcNewBasePower(moveUsed, basePower, moveUser);
+        double resultDamage = (((double) ((((2 * lvl) / 5) + 2) * basePower * (atk / def)) / 50) + 2) * STAB * effectiveness;
+        return (int) Math.round(resultDamage);
+    }
+
     public int speedCalc(int playerSpeed, int opponentSpeed) {
         if (checkMove.priorityCheck(priorityCheckPlayer, priorityCheckOpponent) == 1) {
             return 0;
@@ -267,212 +592,115 @@ public class BattleController {
             return 1;
         } else return 0;
     }
-    void ifPlayerLose() {
-        String op1;
-        if (activePlayerPokemon.remainingHp < 0) {
-            activePlayerPokemon.remainingHp = 0;}
-        System.out.println();
-        System.out.println(activePlayerPokemon.pokemonName);
-        System.out.println("Lvl: "+ activePlayerPokemon.lvl);
-        System.out.println("Hp: "+ activePlayerPokemon.hp+"/"+ activePlayerPokemon.remainingHp+"\n");
-        System.out.println(activeOpponentPokemon.pokemonName);
-        System.out.println("Lvl: "+ activeOpponentPokemon.lvl);
-        System.out.println("Hp: "+ activeOpponentPokemon.hp+"/"+ activeOpponentPokemon.remainingHp+"\n");
-        System.out.println("Your "+ activePlayerPokemon.pokemonName+" fainted!");
-        if (playerPokemon1.remainingHp <= 0 && playerPokemon2.remainingHp <= 0 && playerPokemon3.remainingHp <= 0 && playerPokemon4.remainingHp <= 0 && playerPokemon5.remainingHp <= 0 && playerPokemon6.remainingHp <= 0) {
-            foundWinner = true;
-            System.out.println("Press a to continue");
-            tastatur.next();
-            System.out.println("You whited out...");
-            System.out.println("Press a to continue");
-        } else
-            System.out.println("Please select the next pokemon to send in:");
-            if (playerPokemon1.remainingHp > 0) {
-                System.out.println("1. "+playerPokemon1);
-            }
-            if (playerPokemon2.remainingHp > 0) {
-            System.out.println("2. "+playerPokemon2);
-            }
-            if (playerPokemon3.remainingHp > 0) {
-            System.out.println("3. "+playerPokemon3);
-            }
-            if (playerPokemon4.remainingHp > 0) {
-            System.out.println("4. "+playerPokemon4);
-            }
-            if (playerPokemon5.remainingHp > 0) {
-            System.out.println("5. "+playerPokemon5);
-            }
-            if (playerPokemon6.remainingHp > 0) {
-            System.out.println("6. "+playerPokemon6);
-            }
-            op1 = tastatur.next();
-            switch (op1) {
-                case "1":
-                    activePlayerPokemon = playerPokemon1;
-                    activePlayerPokemon.remainingHp = activeOpponentPokemon.hp;
-                    System.out.println("You send out "+activePlayerPokemon.pokemonName+"!");
-                    break;
-                case "2":
-                    activePlayerPokemon = playerPokemon2;
-                    activePlayerPokemon.remainingHp = activeOpponentPokemon.hp;
-                    System.out.println("You send out "+activePlayerPokemon.pokemonName+"!");
-                    break;
-                case "3":
-                    activePlayerPokemon = playerPokemon3;
-                    activePlayerPokemon.remainingHp = activeOpponentPokemon.hp;
-                    System.out.println("You send out "+activePlayerPokemon.pokemonName+"!");
-                    break;
-                case "4":
-                    activePlayerPokemon = playerPokemon4;
-                    activePlayerPokemon.remainingHp = activeOpponentPokemon.hp;
-                    System.out.println("You send out "+activePlayerPokemon.pokemonName+"!");
-                    break;
-                case "5":
-                    activePlayerPokemon = playerPokemon5;
-                    activePlayerPokemon.remainingHp = activeOpponentPokemon.hp;
-                    System.out.println("You send out "+activePlayerPokemon.pokemonName+"!");
-                    break;
-                case "6":
-                    activePlayerPokemon = playerPokemon6;
-                    activePlayerPokemon.remainingHp = activeOpponentPokemon.hp;
-                    System.out.println("You send out "+activePlayerPokemon.pokemonName+"!");
-                    break;
-            }
-    }
-    void ifOpponentLose() throws IOException {
-        if (activeOpponentPokemon.remainingHp < 0) {
-            activeOpponentPokemon.remainingHp = 0;}
-        System.out.println();
-        System.out.println(activePlayerPokemon.pokemonName);
-        System.out.println("Lvl: "+ activePlayerPokemon.lvl);
-        System.out.println("Hp: "+ activePlayerPokemon.hp+"/"+ activePlayerPokemon.remainingHp+"\n");
-        System.out.println(activeOpponentPokemon.pokemonName);
-        System.out.println("Lvl: "+ activeOpponentPokemon.lvl);
-        System.out.println("Hp: "+ activeOpponentPokemon.hp+"/"+ activeOpponentPokemon.remainingHp+"\n");
-        System.out.println("The opposing "+ activeOpponentPokemon.pokemonName+" fainted!");
-        System.out.println("Press a to continue");
-        tastatur.next();
-        System.out.println("\nYour "+ activePlayerPokemon.pokemonName+" gained "+expCalc()+" exp!");
-        System.out.println("Press a to continue");
-        tastatur.next();
-        partyGainsExp();
 
-        if (activeOpponentPokemon.remainingHp <= 0 && opponentPokemon2.remainingHp <= 0 && opponentPokemon3.remainingHp <= 0 && opponentPokemon4.remainingHp <= 0 && opponentPokemon5.remainingHp <= 0 && opponentPokemon6.remainingHp <= 0) {
-            foundWinner = true;
-        } else if (opponentPokemon2.remainingHp > 0) {
-            activeOpponentPokemon = opponentPokemon2;
-            activeOpponentPokemon.remainingHp = activeOpponentPokemon.hp;
-            System.out.println("Your opponent sends out "+activeOpponentPokemon.pokemonName+"!");
-        } else if (opponentPokemon3.remainingHp > 0) {
-            activeOpponentPokemon = opponentPokemon3;
-            System.out.println("Your opponent sends out "+activeOpponentPokemon.pokemonName+"!");
-        } else if (opponentPokemon4.remainingHp > 0) {
-            activeOpponentPokemon = opponentPokemon4;
-            System.out.println("Your opponent sends out "+activeOpponentPokemon.pokemonName+"!");
-        } else if (opponentPokemon5.remainingHp > 0) {
-            activeOpponentPokemon = opponentPokemon5;
-            System.out.println("Your opponent sends out "+activeOpponentPokemon.pokemonName+"!");
-        } else if (opponentPokemon6.remainingHp > 0) {
-            activeOpponentPokemon = opponentPokemon6;
-            System.out.println("Your opponent sends out "+activeOpponentPokemon.pokemonName+"!");
+    public int expCalc() {
+        int isTrainer = 1;
+        if (trainer) {
+            isTrainer = 2;
         }
+        return (((activeOpponentPokemon.expYield * activeOpponentPokemon.lvl) / 6))*isTrainer;
     }
+
+    void LevelUp(GeneratedPokemon insertPokemon) throws IOException {
+        insertPokemon.StatGainLevelUp(insertPokemon);
+        getMoves.LearnSet(insertPokemon);
+        System.out.println(insertPokemon);
+        System.out.println("Press a to continue");
+        tastatur.next();
+    }
+
     void partyGainsExp() throws IOException {
-        playerPokemon1.exp = playerPokemon1.exp + expCalc();
-        if (playerPokemon1.exp > playerPokemon1.expToNextLvl) {
-            LevelUp(playerPokemon1);
+        playerPokemonParty.get(0).exp = playerPokemonParty.get(0).exp + expCalc();
+        if (playerPokemonParty.get(0).exp > playerPokemonParty.get(0).expToNextLvl) {
+            LevelUp(playerPokemonParty.get(0));
         }
-        if (!playerPokemon2.pokemonName.equals(" ")) {
-            playerPokemon2.exp = playerPokemon2.exp + expCalc();
-            if (playerPokemon2.exp > playerPokemon2.expToNextLvl) {
-                LevelUp(playerPokemon2);
+        if (!playerPokemonParty.get(1).pokemonName.equals(" ")) {
+            playerPokemonParty.get(1).exp = playerPokemonParty.get(1).exp + expCalc();
+            if (playerPokemonParty.get(1).exp > playerPokemonParty.get(1).expToNextLvl) {
+                LevelUp(playerPokemonParty.get(1));
             }
         }
-        if (!playerPokemon3.pokemonName.equals(" ")) {
-            playerPokemon3.exp = playerPokemon3.exp + expCalc();
-            if (playerPokemon3.exp > playerPokemon3.expToNextLvl) {
-                LevelUp(playerPokemon3);
+        if (!playerPokemonParty.get(2).pokemonName.equals(" ")) {
+            playerPokemonParty.get(2).exp = playerPokemonParty.get(2).exp + expCalc();
+            if (playerPokemonParty.get(2).exp > playerPokemonParty.get(2).expToNextLvl) {
+                LevelUp(playerPokemonParty.get(2));
             }
         }
-        if (!playerPokemon4.pokemonName.equals(" ")) {
-            playerPokemon4.exp = playerPokemon4.exp + expCalc();
-            if (playerPokemon4.exp > playerPokemon4.expToNextLvl) {
-                LevelUp(playerPokemon4);
+        if (!playerPokemonParty.get(3).pokemonName.equals(" ")) {
+            playerPokemonParty.get(3).exp = playerPokemonParty.get(3).exp + expCalc();
+            if (playerPokemonParty.get(3).exp > playerPokemonParty.get(3).expToNextLvl) {
+                LevelUp(playerPokemonParty.get(3));
             }
         }
-        if (!playerPokemon5.pokemonName.equals(" ")) {
-            playerPokemon5.exp = playerPokemon5.exp + expCalc();
-            if (playerPokemon5.exp > playerPokemon5.expToNextLvl) {
-                LevelUp(playerPokemon5);
+        if (!playerPokemonParty.get(4).pokemonName.equals(" ")) {
+            playerPokemonParty.get(4).exp = playerPokemonParty.get(4).exp + expCalc();
+            if (playerPokemonParty.get(4).exp > playerPokemonParty.get(4).expToNextLvl) {
+                LevelUp(playerPokemonParty.get(4));
             }
         }
-        if (!playerPokemon6.pokemonName.equals(" ")) {
-            playerPokemon6.exp = playerPokemon6.exp + expCalc();
-            if (playerPokemon6.exp > playerPokemon6.expToNextLvl) {
-                LevelUp(playerPokemon6);
+        if (!playerPokemonParty.get(5).pokemonName.equals(" ")) {
+            playerPokemonParty.get(5).exp = playerPokemonParty.get(5).exp + expCalc();
+            if (playerPokemonParty.get(5).exp > playerPokemonParty.get(5).expToNextLvl) {
+                LevelUp(playerPokemonParty.get(5));
             }
         }
     }
+
     public PokemonMoveList callMove(String moveID) throws IOException {
         PokemonMoveList findMove = new PokemonMoveList(moveID);
         findMove.getMoveData(findMove.getMove(moveID));
 
         return findMove;
     }
-    void printBattleState() throws IOException {
-        System.out.println();
-        System.out.println(activePlayerPokemon.pokemonName);
-        System.out.println("Lvl: "+ activePlayerPokemon.lvl);
-        System.out.println("Hp: "+ activePlayerPokemon.hp+"/"+ activePlayerPokemon.remainingHp);
-        System.out.println();
-        System.out.println(activeOpponentPokemon.pokemonName);
-        System.out.println("Lvl: "+ activeOpponentPokemon.lvl);
-        System.out.println("Hp: "+ activeOpponentPokemon.hp+"/"+ activeOpponentPokemon.remainingHp);
-        System.out.println();
-        chooseMove();
-    }
+
     void startCombat() {
         String op1;
         System.out.println("Please select a pokemon to send into battle:");
-        System.out.println("1. "+playerPokemon1.pokemonName);
-        if (!playerPokemon2.pokemonName.equals(" ")) {
-            System.out.println("2. "+playerPokemon2.pokemonName);
+        System.out.println("1. " + playerPokemonParty.get(0).pokemonName);
+        if (!playerPokemonParty.get(1).pokemonName.equals(" ")) {
+            System.out.println("2. " + playerPokemonParty.get(1).pokemonName);
+            playerPokemonParty.get(1).remainingHp = playerPokemonParty.get(1).hp;
         }
-        if (!playerPokemon3.pokemonName.equals(" ")) {
-            System.out.println("3. "+playerPokemon3.pokemonName);
+        if (!playerPokemonParty.get(2).pokemonName.equals(" ")) {
+            System.out.println("3. " + playerPokemonParty.get(2).pokemonName);
+            playerPokemonParty.get(2).remainingHp = playerPokemonParty.get(2).hp;
         }
-        if (!playerPokemon4.pokemonName.equals(" ")) {
-            System.out.println("4. "+playerPokemon4.pokemonName);
+        if (!playerPokemonParty.get(3).pokemonName.equals(" ")) {
+            System.out.println("4. " + playerPokemonParty.get(3).pokemonName);
+            playerPokemonParty.get(3).remainingHp = playerPokemonParty.get(3).hp;
         }
-        if (!playerPokemon5.pokemonName.equals(" ")) {
-            System.out.println("5. "+playerPokemon5.pokemonName);
+        if (!playerPokemonParty.get(4).pokemonName.equals(" ")) {
+            System.out.println("5. " + playerPokemonParty.get(4).pokemonName);
+            playerPokemonParty.get(4).remainingHp = playerPokemonParty.get(4).hp;
         }
-        if (!playerPokemon6.pokemonName.equals(" ")) {
-            System.out.println("6. "+playerPokemon6.pokemonName);
+        if (!playerPokemonParty.get(5).pokemonName.equals(" ")) {
+            System.out.println("6. " + playerPokemonParty.get(5).pokemonName);
+            playerPokemonParty.get(5).remainingHp = playerPokemonParty.get(5).hp;
         }
         while (true) {
             op1 = tastatur.next();
-            if ((op1.equals("1") && !playerPokemon1.pokemonName.equals(" ")) || (op1.equals("2") && !playerPokemon2.pokemonName.equals(" ")) || (op1.equals("3") && !playerPokemon3.pokemonName.equals(" ")) || (op1.equals("4") && !playerPokemon4.pokemonName.equals(" ")) || (op1.equals("5") && !playerPokemon5.pokemonName.equals(" ")) || (op1.equals("6") && !playerPokemon6.pokemonName.equals(" "))) break;
-        else System.out.println("Please make a valid choice.");
+            if ((op1.equals("1") && !playerPokemonParty.get(0).pokemonName.equals(" ")) || (op1.equals("2") && !playerPokemonParty.get(1).pokemonName.equals(" ")) || (op1.equals("3") && !playerPokemonParty.get(2).pokemonName.equals(" ")) || (op1.equals("4") && !playerPokemonParty.get(3).pokemonName.equals(" ")) || (op1.equals("5") && !playerPokemonParty.get(4).pokemonName.equals(" ")) || (op1.equals("6") && !playerPokemonParty.get(5).pokemonName.equals(" ")))
+                break;
+            else System.out.println("Please make a valid choice.");
         }
         switch (op1) {
             case "1":
-                activePlayerPokemon = playerPokemon1;
+                activePlayerPokemon = playerPokemonParty.get(0);
                 break;
             case "2":
-                activePlayerPokemon = playerPokemon2;
+                activePlayerPokemon = playerPokemonParty.get(1);
                 break;
             case "3":
-                activePlayerPokemon = playerPokemon3;
+                activePlayerPokemon = playerPokemonParty.get(2);
                 break;
             case "4":
-                activePlayerPokemon = playerPokemon4;
+                activePlayerPokemon = playerPokemonParty.get(3);
                 break;
             case "5":
-                activePlayerPokemon = playerPokemon5;
+                activePlayerPokemon = playerPokemonParty.get(4);
                 break;
             case "6":
-                activePlayerPokemon = playerPokemon6;
+                activePlayerPokemon = playerPokemonParty.get(5);
                 break;
         }
 
@@ -481,9 +709,8 @@ public class BattleController {
         activePlayerPokemon.leechSeed = false;
         activePlayerPokemon.repeatingEffect = "";
         activePlayerPokemon.repeatingMove = "";
-        getMoves.LearnSet(activePlayerPokemon);
 
-        activeOpponentPokemon = opponentPokemon1;
+        activeOpponentPokemon = opponentPokemonParty.get(0);
         activeOpponentPokemon.remainingHp = activeOpponentPokemon.hp;
         activeOpponentPokemon.leechSeed = false;
         activeOpponentPokemon.repeatedMove = 0;
@@ -491,10 +718,22 @@ public class BattleController {
         activeOpponentPokemon.repeatingMove = "";
 
         foundWinner = false;
+        isCaught = false;
+        playerUsedItem = false;
+        opponentUsedItem = false;
 
         System.out.println("Battle: Start!");
         System.out.println();
         System.out.println("The Player sends out: " + activePlayerPokemon.pokemonName);
         System.out.println("The Opponent sends out: " + activeOpponentPokemon.pokemonName);
+    }
+
+    private static final Map<String, Integer> convertReadIntInput = new HashMap<>();
+
+    static {
+        convertReadIntInput.put("1", 0);
+        convertReadIntInput.put("2", 1);
+        convertReadIntInput.put("3", 2);
+        convertReadIntInput.put("4", 3);
     }
 }
