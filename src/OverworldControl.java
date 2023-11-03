@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -35,7 +36,8 @@ public class OverworldControl {
                 }
                 System.out.println("9 to quit game // dev command // ");
                 op1 = tastatur.next();
-                if (op1.equals("1") || op1.equals("2") || op1.equals("3") || op1.equals("4") || op1.equals("5") || op1.equals("9")) break;
+                if (op1.equals("1") || op1.equals("2") || op1.equals("3") || op1.equals("4") || (op1.equals("5") && unlockedGym.pokemonGym1) || op1.equals("9"))
+                    break;
                 else System.out.println("\nPlease make a valid choice.\n");
             }
             switch (op1) {
@@ -123,16 +125,14 @@ public class OverworldControl {
                             case "2":
                                 if (unlockedRoute.route1) {
                                     unlockedRoute.routeTwo(playerPokemonParty, opponentPokemonParty, playerBag);
-                                }
-                                else {
+                                } else {
                                     System.out.println("You have not unlocked this Route yet.");
                                 }
                                 break;
                             case "3":
                                 if (unlockedGym.pokemonGym1) {
                                     unlockedRoute.routeThree(playerPokemonParty, opponentPokemonParty, playerBag);
-                                }
-                                else {
+                                } else {
                                     System.out.println("You have not unlocked this Route yet.");
                                 }
                                 break;
@@ -235,23 +235,121 @@ public class OverworldControl {
                         }
                     }
                 case "5":
-                    // POKEMALL
+                    while (true) {
+                        System.out.println("\n<PokeMall>\n");
+                        System.out.println("1. General Store");
+                        System.out.println("2. Pokemon Kennel");
+                        System.out.println("3. TM-Moves Store");
+                        System.out.println("4. Evolution Stones Store");
+                        System.out.println("5. Restaurant");
+                        System.out.println("9. Return to the <Overworld Menu>");
+                        op2 = tastatur.next();
+                        if (op2.equals("1") || op2.equals("2") || op2.equals("3") || op2.equals("4") || op2.equals("5") || op2.equals("9"))
+                            break;
+                        else System.out.println("\nPlease make a valid choice.\n");
+                    }
+                    switch (op2) {
+                        case "1":
+                            generalStoreLayout();
+                            break;
+                        case "2":
+                        case "3":
+                        case "4":
+                        case "5":
+                        case "9":
+                    }
                     break;
             }
         }
     }
+
     void printRouteInMenu(int routeNumber, boolean route) {
         if (route) {
-            System.out.println(routeNumber + ". Route "+routeNumber);
+            System.out.println(routeNumber + ". Route " + routeNumber);
         } else {
-            System.out.println(routeNumber +". ");
+            System.out.println(routeNumber + ". ");
         }
     }
+
     void printGymInMenu(int gymNumber, boolean gym, String gymType) {
         if (gym) {
-            System.out.println(gymNumber + ". Pokemon Gym "+gymNumber+ "("+gymType+")");
+            System.out.println(gymNumber + ". Pokemon Gym " + gymNumber + "(" + gymType + ")");
         } else {
-            System.out.println(gymNumber +". ");
+            System.out.println(gymNumber + ". ");
+        }
+    }
+
+    void generalStoreLayout() {
+        ArrayList<String> storeItem = new ArrayList<>();
+        ArrayList<Integer> storeItemPrice = new ArrayList<>();
+        String op3;
+
+        storeItem.add("Pokeball");
+        storeItemPrice.add(50);
+
+        if (unlockedGym.pokemonGym2) {
+            storeItem.add("Greatball");
+            storeItemPrice.add(100);
+        }
+
+        if (unlockedGym.pokemonGym5) {
+            storeItem.add("Ultraball");
+            storeItemPrice.add(175);
+        }
+
+        storeItem.add("Potion");
+        storeItemPrice.add(50);
+
+        if (unlockedGym.pokemonGym3) {
+            storeItem.add("Super Potion");
+            storeItemPrice.add(75);
+        }
+
+        if (unlockedGym.pokemonGym6) {
+            storeItem.add("Hyper Potion");
+            storeItemPrice.add(175);
+        }
+
+        while (true) {
+            System.out.println("\n<General Store>\n");
+            for (int i = 0; i < storeItem.size(); i++) {
+                System.out.println((i + 1) + ". " + storeItem.get(i) + "\t" + storeItemPrice.get(i) + "p$");
+            }
+            System.out.println("9. Return to <PokeMall>");
+            op3 = tastatur.next();
+
+            if (op3.equals("9")) {
+                break;
+            }
+
+            int selectedItem = Integer.parseInt(op3) - 1;
+
+            if (selectedItem >= 0 && selectedItem < storeItem.size()) {
+                String itemName = storeItem.get(selectedItem);
+                int itemPrice = storeItemPrice.get(selectedItem);
+
+                if (playerBag.pokeDollars >= itemPrice) {
+                    playerBag.pokeDollars = playerBag.pokeDollars - itemPrice;
+
+                    if (itemName.equals("Pokeball")) {
+                        playerBag.pokeballs++;
+                    } else if (itemName.equals("Greatball")) {
+                        playerBag.greatballs++;
+                    } else if (itemName.equals("Ultraball")) {
+                        playerBag.ultraballs++;
+                    } else if (itemName.equals("Potion")) {
+                        playerBag.potion++;
+                    } else if (itemName.equals("Super Potion")) {
+                        playerBag.superPotion++;
+                    } else if (itemName.equals("Hyper Potion")) {
+                        playerBag.hyperPotion++;
+                    }
+
+                    System.out.println("You purchased a " + itemName + " for " + itemPrice + "p$!");
+                } else {
+                    System.out.println("You don't have enough money to purchase this item.");
+                }
+            }
         }
     }
 }

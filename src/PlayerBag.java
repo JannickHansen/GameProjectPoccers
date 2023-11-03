@@ -34,7 +34,7 @@ public class PlayerBag {
         itemSlotCounter = new ArrayList<>();
         int i = 1;
         System.out.println("\nPlayer Bag\n");
-        System.out.println("PokeDollars: "+pokeDollars+"\n");
+        System.out.println("PokeDollars: "+pokeDollars+"p$\n");
         if (pokeballs > 0) {
             System.out.println(i + ". Pokeball x"+pokeballs);
             itemSlotCounter.add(i);

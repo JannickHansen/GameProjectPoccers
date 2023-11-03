@@ -103,7 +103,7 @@ public class PokemonGym {
                 System.out.println("Your journey have officially started.. I can't wait to see what you'll accomplish!");
                 System.out.println("Press a to continue");
                 tastatur.next();
-                System.out.println("You were awarded 128 pokeDollars.");
+                System.out.println("You were awarded 176 p$!");
                 System.out.println("You were awarded a Super Potion.");
                 playerBag.pokeDollars = playerBag.pokeDollars + 128;
                 playerBag.superPotion = playerBag.superPotion + 1;

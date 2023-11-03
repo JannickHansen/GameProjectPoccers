@@ -33,6 +33,9 @@ public class MainGameControl {
 
         //MAIN PRIORITY LIST
         // ADD COLOUR TO ITEMS, MOVES, TYPES, POKEMON <-- TYPES, RED HP ETC
+        // Create method which can be called whenever an item, pokemon or type is printed within that method, so that it can identify and change colour accordingly by itself.
+
+
         // POKEMALL
 
         // OTHER TO-DO LIST

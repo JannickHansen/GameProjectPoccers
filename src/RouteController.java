@@ -103,7 +103,7 @@ public class RouteController {
                                 op4 = startBattle.mainBattleController();
                                 if (op4) {
                                     n++;
-                                    playerBag.pokeDollars = playerBag.pokeDollars + randomNumberRange(12,24);
+                                    playerBag.pokeDollars = playerBag.pokeDollars + randomNumberRangeForMoney(12,24);
                                 }
                                 break;
                             case 2:
@@ -121,7 +121,7 @@ public class RouteController {
                                 op4 = startBattle.mainBattleController();
                                 if (op4) {
                                     n++;
-                                    playerBag.pokeDollars = playerBag.pokeDollars + randomNumberRange(12,24);
+                                    playerBag.pokeDollars = playerBag.pokeDollars + randomNumberRangeForMoney(12,24);
                                 }
                                 break;
                             case 3:
@@ -144,7 +144,7 @@ public class RouteController {
                                 op4 = startBattle.mainBattleController();
                                 if (op4) {
                                     n++;
-                                    playerBag.pokeDollars = playerBag.pokeDollars + randomNumberRange(12,24);
+                                    playerBag.pokeDollars = playerBag.pokeDollars + randomNumberRangeForMoney(12,24);
                                 }
                                 break;
                         }
@@ -170,6 +170,7 @@ public class RouteController {
                 n = 0;
             }
 
+            startBattle.trainer = false;
             opponentPokemonParty.get(0).remainingHp = 0;
             opponentPokemonParty.get(1).remainingHp = 0;
             opponentPokemonParty.get(2).remainingHp = 0;
@@ -238,7 +239,7 @@ public class RouteController {
                             op4 = startBattle.mainBattleController();
                             if (op4) {
                                 n++;
-                                playerBag.pokeDollars = playerBag.pokeDollars + randomNumberRange(18,30);
+                                playerBag.pokeDollars = playerBag.pokeDollars + randomNumberRangeForMoney(18,30);
                             }
                             break;
                         case 2:
@@ -260,7 +261,7 @@ public class RouteController {
                             op4 = startBattle.mainBattleController();
                             if (op4) {
                                 n++;
-                                playerBag.pokeDollars = playerBag.pokeDollars + randomNumberRange(18,30);
+                                playerBag.pokeDollars = playerBag.pokeDollars + randomNumberRangeForMoney(18,30);
                             }
                             break;
                         case 3:
@@ -285,7 +286,7 @@ public class RouteController {
                             op4 = startBattle.mainBattleController();
                             if (op4) {
                                 n++;
-                                playerBag.pokeDollars = playerBag.pokeDollars + randomNumberRange(18,30);
+                                playerBag.pokeDollars = playerBag.pokeDollars + randomNumberRangeForMoney(18,30);
                             }
                             break;
                         case 4:
@@ -310,7 +311,7 @@ public class RouteController {
                             op4 = startBattle.mainBattleController();
                             if (op4) {
                                 n++;
-                                playerBag.pokeDollars = playerBag.pokeDollars + randomNumberRange(18,30);
+                                playerBag.pokeDollars = playerBag.pokeDollars + randomNumberRangeForMoney(18,30);
                             }
                             break;
                     }
@@ -396,7 +397,8 @@ public class RouteController {
                             op4 = startBattle.mainBattleController();
                             if (op4) {
                                 n++;
-                                playerBag.pokeDollars = playerBag.pokeDollars + randomNumberRange(12,24);
+                                System.out.println();
+                                playerBag.pokeDollars = playerBag.pokeDollars + randomNumberRangeForMoney(26,38);
                             }
                             break;
                         case 2:
@@ -414,7 +416,7 @@ public class RouteController {
                             op4 = startBattle.mainBattleController();
                             if (op4) {
                                 n++;
-                                playerBag.pokeDollars = playerBag.pokeDollars + randomNumberRange(12,24);
+                                playerBag.pokeDollars = playerBag.pokeDollars + randomNumberRangeForMoney(26,38);
                             }
                             break;
                         case 3:
@@ -437,7 +439,7 @@ public class RouteController {
                             op4 = startBattle.mainBattleController();
                             if (op4) {
                                 n++;
-                                playerBag.pokeDollars = playerBag.pokeDollars + randomNumberRange(12,24);
+                                playerBag.pokeDollars = playerBag.pokeDollars + randomNumberRangeForMoney(26,38);
                             }
                             break;
                     }
@@ -452,4 +454,8 @@ public class RouteController {
         return ThreadLocalRandom.current().nextInt(1, 100+1); }
     int randomNumberRange(int minValue, int maxValue)
     { return ThreadLocalRandom.current().nextInt(minValue,maxValue+1); }
+    int randomNumberRangeForMoney(int minValue, int maxValue) {
+        int awardedPokeDollars = ThreadLocalRandom.current().nextInt(minValue,maxValue+1);
+        System.out.println("You were awarded "+awardedPokeDollars+" p$!");
+        return awardedPokeDollars; }
 }
