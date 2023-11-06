@@ -13,6 +13,7 @@ public class ItemDesciptions {
             case "Potion" -> "A type of medicine that restores 20hp.";
             case "Super Potion" -> "A type of medicine that restores 50hp.";
             case "Hyper Potion" -> "Highly advanced medicine that restores 200hp";
+            case "Rare Candy" -> "Candy that is so hard to come by that you'll save it for a better time.. only to reach level 100 without using it.";
             default -> "Please make a valid choice.";
 
         };

@@ -337,6 +337,8 @@ public class BattleController {
                             }
                         } else if (trainer && (itemName.equals("Pokeball") || itemName.equals("Greatball") || itemName.equals("Ultraball"))) {
                             System.out.println("You can not catch another trainers pokemon!");
+                        } else if (trainer && itemName.equals("Rare Candy")) {
+                            System.out.println("You can not use this item in combat!");
                         }
                         else if (itemName.equals("Potion")) {
                             playerBag.potion = playerBag.potion - 1;
@@ -349,7 +351,7 @@ public class BattleController {
                             playerUsedItem = true;
                             break;
                         } else if (itemName.equals("Super Potion")) {
-                            playerBag.potion = playerBag.superPotion - 1;
+                            playerBag.superPotion = playerBag.superPotion - 1;
                             System.out.println("You used a " + CM.getItems + itemName + CM.resetColour + " on your "+activePlayerPokemon.pokemonName+"!");
                             System.out.println("The " + CM.getItems + itemName + CM.resetColour + " healed your "+activePlayerPokemon.pokemonName+" for 50hp!");
                             activePlayerPokemon.remainingHp = activePlayerPokemon.remainingHp + 50;
@@ -359,7 +361,7 @@ public class BattleController {
                             playerUsedItem = true;
                             break;
                         } else if (itemName.equals("Hyper Potion")) {
-                            playerBag.potion = playerBag.hyperPotion - 1;
+                            playerBag.hyperPotion = playerBag.hyperPotion - 1;
                             System.out.println("You used a " + CM.getItems + itemName + CM.resetColour + " on your "+activePlayerPokemon.pokemonName+"!");
                             System.out.println("The " + CM.getItems + itemName + CM.resetColour + " healed your "+activePlayerPokemon.pokemonName+" for 200hp!");
                             activePlayerPokemon.remainingHp = activePlayerPokemon.remainingHp + 200;
@@ -602,7 +604,7 @@ public class BattleController {
         return (((activeOpponentPokemon.expYield * activeOpponentPokemon.lvl) / 6))*isTrainer;
     }
 
-    void LevelUp(GeneratedPokemon insertPokemon) throws IOException {
+    void levelUp(GeneratedPokemon insertPokemon) throws IOException {
         insertPokemon.StatGainLevelUp(insertPokemon);
         getMoves.LearnSet(insertPokemon);
         System.out.println(insertPokemon);
@@ -613,36 +615,36 @@ public class BattleController {
     void partyGainsExp() throws IOException {
         playerPokemonParty.get(0).exp = playerPokemonParty.get(0).exp + expCalc();
         if (playerPokemonParty.get(0).exp > playerPokemonParty.get(0).expToNextLvl) {
-            LevelUp(playerPokemonParty.get(0));
+            levelUp(playerPokemonParty.get(0));
         }
         if (!playerPokemonParty.get(1).pokemonName.equals(" ")) {
             playerPokemonParty.get(1).exp = playerPokemonParty.get(1).exp + expCalc();
             if (playerPokemonParty.get(1).exp > playerPokemonParty.get(1).expToNextLvl) {
-                LevelUp(playerPokemonParty.get(1));
+                levelUp(playerPokemonParty.get(1));
             }
         }
         if (!playerPokemonParty.get(2).pokemonName.equals(" ")) {
             playerPokemonParty.get(2).exp = playerPokemonParty.get(2).exp + expCalc();
             if (playerPokemonParty.get(2).exp > playerPokemonParty.get(2).expToNextLvl) {
-                LevelUp(playerPokemonParty.get(2));
+                levelUp(playerPokemonParty.get(2));
             }
         }
         if (!playerPokemonParty.get(3).pokemonName.equals(" ")) {
             playerPokemonParty.get(3).exp = playerPokemonParty.get(3).exp + expCalc();
             if (playerPokemonParty.get(3).exp > playerPokemonParty.get(3).expToNextLvl) {
-                LevelUp(playerPokemonParty.get(3));
+                levelUp(playerPokemonParty.get(3));
             }
         }
         if (!playerPokemonParty.get(4).pokemonName.equals(" ")) {
             playerPokemonParty.get(4).exp = playerPokemonParty.get(4).exp + expCalc();
             if (playerPokemonParty.get(4).exp > playerPokemonParty.get(4).expToNextLvl) {
-                LevelUp(playerPokemonParty.get(4));
+                levelUp(playerPokemonParty.get(4));
             }
         }
         if (!playerPokemonParty.get(5).pokemonName.equals(" ")) {
             playerPokemonParty.get(5).exp = playerPokemonParty.get(5).exp + expCalc();
             if (playerPokemonParty.get(5).exp > playerPokemonParty.get(5).expToNextLvl) {
-                LevelUp(playerPokemonParty.get(5));
+                levelUp(playerPokemonParty.get(5));
             }
         }
     }

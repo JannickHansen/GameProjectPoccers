@@ -170,7 +170,7 @@ public class OverworldControl {
                     while (true) {
                         if (op2.equals("9")) break;
                         System.out.println("\nSelect Pokemon Gym:");
-                        printGymInMenu(1, unlockedRoute.route2, "Normal");
+                        printGymInMenu(1, unlockedRoute.route2, CM.getNormal+"Normal"+CM.resetColour);
                         printGymInMenu(2, unlockedGym.pokemonGym2, "");
                         printGymInMenu(3, unlockedGym.pokemonGym3, "");
                         printGymInMenu(4, unlockedGym.pokemonGym4, "");
@@ -235,6 +235,7 @@ public class OverworldControl {
                         }
                         break;
                     }
+                    break;
                 case "5":
                     while (true) {
                         System.out.println("\n<PokeMall>\n");
@@ -313,6 +314,7 @@ public class OverworldControl {
 
         while (true) {
             System.out.println("\n<General Store>\n");
+            System.out.println("p$: "+CM.getItems+playerBag.pokeDollars+ CM.resetColour+ "\n");
             for (int i = 0; i < storeItem.size(); i++) {
                 System.out.println((i + 1) + ". " + storeItem.get(i) + "\t" + storeItemPrice.get(i) + "p$");
             }

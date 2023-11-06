@@ -298,7 +298,7 @@ public class PokemonLearnSet {
                 break;
             case "Rattata":
                 switch (insertPokemon.lvl) {
-                    case 5:
+                    case 1:
                         insertPokemon.move1 = "Tackle";
                         break;
                     case 7:
@@ -320,7 +320,7 @@ public class PokemonLearnSet {
                 break;
             case "Raticate":
                 switch (insertPokemon.lvl) {
-                    case 5:
+                    case 1:
                         insertPokemon.move1 = "Tackle";
                         break;
                     case 4:
@@ -342,7 +342,7 @@ public class PokemonLearnSet {
                 break;
             case "Pidgey":
                 switch (insertPokemon.lvl) {
-                    case 5:
+                    case 1:
                         insertPokemon.move1 = "Tackle";
                         break;
                     case 7:
@@ -1384,7 +1384,8 @@ public class PokemonLearnSet {
         }
     }
     private void learnAndPrintMove (GeneratedPokemon insertPokemon, String newMove) throws IOException {
-        if (insertPokemon.move2.equals(" ")) {
+        if (newMove.equals(insertPokemon.move1) || newMove.equals(insertPokemon.move2) || newMove.equals(insertPokemon.move3) || newMove.equals(insertPokemon.move4)) {}
+        else if (insertPokemon.move2.equals(" ")) {
             insertPokemon.move2 = newMove;
             System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour+ " learnt " + CM.cM(callMove(newMove).moveType) + newMove + CM.resetColour + "!");
         }

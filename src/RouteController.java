@@ -16,6 +16,7 @@ public class RouteController {
     boolean route6 = false;
     boolean route7 = false;
     boolean route8 = false;
+    boolean well = false;
     int n = 0;
     String op1;
     int op2;
@@ -36,7 +37,7 @@ public class RouteController {
         op2 = 0;
         op3 = 0;
         while (true) {
-            if (n >= 3) {
+            if (n >= 3 && !route1) {
                 route1 = true;
                 n = 0;
                 System.out.println("\nRoute 2 have been unlocked!\n");
@@ -164,7 +165,7 @@ public class RouteController {
         op3 = 0;
         while (true) {
 
-            if (n >= 4) {
+            if (n >= 4 && !route2) {
                 route2 = true;
                 System.out.println("\nThe first Pokemon Gym have been unlocked!\n");
                 n = 0;
@@ -330,10 +331,17 @@ public class RouteController {
         op2 = 0;
         op3 = 0;
         while (true) {
-            if (n >= 6) {
-                route1 = true;
+            if (n == 2 && !well) {
+                System.out.println("\nYou come across a well making wierd noises.");
+                System.out.println("The well is now accessible from the <Route Selection>");
+                System.out.println("Press a to continue");
+                well = true;
+                tastatur.next();
+            }
+            if (n >= 6 && !route4) {
+                route4 = true;
                 n = 0;
-                System.out.println("\nRoute 2 have been unlocked!\n");
+                System.out.println("\nRoute 4 have been unlocked!\n");
             }
             startBattle.trainer = false;
             opponentPokemonParty.get(0).remainingHp = 0;
@@ -450,12 +458,54 @@ public class RouteController {
             }
         }
     }
+    void well(List<GeneratedPokemon> playerPokemonParty, List<GeneratedPokemon> opponentPokemonParty, PlayerBag playerBag) throws IOException {
+        BattleController startBattle = new BattleController(playerPokemonParty, opponentPokemonParty, playerBag);
+        int minValue = 1;
+        int maxValue = 7;
+        op1 = "";
+        op2 = 0;
+        op3 = 0;
+        while (true) {
+
+            startBattle.trainer = false;
+            opponentPokemonParty.get(0).remainingHp = 0;
+            opponentPokemonParty.get(1).remainingHp = 0;
+            opponentPokemonParty.get(2).remainingHp = 0;
+            opponentPokemonParty.get(3).remainingHp = 0;
+            opponentPokemonParty.get(4).remainingHp = 0;
+            opponentPokemonParty.get(5).remainingHp = 0;
+
+            if (op1.equals("9")) break;
+            System.out.println("\n<Route 3>\n");
+            System.out.println("Select what you will do:");
+            System.out.println("1. Look around in the dark to see what you can find.");
+            System.out.println("9. Return to the <Route Menu>");
+            op1 = tastatur.next();
+            if (op1.equals("1")) {
+                op1 = "";
+                op2 = randomNumberGenerator();
+                if (op2 < 95) {
+                    opponentPokemonParty.get(0).setImportPokemonData("Slowpoke", randomNumberRange(12, 15));
+                    opponentPokemonParty.get(0).remainingHp = opponentPokemonParty.get(0).hp;
+                    opponentPokemonParty.get(0).move1 = "Tackle";
+                    opponentPokemonParty.get(0).move2 = "Water Gun";
+                    opponentPokemonParty.get(0).move2 = "Bubble";
+                } else if (op2 < 96) {
+                    System.out.println("You found a "+CM.getItems+"Potion"+CM.resetColour+"!");
+                } else if (op2 < 99) {
+                    System.out.println("You found a "+CM.getItems+"Pokeball"+CM.resetColour+"!");
+                } else if (op2 == 100) {
+                    System.out.println("You found a piece of "+CM.getItems+"Rare Candy"+CM.resetColour+"!");
+                }
+            }
+        }
+    }
     int randomNumberGenerator() {
         return ThreadLocalRandom.current().nextInt(1, 100+1); }
     int randomNumberRange(int minValue, int maxValue)
     { return ThreadLocalRandom.current().nextInt(minValue,maxValue+1); }
     int randomNumberRangeForMoney(int minValue, int maxValue) {
         int awardedPokeDollars = ThreadLocalRandom.current().nextInt(minValue,maxValue+1);
-        System.out.println("You were awarded "+awardedPokeDollars+" p$!");
+        System.out.println("You were awarded "+CM.getItems+awardedPokeDollars+" p$"+CM.resetColour+"!");
         return awardedPokeDollars; }
 }

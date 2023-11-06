@@ -5,7 +5,7 @@ import java.util.List;
 public class MainGameControl {
     List<GeneratedPokemon> playerPokemonParty = new ArrayList<>();
     List<GeneratedPokemon> opponentPokemonParty = new ArrayList<>();
-    PlayerBag playerBag = new PlayerBag();
+    PlayerBag playerBag = new PlayerBag(playerPokemonParty);
     GeneratedPokemon uniqueOpponent1 = new GeneratedPokemon();
     GeneratedPokemon uniqueOpponent2 = new GeneratedPokemon();
     GeneratedPokemon uniqueOpponent3 = new GeneratedPokemon();
@@ -26,17 +26,13 @@ public class MainGameControl {
 
     void mainGameHub() throws IOException {
         initiateGame();
-        pickStarter.selectionStart(); // 75306128
+        pickStarter.selectionStart();
         startBattle.mainBattleController();
         pickStarter.postFirstBattle();
         overworldHub.overworldMenu();
 
         //MAIN PRIORITY LIST
-        // ADD COLOUR TO ITEMS, MOVES, TYPES, POKEMON <-- TYPES, RED HP ETC
-        // Create method which can be called whenever an item, pokemon or type is printed within that method, so that it can identify and change colour accordingly by itself.
-
-
-        // POKEMALL
+        // ADD COLOUR TO RED HP
 
         // OTHER TO-DO LIST
         // Add legendary roaming pokemon - 1/1000 chance everywhere? release after certain gym? random route with 1/50 chance based on trainer comments post battle?
