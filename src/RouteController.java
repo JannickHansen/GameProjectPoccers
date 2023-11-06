@@ -50,7 +50,7 @@ public class RouteController {
             opponentPokemonParty.get(5).remainingHp = 0;
 
             if (op1.equals("9")) break;
-            System.out.println("<Route 1>\n");
+            System.out.println("\n<Route 1>\n");
             System.out.println("Select what you will do:");
             System.out.println("1. Enter the tall grass to look for wild pokemon.");
             System.out.println("2. Find and challenge a trainer on this route.");
@@ -179,7 +179,7 @@ public class RouteController {
             opponentPokemonParty.get(5).remainingHp = 0;
 
             if (op1.equals("9")) break;
-            System.out.println("<Route 2>\n");
+            System.out.println("\n<Route 2>\n");
             System.out.println("Select what you will do:");
             System.out.println("1. Enter the tall grass to look for wild pokemon.");
             System.out.println("2. Find and challenge a trainer on this route.");
@@ -344,7 +344,7 @@ public class RouteController {
             opponentPokemonParty.get(5).remainingHp = 0;
 
             if (op1.equals("9")) break;
-            System.out.println("<Route 1>\n");
+            System.out.println("\n<Route 3>\n");
             System.out.println("Select what you will do:");
             System.out.println("1. Enter the tall grass to look for wild pokemon.");
             System.out.println("2. Find and challenge a trainer on this route.");

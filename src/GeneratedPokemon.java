@@ -84,7 +84,7 @@ public class GeneratedPokemon {
         hp  = 11 + ((lvl* inputPokemon.IVHp) + lvl + ((lvl*importPokemonData.hp)/50));
         exp = exp - expToNextLvl;
         expToNextLvl = ((4*(lvl*(lvl*lvl)))/9);
-        System.out.println("Your "+pokemonName+" has reached level "+lvl+"!\n");
+        System.out.println("Your "+pokemonName+" has reached level "+CM.getLevels + lvl+ CM.resetColour+"!\n");
     }
     public static String equalLengthMoves(String move, char ch, int totalLength) {
         return String.format("%" + (-totalLength) + "s",move).replace(' ',ch);
@@ -100,14 +100,21 @@ public class GeneratedPokemon {
         printMove2 = equalLengthMoves(move2,' ',9);
         printMove3 = equalLengthMoves(move3,' ',9);
         printMove4 = equalLengthMoves(move4,' ',9);
+        String mt1; String mt2; String mt3; String mt4;
         try {
             basePower1 = callMove(move1).basePower;
             basePower2 = callMove(move2).basePower;
             basePower3 = callMove(move3).basePower;
             basePower4 = callMove(move4).basePower;
+            mt1 = CM.cM(callMove(move1).moveType);
+            mt2 = CM.cM(callMove(move2).moveType);
+            mt3 = CM.cM(callMove(move3).moveType);
+            mt4 = CM.cM(callMove(move4).moveType);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return "Summary of your: "+pokemonName+"\nType: "+pokemonType1+"/"+pokemonType2+"\nNature: "+pokemonNature+"\nLvl: "+lvl+"\nExp: "+exp+"/"+expToNextLvl+"\nHp:  "+hp+"\nAtk: "+atk+"\nDef: "+def+"\nSpd: "+spd+"\n\n1. "+printMove1+"\tBasePower: "+basePower1+"\n2. "+printMove2+"\tBasePower: "+basePower2+"\n3. "+printMove3+"\tBasePower: "+basePower3+"\n4. "+printMove4+"\tBasePower: "+basePower4;
+        String type1 = CM.cM(pokemonType1);
+        String type2 = CM.cM(pokemonType2);
+        return "Summary of your: "+type1+pokemonName+ CM.resetColour+"\nType: "+type1+pokemonType1+ CM.resetColour+"/"+type2+pokemonType2+ CM.resetColour+"\nNature: "+pokemonNature+"\nLvl: "+ CM.getLevels+ lvl + CM.resetColour+"\nExp: "+exp+"/"+expToNextLvl+"\nHp:  "+hp+"\nAtk: "+atk+"\nDef: "+def+"\nSpd: "+spd+"\n\n1. "+mt1+printMove1+ CM.resetColour+"\tBasePower: "+basePower1+"\n2. "+mt2+printMove2+ CM.resetColour+"\tBasePower: "+basePower2+"\n3. "+mt3+printMove3+ CM.resetColour+"\tBasePower: "+basePower3+"\n4. "+mt4+printMove4+ CM.resetColour+"\tBasePower: "+basePower4;
     }
 }

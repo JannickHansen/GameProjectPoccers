@@ -1,8 +1,6 @@
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 public class PickStarter {
     String opposingPokemon = "";
     int firstBattleLevel = 5;
@@ -42,16 +40,16 @@ public class PickStarter {
         while (true) {
             if (op3) break;
             System.out.println("Please choose one among these starter-pokemon to join you on your journey!");
-            System.out.println("Charmander  - Type: Fire    - Level: 5");
-            System.out.println("Squirtle    - Type: Water   - Level: 5");
-            System.out.println("Bulbasaur   - Type: Grass   - Level: 5");
+            System.out.println("Charmander  - Type: "+ CM.getFire+"Fire"+ CM.resetColour+"    - Level: "+ CM.getLevels+"5"+ CM.resetColour);
+            System.out.println("Squirtle    - Type: "+ CM.getWater+"Water"+ CM.resetColour+"   - Level: "+ CM.getLevels+"5"+ CM.resetColour);
+            System.out.println("Bulbasaur   - Type: "+ CM.getGrass+"Grass"+ CM.resetColour+"   - Level: "+ CM.getLevels+"5"+ CM.resetColour);
             System.out.print("Please write the name of the pokemon you choose: ");
             System.out.println();
             starterPick = spellingControl(tastatur.next());
             pickStarter(starterPick);
         }
-        if (starterPick.equals("Charmander") || starterPick.equals("Squirtle") || starterPick.equals("Bulbasaur") || starterPick.equals("75306128")) {
-            if (starterPick.equals("75306128")) starterPick = "Spheal";
+        if (starterPick.equals("Charmander") || starterPick.equals("Squirtle") || starterPick.equals("Bulbasaur") || starterPick.equals("!753061280710")) {
+            if (starterPick.equals("!753061280710")) starterPick = "Spheal";
             pickStarter(starterPick);
             setImportData(playerPokemon, starterPick); //Sets unique stats for "uniqueStarter"
             printSummery(playerPokemon);  //Summery to show player what pokemon they've got
@@ -72,7 +70,7 @@ public class PickStarter {
     }
 
     void pickStarter(String op1) {
-        if (starterPick.equals("Charmander") || starterPick.equals("Squirtle") || starterPick.equals("Bulbasaur") || starterPick.equals("75306128")) {
+        if (starterPick.equals("Charmander") || starterPick.equals("Squirtle") || starterPick.equals("Bulbasaur") || starterPick.equals("!753061280710")) {
         while (true) {
             if (op3) break;
             System.out.println(op1 + ", Great choice!");
@@ -116,7 +114,8 @@ public class PickStarter {
         tastatur.next();
         System.out.println("Trainers will grant you money upon winning a battle, and some might even give you an item!");
         System.out.println("Items can be anything from pokeballs to potions, handy things to have in battle.");
-        System.out.println("You'll get 5 pokeballs right now! Do use them wisely.");
+        System.out.println("You'll get "+ CM.getItems+"5 pokeballs"+ CM.resetColour+" right now! Do use them wisely.");
+        System.out.println("Oh well, I'll also throw in "+ CM.getItems+"a Potion"+ CM.resetColour+" just for you!");
         playerBag.pokeballs = 5;
         playerBag.potion = 1;
         System.out.println("Press a to continue");

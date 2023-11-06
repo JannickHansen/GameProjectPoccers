@@ -3,7 +3,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class BattleController {
     MoveChecks checkMove = new MoveChecks();
@@ -61,12 +60,12 @@ public class BattleController {
 
     void printBattleState() throws IOException {
         System.out.println();
-        System.out.println(activePlayerPokemon.pokemonName);
-        System.out.println("Lvl: " + activePlayerPokemon.lvl);
+        System.out.println(CM.cM(activePlayerPokemon.pokemonType1) + activePlayerPokemon.pokemonName + CM.resetColour);
+        System.out.println("Lvl: " + CM.getLevels + activePlayerPokemon.lvl + CM.resetColour);
         System.out.println("Hp: " + activePlayerPokemon.hp + "/" + activePlayerPokemon.remainingHp);
         System.out.println();
-        System.out.println(activeOpponentPokemon.pokemonName);
-        System.out.println("Lvl: " + activeOpponentPokemon.lvl);
+        System.out.println(CM.cM(activeOpponentPokemon.pokemonType1) + activeOpponentPokemon.pokemonName + CM.resetColour);
+        System.out.println("Lvl: " + CM.getLevels + activeOpponentPokemon.lvl + CM.resetColour);
         System.out.println("Hp: " + activeOpponentPokemon.hp + "/" + activeOpponentPokemon.remainingHp);
         System.out.println();
         chooseMove();
@@ -75,14 +74,16 @@ public class BattleController {
     void playTurn() throws IOException {
         pokemonFainted = false;
         int moveFirst = speedCalc(activePlayerPokemon.spd, activeOpponentPokemon.spd);
+        String opponentColorCode = CM.cM(callMove(saveMoveName).moveType);
+        String playerColorCode = CM.cM(playerMoveType);
         if (isCaught) {
             foundWinner = true;
         } else if (playerUsedItem) { // IF PLAYER USED AN ITEM // CAN MAKE DUPLICATE IF OPPONENT USE ITEM
             if (saveMoveName.equals("Leech Seed") && !foundWinner) {
-                System.out.println("The opposing " + activeOpponentPokemon.pokemonName + " uses " + saveMoveName + "!");
+                System.out.println("The opposing " + activeOpponentPokemon.pokemonName + " uses " + opponentColorCode + saveMoveName + CM.resetColour + "!");
                 checkMove.performMoveEffect(saveMoveName, activeOpponentPokemon, activePlayerPokemon, idealMove);
             } else if (!foundWinner) {
-                System.out.println("The opposing " + activeOpponentPokemon.pokemonName + " uses " + saveMoveName + " for " + idealMove + " damage!");
+                System.out.println("The opposing " + activeOpponentPokemon.pokemonName + " uses " + opponentColorCode + saveMoveName + CM.resetColour + " for " + idealMove + " damage!");
                 activePlayerPokemon.remainingHp = activePlayerPokemon.remainingHp - idealMove;
                 checkMove.performMoveEffect(saveMoveName, activeOpponentPokemon, activePlayerPokemon, idealMove);
                 if (activePlayerPokemon.remainingHp <= 0) {
@@ -91,10 +92,10 @@ public class BattleController {
             }
         } else if (moveFirst == 0 && !foundWinner) { //IF PLAYER IS FASTER
             if (playerUseMove.equals("Leech Seed")) {
-                System.out.println(activePlayerPokemon.pokemonName + " uses " + playerUseMove + "!");
+                System.out.println(activePlayerPokemon.pokemonName + " uses " + playerColorCode + playerUseMove + CM.resetColour + "!");
                 checkMove.performMoveEffect(playerUseMove, activePlayerPokemon, activeOpponentPokemon, playerDamage);
             } else {
-                System.out.println(activePlayerPokemon.pokemonName + " uses " + playerUseMove + " for " + playerDamage + " damage!");
+                System.out.println(activePlayerPokemon.pokemonName + " uses " + playerColorCode + playerUseMove + CM.resetColour + " for " + playerDamage + " damage!");
                 activeOpponentPokemon.remainingHp = activeOpponentPokemon.remainingHp - playerDamage;
                 checkMove.performMoveEffect(playerUseMove, activePlayerPokemon, activeOpponentPokemon, playerDamage);
                 if (activeOpponentPokemon.remainingHp <= 0) {
@@ -102,10 +103,10 @@ public class BattleController {
                 }
             }
             if (saveMoveName.equals("Leech Seed") && !foundWinner && !pokemonFainted) {
-                System.out.println("The opposing " + activeOpponentPokemon.pokemonName + " uses " + saveMoveName + "!");
+                System.out.println("The opposing " + activeOpponentPokemon.pokemonName + " uses " + opponentColorCode + saveMoveName + CM.resetColour + "!");
                 checkMove.performMoveEffect(saveMoveName, activeOpponentPokemon, activePlayerPokemon, idealMove);
             } else if (!foundWinner && !pokemonFainted) {
-                System.out.println("The opposing " + activeOpponentPokemon.pokemonName + " uses " + saveMoveName + " for " + idealMove + " damage!");
+                System.out.println("The opposing " + activeOpponentPokemon.pokemonName + " uses " + opponentColorCode + saveMoveName + CM.resetColour + " for " + idealMove + " damage!");
                 activePlayerPokemon.remainingHp = activePlayerPokemon.remainingHp - idealMove;
                 checkMove.performMoveEffect(saveMoveName, activeOpponentPokemon, activePlayerPokemon, idealMove);
                 if (activePlayerPokemon.remainingHp <= 0) {
@@ -114,10 +115,10 @@ public class BattleController {
             }
         } else if (moveFirst == 1 && !foundWinner) { // IF OPPONENT IS FASTER
             if (saveMoveName.equals("Leech Seed")) {
-                System.out.println("The opposing " + activeOpponentPokemon.pokemonName + " uses " + saveMoveName + "!");
+                System.out.println("The opposing " + activeOpponentPokemon.pokemonName + " uses " + opponentColorCode + saveMoveName + CM.resetColour + "!");
                 checkMove.performMoveEffect(saveMoveName, activeOpponentPokemon, activePlayerPokemon, idealMove);
             } else {
-                System.out.println("The opposing " + activeOpponentPokemon.pokemonName + " uses " + saveMoveName + " for " + idealMove + " damage!");
+                System.out.println("The opposing " + activeOpponentPokemon.pokemonName + " uses " + opponentColorCode + saveMoveName + CM.resetColour + " for " + idealMove + " damage!");
                 activePlayerPokemon.remainingHp = activePlayerPokemon.remainingHp - idealMove;
                 checkMove.performMoveEffect(saveMoveName, activeOpponentPokemon, activePlayerPokemon, idealMove);
                 if (activePlayerPokemon.remainingHp <= 0 && !foundWinner) {
@@ -125,10 +126,10 @@ public class BattleController {
                 }
             }
             if (playerUseMove.equals("Leech Seed") && !foundWinner && !pokemonFainted) {
-                System.out.println(activePlayerPokemon.pokemonName + " uses " + playerUseMove + "!");
+                System.out.println(activePlayerPokemon.pokemonName + " uses " + playerColorCode + playerUseMove + CM.resetColour + "!");
                 checkMove.performMoveEffect(playerUseMove, activePlayerPokemon, activeOpponentPokemon, playerDamage);
             } else if (!foundWinner && !pokemonFainted) {
-                System.out.println(activePlayerPokemon.pokemonName + " uses " + playerUseMove + " for " + playerDamage + " damage!");
+                System.out.println(activePlayerPokemon.pokemonName + " uses " + playerColorCode + playerUseMove + CM.resetColour + " for " + playerDamage + " damage!");
                 activeOpponentPokemon.remainingHp = activeOpponentPokemon.remainingHp - playerDamage;
                 checkMove.performMoveEffect(playerUseMove, activePlayerPokemon, activeOpponentPokemon, playerDamage);
                 if (activeOpponentPokemon.remainingHp <= 0) {
@@ -231,10 +232,10 @@ public class BattleController {
         playerUsedItem = false;
 
         System.out.println("Choose your move:");
-        System.out.println("1. " + activePlayerPokemon.move1);
-        System.out.println("2. " + activePlayerPokemon.move2);
-        System.out.println("3. " + activePlayerPokemon.move3);
-        System.out.println("4. " + activePlayerPokemon.move4);
+        System.out.println("1. " + CM.cM(callMove(activePlayerPokemon.move1).moveType)+activePlayerPokemon.move1 + CM.resetColour);
+        System.out.println("2. " + CM.cM(callMove(activePlayerPokemon.move2).moveType)+activePlayerPokemon.move2 + CM.resetColour);
+        System.out.println("3. " + CM.cM(callMove(activePlayerPokemon.move3).moveType)+activePlayerPokemon.move3 + CM.resetColour);
+        System.out.println("4. " + CM.cM(callMove(activePlayerPokemon.move4).moveType)+activePlayerPokemon.move4 + CM.resetColour);
         System.out.println("5. Open Bag");
         while (true) {
             if (op2) break;
@@ -282,7 +283,7 @@ public class BattleController {
                         break;
                     } else if (op4.equals("1") || op4.equals("2") || op4.equals("3") || op4.equals("4") || op4.equals("5") || op4.equals("6") || op4.equals("7") || op4.equals("8")) {
                         itemName = playerBag.nameOfItemsInInventory.get(playerBag.itemSlotCounter.get(convertReadIntInput.getOrDefault(op4, 0)));
-                        System.out.println("Use " + itemName + "? Yes / No");
+                        System.out.println("Use " + CM.getItems + itemName + CM.resetColour + "? Yes / No");
                         String op5 = tastatur.next();
                         op5 = spellingControl(op5);
                         if (op5.equals("No")) ;
@@ -339,8 +340,8 @@ public class BattleController {
                         }
                         else if (itemName.equals("Potion")) {
                             playerBag.potion = playerBag.potion - 1;
-                            System.out.println("You used a "+itemName+" on your "+activePlayerPokemon.pokemonName+"!");
-                            System.out.println("The "+itemName+" healed your "+activePlayerPokemon.pokemonName+" for 20hp!");
+                            System.out.println("You used a " + CM.getItems + itemName + CM.resetColour + " on your "+activePlayerPokemon.pokemonName+"!");
+                            System.out.println("The " + CM.getItems + itemName + CM.resetColour + " healed your "+activePlayerPokemon.pokemonName+" for 20hp!");
                             activePlayerPokemon.remainingHp = activePlayerPokemon.remainingHp + 20;
                             if (activePlayerPokemon.remainingHp > activePlayerPokemon.hp) {
                                 activePlayerPokemon.remainingHp = activePlayerPokemon.hp;
@@ -349,8 +350,8 @@ public class BattleController {
                             break;
                         } else if (itemName.equals("Super Potion")) {
                             playerBag.potion = playerBag.superPotion - 1;
-                            System.out.println("You used a "+itemName+" on your "+activePlayerPokemon.pokemonName+"!");
-                            System.out.println("The "+itemName+" healed your "+activePlayerPokemon.pokemonName+" for 50hp!");
+                            System.out.println("You used a " + CM.getItems + itemName + CM.resetColour + " on your "+activePlayerPokemon.pokemonName+"!");
+                            System.out.println("The " + CM.getItems + itemName + CM.resetColour + " healed your "+activePlayerPokemon.pokemonName+" for 50hp!");
                             activePlayerPokemon.remainingHp = activePlayerPokemon.remainingHp + 50;
                             if (activePlayerPokemon.remainingHp > activePlayerPokemon.hp) {
                                 activePlayerPokemon.remainingHp = activePlayerPokemon.hp;
@@ -359,8 +360,8 @@ public class BattleController {
                             break;
                         } else if (itemName.equals("Hyper Potion")) {
                             playerBag.potion = playerBag.hyperPotion - 1;
-                            System.out.println("You used a "+itemName+" on your "+activePlayerPokemon.pokemonName+"!");
-                            System.out.println("The "+itemName+" healed your "+activePlayerPokemon.pokemonName+" for 200hp!");
+                            System.out.println("You used a " + CM.getItems + itemName + CM.resetColour + " on your "+activePlayerPokemon.pokemonName+"!");
+                            System.out.println("The " + CM.getItems + itemName + CM.resetColour + " healed your "+activePlayerPokemon.pokemonName+" for 200hp!");
                             activePlayerPokemon.remainingHp = activePlayerPokemon.remainingHp + 200;
                             if (activePlayerPokemon.remainingHp > activePlayerPokemon.hp) {
                                 activePlayerPokemon.remainingHp = activePlayerPokemon.hp;
@@ -429,13 +430,13 @@ public class BattleController {
             activePlayerPokemon.remainingHp = 0;
         }
         System.out.println();
-        System.out.println(activePlayerPokemon.pokemonName);
-        System.out.println("Lvl: " + activePlayerPokemon.lvl);
+        System.out.println(CM.cM(activePlayerPokemon.pokemonType1) + activePlayerPokemon.pokemonName + CM.resetColour);
+        System.out.println("Lvl: " + CM.getLevels + activePlayerPokemon.lvl + CM.resetColour);
         System.out.println("Hp: " + activePlayerPokemon.hp + "/" + activePlayerPokemon.remainingHp + "\n");
-        System.out.println(activeOpponentPokemon.pokemonName);
-        System.out.println("Lvl: " + activeOpponentPokemon.lvl);
+        System.out.println(CM.cM(activeOpponentPokemon.pokemonType1) + activeOpponentPokemon.pokemonName + CM.resetColour);
+        System.out.println("Lvl: " + CM.getLevels + activeOpponentPokemon.lvl + CM.resetColour);
         System.out.println("Hp: " + activeOpponentPokemon.hp + "/" + activeOpponentPokemon.remainingHp + "\n");
-        System.out.println("Your " + activePlayerPokemon.pokemonName + " fainted!");
+        System.out.println("Your " + CM.cM(activePlayerPokemon.pokemonType1) + activePlayerPokemon.pokemonName + CM.resetColour + " fainted!");
         if (playerPokemonParty.get(0).remainingHp <= 0 && playerPokemonParty.get(1).remainingHp <= 0 && playerPokemonParty.get(2).remainingHp <= 0 && playerPokemonParty.get(3).remainingHp <= 0 && playerPokemonParty.get(4).remainingHp <= 0 && playerPokemonParty.get(5).remainingHp <= 0) {
             foundWinner = true;
             op3 = false;
@@ -447,22 +448,22 @@ public class BattleController {
             while (!validChoice) {
             System.out.println("\nPlease select the next pokemon to send in:");
         if (playerPokemonParty.get(0).remainingHp > 0) {
-            System.out.println("1. " + playerPokemonParty.get(0).pokemonName);
+            System.out.println("1. " + CM.cM(playerPokemonParty.get(0).pokemonType1) + playerPokemonParty.get(0).pokemonName + CM.resetColour);
         }
         if (playerPokemonParty.get(1).remainingHp > 0) {
-            System.out.println("2. " + playerPokemonParty.get(1).pokemonName);
+            System.out.println("2. " + CM.cM(playerPokemonParty.get(1).pokemonType1) + playerPokemonParty.get(1).pokemonName + CM.resetColour);
         }
         if (playerPokemonParty.get(2).remainingHp > 0) {
-            System.out.println("3. " + playerPokemonParty.get(2).pokemonName);
+            System.out.println("3. " + CM.cM(playerPokemonParty.get(2).pokemonType1) + playerPokemonParty.get(2).pokemonName + CM.resetColour);
         }
         if (playerPokemonParty.get(3).remainingHp > 0) {
-            System.out.println("4. " + playerPokemonParty.get(3).pokemonName);
+            System.out.println("4. " + CM.cM(playerPokemonParty.get(3).pokemonType1) + playerPokemonParty.get(3).pokemonName + CM.resetColour);
         }
         if (playerPokemonParty.get(4).remainingHp > 0) {
-            System.out.println("5. " + playerPokemonParty.get(4).pokemonName);
+            System.out.println("5. " + CM.cM(playerPokemonParty.get(4).pokemonType1) + playerPokemonParty.get(4).pokemonName + CM.resetColour);
         }
         if (playerPokemonParty.get(5).remainingHp > 0) {
-            System.out.println("6. " + playerPokemonParty.get(5).pokemonName);
+            System.out.println("6. " + CM.cM(playerPokemonParty.get(5).pokemonType1) + playerPokemonParty.get(5).pokemonName + CM.resetColour);
         }
         while (true) {
             op1 = tastatur.next();
@@ -472,7 +473,7 @@ public class BattleController {
                         if (playerPokemonParty.get(0).remainingHp > 0) {
                             activePlayerPokemon = playerPokemonParty.get(0);
                             activePlayerPokemon.remainingHp = activePlayerPokemon.hp;
-                            System.out.println("You send out " + activePlayerPokemon.pokemonName + "!");
+                            System.out.println("You send out " + CM.cM(activePlayerPokemon.pokemonType1) + activePlayerPokemon.pokemonName + CM.resetColour + "!");
                             validChoice = true;
                         }
                         break;
@@ -480,7 +481,7 @@ public class BattleController {
                         if (playerPokemonParty.get(1).remainingHp > 0) {
                             activePlayerPokemon = playerPokemonParty.get(1);
                             activePlayerPokemon.remainingHp = activePlayerPokemon.hp;
-                            System.out.println("You send out " + activePlayerPokemon.pokemonName + "!");
+                            System.out.println("You send out " + CM.cM(activePlayerPokemon.pokemonType1) + activePlayerPokemon.pokemonName + CM.resetColour + "!");
                             validChoice = true;
                         }
                         break;
@@ -488,7 +489,7 @@ public class BattleController {
                         if (playerPokemonParty.get(2).remainingHp > 0) {
                             activePlayerPokemon = playerPokemonParty.get(2);
                             activePlayerPokemon.remainingHp = activePlayerPokemon.hp;
-                            System.out.println("You send out " + activePlayerPokemon.pokemonName + "!");
+                            System.out.println("You send out " + CM.cM(activePlayerPokemon.pokemonType1) + activePlayerPokemon.pokemonName + CM.resetColour + "!");
                             validChoice = true;
                         }
                         break;
@@ -496,7 +497,7 @@ public class BattleController {
                         if (playerPokemonParty.get(3).remainingHp > 0) {
                             activePlayerPokemon = playerPokemonParty.get(3);
                             activePlayerPokemon.remainingHp = activePlayerPokemon.hp;
-                            System.out.println("You send out " + activePlayerPokemon.pokemonName + "!");
+                            System.out.println("You send out " + CM.cM(activePlayerPokemon.pokemonType1) + activePlayerPokemon.pokemonName + CM.resetColour + "!");
                             validChoice = true;
                         }
                         break;
@@ -504,7 +505,7 @@ public class BattleController {
                         if (playerPokemonParty.get(4).remainingHp > 0) {
                             activePlayerPokemon = playerPokemonParty.get(4);
                             activePlayerPokemon.remainingHp = activePlayerPokemon.hp;
-                            System.out.println("You send out " + activePlayerPokemon.pokemonName + "!");
+                            System.out.println("You send out " + CM.cM(activePlayerPokemon.pokemonType1) + activePlayerPokemon.pokemonName + CM.resetColour + "!");
                             validChoice = true;
                         }
                         break;
@@ -512,7 +513,7 @@ public class BattleController {
                         if (playerPokemonParty.get(5).remainingHp > 0) {
                             activePlayerPokemon = playerPokemonParty.get(5);
                             activePlayerPokemon.remainingHp = activePlayerPokemon.hp;
-                            System.out.println("You send out " + activePlayerPokemon.pokemonName + "!");
+                            System.out.println("You send out " + CM.cM(activePlayerPokemon.pokemonType1) + activePlayerPokemon.pokemonName + CM.resetColour + "!");
                             validChoice = true;
                         }
                         break;
@@ -530,16 +531,16 @@ public class BattleController {
             activeOpponentPokemon.remainingHp = 0;
         }
         System.out.println();
-        System.out.println(activePlayerPokemon.pokemonName);
-        System.out.println("Lvl: " + activePlayerPokemon.lvl);
+        System.out.println(CM.cM(activePlayerPokemon.pokemonType1) + activePlayerPokemon.pokemonName + CM.resetColour);
+        System.out.println("Lvl: " + CM.getLevels + activePlayerPokemon.lvl + CM.resetColour);
         System.out.println("Hp: " + activePlayerPokemon.hp + "/" + activePlayerPokemon.remainingHp + "\n");
-        System.out.println(activeOpponentPokemon.pokemonName);
-        System.out.println("Lvl: " + activeOpponentPokemon.lvl);
+        System.out.println(CM.cM(activeOpponentPokemon.pokemonType1) + activeOpponentPokemon.pokemonName + CM.resetColour);
+        System.out.println("Lvl: " + CM.getLevels + activeOpponentPokemon.lvl + CM.resetColour);
         System.out.println("Hp: " + activeOpponentPokemon.hp + "/" + activeOpponentPokemon.remainingHp + "\n");
-        System.out.println("The opposing " + activeOpponentPokemon.pokemonName + " fainted!");
+        System.out.println("The opposing " + CM.cM(activeOpponentPokemon.pokemonType1) + activeOpponentPokemon.pokemonName + CM.resetColour + " fainted!");
         System.out.println("Press a to continue");
         tastatur.next();
-        System.out.println("\nYour " + activePlayerPokemon.pokemonName + " gained " + expCalc() + " exp!");
+        System.out.println("\nYour " + CM.cM(activePlayerPokemon.pokemonType1) + activePlayerPokemon.pokemonName + CM.resetColour + " gained " + expCalc() + " exp!");
         System.out.println("Press a to continue");
         tastatur.next();
         partyGainsExp();
@@ -549,23 +550,23 @@ public class BattleController {
         } else if (opponentPokemonParty.get(0).remainingHp > 0) {
             activeOpponentPokemon = opponentPokemonParty.get(0);
             activeOpponentPokemon.remainingHp = activeOpponentPokemon.hp;
-            System.out.println("Your opponent sends out " + activeOpponentPokemon.pokemonName + "!");
+            System.out.println("Your opponent sends out " + CM.cM(activeOpponentPokemon.pokemonType1) + activeOpponentPokemon.pokemonName + CM.resetColour + "!");
         } else if (opponentPokemonParty.get(1).remainingHp > 0) {
             activeOpponentPokemon = opponentPokemonParty.get(1);
             activeOpponentPokemon.remainingHp = activeOpponentPokemon.hp;
-            System.out.println("Your opponent sends out " + activeOpponentPokemon.pokemonName + "!");
+            System.out.println("Your opponent sends out " + CM.cM(activeOpponentPokemon.pokemonType1) + activeOpponentPokemon.pokemonName + CM.resetColour + "!");
         } else if (opponentPokemonParty.get(2).remainingHp > 0) {
             activeOpponentPokemon = opponentPokemonParty.get(2);
-            System.out.println("Your opponent sends out " + activeOpponentPokemon.pokemonName + "!");
+            System.out.println("Your opponent sends out " + CM.cM(activeOpponentPokemon.pokemonType1) + activeOpponentPokemon.pokemonName + CM.resetColour + "!");
         } else if (opponentPokemonParty.get(3).remainingHp > 0) {
             activeOpponentPokemon = opponentPokemonParty.get(3);
-            System.out.println("Your opponent sends out " + activeOpponentPokemon.pokemonName + "!");
+            System.out.println("Your opponent sends out " + CM.cM(activeOpponentPokemon.pokemonType1) + activeOpponentPokemon.pokemonName + CM.resetColour + "!");
         } else if (opponentPokemonParty.get(4).remainingHp > 0) {
             activeOpponentPokemon = opponentPokemonParty.get(4);
-            System.out.println("Your opponent sends out " + activeOpponentPokemon.pokemonName + "!");
+            System.out.println("Your opponent sends out " + CM.cM(activeOpponentPokemon.pokemonType1) + activeOpponentPokemon.pokemonName + CM.resetColour + "!");
         } else if (opponentPokemonParty.get(5).remainingHp > 0) {
             activeOpponentPokemon = opponentPokemonParty.get(5);
-            System.out.println("Your opponent sends out " + activeOpponentPokemon.pokemonName + "!");
+            System.out.println("Your opponent sends out " + CM.cM(activeOpponentPokemon.pokemonType1) + activeOpponentPokemon.pokemonName + CM.resetColour + "!");
         }
         op3 = true;
     }
@@ -656,25 +657,25 @@ public class BattleController {
     void startCombat() {
         String op1;
         System.out.println("Please select a pokemon to send into battle:");
-        System.out.println("1. " + playerPokemonParty.get(0).pokemonName);
+        System.out.println("1. " + CM.cM(playerPokemonParty.get(0).pokemonType1) + playerPokemonParty.get(0).pokemonName + CM.resetColour);
         if (!playerPokemonParty.get(1).pokemonName.equals(" ")) {
-            System.out.println("2. " + playerPokemonParty.get(1).pokemonName);
+            System.out.println("2. " + CM.cM(playerPokemonParty.get(1).pokemonType1) + playerPokemonParty.get(1).pokemonName + CM.resetColour);
             playerPokemonParty.get(1).remainingHp = playerPokemonParty.get(1).hp;
         }
         if (!playerPokemonParty.get(2).pokemonName.equals(" ")) {
-            System.out.println("3. " + playerPokemonParty.get(2).pokemonName);
+            System.out.println("3. " + CM.cM(playerPokemonParty.get(2).pokemonType1) + playerPokemonParty.get(2).pokemonName + CM.resetColour);
             playerPokemonParty.get(2).remainingHp = playerPokemonParty.get(2).hp;
         }
         if (!playerPokemonParty.get(3).pokemonName.equals(" ")) {
-            System.out.println("4. " + playerPokemonParty.get(3).pokemonName);
+            System.out.println("4. " + CM.cM(playerPokemonParty.get(3).pokemonType1) + playerPokemonParty.get(3).pokemonName + CM.resetColour);
             playerPokemonParty.get(3).remainingHp = playerPokemonParty.get(3).hp;
         }
         if (!playerPokemonParty.get(4).pokemonName.equals(" ")) {
-            System.out.println("5. " + playerPokemonParty.get(4).pokemonName);
+            System.out.println("5. " + CM.cM(playerPokemonParty.get(4).pokemonType1) + playerPokemonParty.get(4).pokemonName + CM.resetColour);
             playerPokemonParty.get(4).remainingHp = playerPokemonParty.get(4).hp;
         }
         if (!playerPokemonParty.get(5).pokemonName.equals(" ")) {
-            System.out.println("6. " + playerPokemonParty.get(5).pokemonName);
+            System.out.println("6. " + CM.cM(playerPokemonParty.get(5).pokemonType1) + playerPokemonParty.get(5).pokemonName + CM.resetColour);
             playerPokemonParty.get(5).remainingHp = playerPokemonParty.get(5).hp;
         }
         while (true) {
@@ -724,8 +725,8 @@ public class BattleController {
 
         System.out.println("Battle: Start!");
         System.out.println();
-        System.out.println("The Player sends out: " + activePlayerPokemon.pokemonName);
-        System.out.println("The Opponent sends out: " + activeOpponentPokemon.pokemonName);
+        System.out.println("The Player sends out: " + CM.cM(activePlayerPokemon.pokemonType1) + activePlayerPokemon.pokemonName + CM.resetColour);
+        System.out.println("The Opponent sends out: " + CM.cM(activeOpponentPokemon.pokemonType1) + activeOpponentPokemon.pokemonName + CM.resetColour);
     }
 
     private static final Map<String, Integer> convertReadIntInput = new HashMap<>();

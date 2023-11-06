@@ -170,7 +170,7 @@ public class OverworldControl {
                     while (true) {
                         if (op2.equals("9")) break;
                         System.out.println("\nSelect Pokemon Gym:");
-                        printGymInMenu(1, unlockedGym.pokemonGym1, "Normal");
+                        printGymInMenu(1, unlockedRoute.route2, "Normal");
                         printGymInMenu(2, unlockedGym.pokemonGym2, "");
                         printGymInMenu(3, unlockedGym.pokemonGym3, "");
                         printGymInMenu(4, unlockedGym.pokemonGym4, "");
@@ -233,6 +233,7 @@ public class OverworldControl {
                             default:
                                 break;
                         }
+                        break;
                     }
                 case "5":
                     while (true) {
@@ -331,18 +332,13 @@ public class OverworldControl {
                 if (playerBag.pokeDollars >= itemPrice) {
                     playerBag.pokeDollars = playerBag.pokeDollars - itemPrice;
 
-                    if (itemName.equals("Pokeball")) {
-                        playerBag.pokeballs++;
-                    } else if (itemName.equals("Greatball")) {
-                        playerBag.greatballs++;
-                    } else if (itemName.equals("Ultraball")) {
-                        playerBag.ultraballs++;
-                    } else if (itemName.equals("Potion")) {
-                        playerBag.potion++;
-                    } else if (itemName.equals("Super Potion")) {
-                        playerBag.superPotion++;
-                    } else if (itemName.equals("Hyper Potion")) {
-                        playerBag.hyperPotion++;
+                    switch (itemName) {
+                        case "Pokeball" -> playerBag.pokeballs++;
+                        case "Greatball" -> playerBag.greatballs++;
+                        case "Ultraball" -> playerBag.ultraballs++;
+                        case "Potion" -> playerBag.potion++;
+                        case "Super Potion" -> playerBag.superPotion++;
+                        case "Hyper Potion" -> playerBag.hyperPotion++;
                     }
 
                     System.out.println("You purchased a " + itemName + " for " + itemPrice + "p$!");

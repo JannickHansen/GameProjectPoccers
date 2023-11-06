@@ -36,35 +36,35 @@ public class PlayerBag {
         System.out.println("\nPlayer Bag\n");
         System.out.println("PokeDollars: "+pokeDollars+"p$\n");
         if (pokeballs > 0) {
-            System.out.println(i + ". Pokeball x"+pokeballs);
+            System.out.println(i + ". "+ CM.getItems+"Pokeball"+ CM.resetColour+" x"+pokeballs);
             itemSlotCounter.add(i);
             nameOfItemsInInventory.set(i,"Pokeball");
             numberOfItemsInInventory.set(i,pokeballs);
             i++;
         }
         if (greatballs > 0) {
-            System.out.println(i + ". Greatball x"+greatballs);
+            System.out.println(i + ". "+ CM.getItems+"Greatball"+ CM.resetColour+" x"+greatballs);
             itemSlotCounter.add(i);
             nameOfItemsInInventory.set(i,"Greatball");
             numberOfItemsInInventory.set(i,greatballs);
             i++;
         }
         if (ultraballs > 0) {
-            System.out.println(i + ". Ultraball x"+ultraballs);
+            System.out.println(i + ". "+ CM.getItems+"Ultraball"+ CM.resetColour+" x"+ultraballs);
             itemSlotCounter.add(i);
             nameOfItemsInInventory.set(i,"Ultraball");
             numberOfItemsInInventory.set(i,ultraballs);
             i++;
         }
         if (potion > 0) {
-            System.out.println(i + ". Potion x"+potion);
+            System.out.println(i + ". "+ CM.getItems+"Potion"+ CM.resetColour+" x"+potion);
             itemSlotCounter.add(i);
             nameOfItemsInInventory.set(i,"Potion");
             numberOfItemsInInventory.set(i,potion);
             i++;
         }
         if (superPotion > 0) {
-            System.out.println(i + ". Super Potion x"+superPotion);
+            System.out.println(i + ". "+ CM.getItems+"Super Potion"+ CM.resetColour+" x"+superPotion);
             itemSlotCounter.add(i);
             nameOfItemsInInventory.set(i,"Super Potion");
             numberOfItemsInInventory.set(i,superPotion);
@@ -72,7 +72,7 @@ public class PlayerBag {
 
         }
         if (hyperPotion > 0) {
-            System.out.println(i + ". Hyper Potion x"+hyperPotion);
+            System.out.println(i + ". "+ CM.getItems+"Hyper Potion"+ CM.resetColour+" x"+hyperPotion);
             itemSlotCounter.add(i);
             nameOfItemsInInventory.set(i,"Hyper Potion");
             numberOfItemsInInventory.set(i,hyperPotion);
@@ -87,10 +87,10 @@ public class PlayerBag {
             int op1 = tastatur.nextInt();
             if (op1 == 9) break;
             if (!nameOfItemsInInventory.get(op1).isEmpty()) {
-                System.out.println(nameOfItemsInInventory.get(op1));
+                System.out.println(CM.getItems + nameOfItemsInInventory.get(op1) + CM.resetColour);
                 getItem.findItemDescription(nameOfItemsInInventory.get(op1));
+                printPlayerBag();
             }
-
         }
     }
 }

@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class PokemonLearnSet {
@@ -5,7 +6,7 @@ public class PokemonLearnSet {
     PokemonLearnSet() {
     }
 
-    void LearnSet(GeneratedPokemon insertPokemon) {
+    void LearnSet(GeneratedPokemon insertPokemon) throws IOException {
         switch (insertPokemon.pokemonName) {
             case "Spheal":
                 switch (insertPokemon.lvl) {
@@ -14,31 +15,31 @@ public class PokemonLearnSet {
                         insertPokemon.move2 = "Bubble";
                         break;
                     case 6:
-                        learnAndPrintMove(insertPokemon, "Play Rough", "Your " + insertPokemon.pokemonName + " learnt Play Rough!\n");
+                        learnAndPrintMove(insertPokemon, "Play Rough");
                         break;
                     case 8:
-                        learnAndPrintMove(insertPokemon, "Powder Snow", "Your " + insertPokemon.pokemonName + " learnt Powder Snow!\n");
+                        learnAndPrintMove(insertPokemon, "Powder Snow");
                         break;
                     case 11:
-                        learnAndPrintMove(insertPokemon, "Water Gun", "Your " + insertPokemon.pokemonName + " learnt Water Gun!\n");
+                        learnAndPrintMove(insertPokemon, "Water Gun");
                         break;
                     case 14:
-                        learnAndPrintMove(insertPokemon, "Water Pulse", "Your " + insertPokemon.pokemonName + " learnt Water Pulse!\n");
+                        learnAndPrintMove(insertPokemon, "Water Pulse");
                         break;
                     case 16:
-                        learnAndPrintMove(insertPokemon, "Ice Ball", "Your " + insertPokemon.pokemonName + " learnt Ice Ball!\n");
+                        learnAndPrintMove(insertPokemon, "Ice Ball");
                         break;
                     case 21:
-                        learnAndPrintMove(insertPokemon, "Body Slam", "Your " + insertPokemon.pokemonName + " learnt Body Slam!\n");
+                        learnAndPrintMove(insertPokemon, "Body Slam");
                         break;
                     case 26:
-                        learnAndPrintMove(insertPokemon, "Ice Beam", "Your " + insertPokemon.pokemonName + " learnt Ice Beam!\n");
+                        learnAndPrintMove(insertPokemon, "Ice Beam");
                         break;
                     case 31:
-                        learnAndPrintMove(insertPokemon, "Blizzard", "Your " + insertPokemon.pokemonName + " learnt Blizzard!\n");
+                        learnAndPrintMove(insertPokemon, "Blizzard");
                         break;
                     case 36:
-                        learnAndPrintMove(insertPokemon, "Sheer Cold", "Your " + insertPokemon.pokemonName + " learnt Sheer Cold!\n");
+                        learnAndPrintMove(insertPokemon, "Sheer Cold");
                         break;
                 }
                 break;
@@ -48,22 +49,22 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Scratch";
                         break;
                     case 7:
-                        learnAndPrintMove(insertPokemon, "Fire Spin", "Your " + insertPokemon.pokemonName + " learnt Fire Spin!\n");
+                        learnAndPrintMove(insertPokemon, "Fire Spin");
                         break;
                     case 11:
-                        learnAndPrintMove(insertPokemon, "Ember", "Your " + insertPokemon.pokemonName + " learnt Ember!\n");
+                        learnAndPrintMove(insertPokemon, "Ember");
                         break;
                     case 13:
-                        learnAndPrintMove(insertPokemon, "Metal Claw", "Your " + insertPokemon.pokemonName + " learnt Metal Claw!\n");
+                        learnAndPrintMove(insertPokemon, "Metal Claw");
                         break;
                     case 17:
-                        learnAndPrintMove(insertPokemon, "Fire Fang", "Your " + insertPokemon.pokemonName + " learnt Fire Fang!\n");
+                        learnAndPrintMove(insertPokemon, "Fire Fang");
                         break;
                     case 20:
-                        learnAndPrintMove(insertPokemon, "Slash", "Your " + insertPokemon.pokemonName + " learnt Slash!\n");
+                        learnAndPrintMove(insertPokemon, "Slash");
                         break;
                     case 26:
-                        learnAndPrintMove(insertPokemon, "Flamethrower", "Your " + insertPokemon.pokemonName + " learnt Flamethrower!\n");
+                        learnAndPrintMove(insertPokemon, "Flamethrower");
                         break;
                 }
                 break;
@@ -73,24 +74,23 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Ember";
                         break;
                     case 11:
-                        learnAndPrintMove(insertPokemon, "Ember", "Your " + insertPokemon.pokemonName + " learnt Ember!\n");
+                        learnAndPrintMove(insertPokemon, "Ember");
                         break;
                     case 13:
-                        learnAndPrintMove(insertPokemon, "Metal Claw", "Your " + insertPokemon.pokemonName + " learnt Metal Claw!\n");
+                        learnAndPrintMove(insertPokemon, "Metal Claw");
                         break;
                     case 17:
-                        learnAndPrintMove(insertPokemon, "Fire Fang", "Your " + insertPokemon.pokemonName + " learnt Fire Fang!\n");
+                        learnAndPrintMove(insertPokemon, "Fire Fang");
                         break;
                     case 22:
-                        learnAndPrintMove(insertPokemon, "Slash", "Your " + insertPokemon.pokemonName + " learnt Slash!\n");
+                        learnAndPrintMove(insertPokemon, "Slash");
                         break;
                     case 28:
-                        learnAndPrintMove(insertPokemon, "Flamethrower", "Your " + insertPokemon.pokemonName + " learnt Flamethrower!\n");
+                        learnAndPrintMove(insertPokemon, "Flamethrower");
                         break;
                     case 32:
-                        learnAndPrintMove(insertPokemon, "Dragon Breath", "Your " + insertPokemon.pokemonName + " learnt Dragon Breath!\n");
+                        learnAndPrintMove(insertPokemon, "Dragon Breath");
                         break;
-
                 }
                 break;
             case "Charizard":
@@ -99,30 +99,29 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Dragon Claw";
                         break;
                     case 11:
-                        learnAndPrintMove(insertPokemon, "Ember", "Your " + insertPokemon.pokemonName + " learnt Ember!\n");
+                        learnAndPrintMove(insertPokemon, "Ember");
                         break;
                     case 13:
-                        learnAndPrintMove(insertPokemon, "Metal Claw", "Your " + insertPokemon.pokemonName + " learnt Metal Claw!\n");
+                        learnAndPrintMove(insertPokemon, "Metal Claw");
                         break;
                     case 17:
-                        learnAndPrintMove(insertPokemon, "Fire Fang", "Your " + insertPokemon.pokemonName + " learnt Fire Fang!\n");
+                        learnAndPrintMove(insertPokemon, "Fire Fang");
                         break;
                     case 22:
-                        learnAndPrintMove(insertPokemon, "Slash", "Your " + insertPokemon.pokemonName + " learnt Slash!\n");
+                        learnAndPrintMove(insertPokemon, "Slash");
                         break;
                     case 28:
-                        learnAndPrintMove(insertPokemon, "Flamethrower", "Your " + insertPokemon.pokemonName + " learnt Flamethrower!\n");
+                        learnAndPrintMove(insertPokemon, "Flamethrower");
                         break;
                     case 32:
-                        learnAndPrintMove(insertPokemon, "Dragon Breath", "Your " + insertPokemon.pokemonName + " learnt Dragon Breath!\n");
+                        learnAndPrintMove(insertPokemon, "Dragon Breath");
                         break;
                     case 37:
-                        learnAndPrintMove(insertPokemon, "Fly", "Your " + insertPokemon.pokemonName + " learnt Fly!\n");
+                        learnAndPrintMove(insertPokemon, "Fly");
                         break;
                     case 40:
-                        learnAndPrintMove(insertPokemon, "Flare Blitz", "Your " + insertPokemon.pokemonName + " learnt Flare Blitz!\n");
+                        learnAndPrintMove(insertPokemon, "Flare Blitz");
                         break;
-
                 }
                 break;
             case "Squirtle":
@@ -131,24 +130,25 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Tackle";
                         break;
                     case 7:
-                        learnAndPrintMove(insertPokemon, "Bubble", "Your " + insertPokemon.pokemonName + " learnt Bubble!\n");
+                        learnAndPrintMove(insertPokemon, "Bubble");
                         break;
                     case 11:
-                        learnAndPrintMove(insertPokemon, "Water Gun", "Your " + insertPokemon.pokemonName + " learnt Water Gun!\n");
+                        learnAndPrintMove(insertPokemon, "Water Gun");
                         break;
                     case 13:
-                        learnAndPrintMove(insertPokemon, "Bite", "Your " + insertPokemon.pokemonName + " learnt Bite!\n");
+                        learnAndPrintMove(insertPokemon, "Bite");
                         break;
                     case 15:
-                        learnAndPrintMove(insertPokemon, "Water Pulse", "Your " + insertPokemon.pokemonName + " learnt Water Pulse!\n");
+                        learnAndPrintMove(insertPokemon, "Water Pulse");
                         break;
                     case 24:
-                        learnAndPrintMove(insertPokemon, "Aqua Tail", "Your " + insertPokemon.pokemonName + " learnt Aqua Tail!\n");
+                        learnAndPrintMove(insertPokemon, "Aqua Tail");
                         break;
                     case 29:
-                        learnAndPrintMove(insertPokemon, "Ice Beam", "Your " + insertPokemon.pokemonName + " learnt Ice Beam!\n");
+                        learnAndPrintMove(insertPokemon, "Ice Beam");
                         break;
                 }
+
                 break;
             case "Wartortle":
                 switch (insertPokemon.lvl) {
@@ -156,22 +156,22 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Tackle";
                         break;
                     case 5:
-                        learnAndPrintMove(insertPokemon, "Bubble", "Your " + insertPokemon.pokemonName + " learnt Bubble!\n");
+                        learnAndPrintMove(insertPokemon, "Bubble");
                         break;
                     case 7:
-                        learnAndPrintMove(insertPokemon, "Water Gun", "Your " + insertPokemon.pokemonName + " learnt Water Gun!\n");
+                        learnAndPrintMove(insertPokemon, "Water Gun");
                         break;
                     case 12:
-                        learnAndPrintMove(insertPokemon, "Bite", "Your " + insertPokemon.pokemonName + " learnt Bite!\n");
+                        learnAndPrintMove(insertPokemon, "Bite");
                         break;
                     case 15:
-                        learnAndPrintMove(insertPokemon, "Water Pulse", "Your " + insertPokemon.pokemonName + " learnt Water Pulse!\n");
+                        learnAndPrintMove(insertPokemon, "Water Pulse");
                         break;
                     case 24:
-                        learnAndPrintMove(insertPokemon, "Aqua Tail", "Your " + insertPokemon.pokemonName + " learnt Aqua Tail!\n");
+                        learnAndPrintMove(insertPokemon, "Aqua Tail");
                         break;
                     case 29:
-                        learnAndPrintMove(insertPokemon, "Ice Beam", "Your " + insertPokemon.pokemonName + " learnt Ice Beam!\n");
+                        learnAndPrintMove(insertPokemon, "Ice Beam");
                         break;
                 }
                 break;
@@ -181,28 +181,28 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Tackle";
                         break;
                     case 5:
-                        learnAndPrintMove(insertPokemon, "Bubble", "Your " + insertPokemon.pokemonName + " learnt Bubble!\n");
+                        learnAndPrintMove(insertPokemon, "Bubble");
                         break;
                     case 7:
-                        learnAndPrintMove(insertPokemon, "Water Gun", "Your " + insertPokemon.pokemonName + " learnt Water Gun!\n");
+                        learnAndPrintMove(insertPokemon, "Water Gun");
                         break;
                     case 12:
-                        learnAndPrintMove(insertPokemon, "Bite", "Your " + insertPokemon.pokemonName + " learnt Bite!\n");
+                        learnAndPrintMove(insertPokemon, "Bite");
                         break;
                     case 15:
-                        learnAndPrintMove(insertPokemon, "Water Pulse", "Your " + insertPokemon.pokemonName + " learnt Water Pulse!\n");
+                        learnAndPrintMove(insertPokemon, "Water Pulse");
                         break;
                     case 24:
-                        learnAndPrintMove(insertPokemon, "Aqua Tail", "Your " + insertPokemon.pokemonName + " learnt Aqua Tail!\n");
+                        learnAndPrintMove(insertPokemon, "Aqua Tail");
                         break;
                     case 29:
-                        learnAndPrintMove(insertPokemon, "Ice Beam", "Your " + insertPokemon.pokemonName + " learnt Ice Beam!\n");
+                        learnAndPrintMove(insertPokemon, "Ice Beam");
                         break;
                     case 37:
-                        learnAndPrintMove(insertPokemon, "Hydro Pump", "Your " + insertPokemon.pokemonName + " learnt Hydro Pump!\n");
+                        learnAndPrintMove(insertPokemon, "Hydro Pump");
                         break;
                     case 41:
-                        learnAndPrintMove(insertPokemon, "Earthquake", "Your " + insertPokemon.pokemonName + " learnt Earthquake!\n");
+                        learnAndPrintMove(insertPokemon, "Earthquake");
                         break;
                 }
                 break;
@@ -212,16 +212,16 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Tackle";
                         break;
                     case 7:
-                        learnAndPrintMove(insertPokemon, "Absorb", "Your " + insertPokemon.pokemonName + " learnt Absorb!\n");
+                        learnAndPrintMove(insertPokemon, "Absorb");
                         break;
                     case 11:
-                        learnAndPrintMove(insertPokemon, "Leech Seed", "Your " + insertPokemon.pokemonName + " learnt Leech Seed!\n");
+                        learnAndPrintMove(insertPokemon, "Leech Seed");
                         break;
                     case 13:
-                        learnAndPrintMove(insertPokemon, "Vine Whip", "Your " + insertPokemon.pokemonName + " learnt Vine Whip!\n");
+                        learnAndPrintMove(insertPokemon, "Vine Whip");
                         break;
                     case 15:
-                        learnAndPrintMove(insertPokemon, "Razor Leaf", "Your " + insertPokemon.pokemonName + " learnt Razor Leaf!\n");
+                        learnAndPrintMove(insertPokemon, "Razor Leaf");
                         break;
                 }
                 break;
@@ -231,31 +231,31 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Tackle";
                         break;
                     case 7:
-                        learnAndPrintMove(insertPokemon, "Absorb", "Your " + insertPokemon.pokemonName + " learnt Absorb!\n");
+                        learnAndPrintMove(insertPokemon, "Absorb");
                         break;
                     case 11:
-                        learnAndPrintMove(insertPokemon, "Leech Seed", "Your " + insertPokemon.pokemonName + " learnt Leech Seed!\n");
+                        learnAndPrintMove(insertPokemon, "Leech Seed");
                         break;
                     case 13:
-                        learnAndPrintMove(insertPokemon, "Vine Whip", "Your " + insertPokemon.pokemonName + " learnt Vine Whip!\n");
+                        learnAndPrintMove(insertPokemon, "Vine Whip");
                         break;
                     case 15:
-                        learnAndPrintMove(insertPokemon, "Razor Leaf", "Your " + insertPokemon.pokemonName + " learnt Razor Leaf!\n");
+                        learnAndPrintMove(insertPokemon, "Razor Leaf");
                         break;
                     case 17:
-                        learnAndPrintMove(insertPokemon, "Sludge", "Your " + insertPokemon.pokemonName + " learnt Sludge!\n");
+                        learnAndPrintMove(insertPokemon, "Sludge");
                         break;
                     case 21:
-                        learnAndPrintMove(insertPokemon, "Mega Drain", "Your " + insertPokemon.pokemonName + " learnt Mega Drain!\n");
+                        learnAndPrintMove(insertPokemon, "Mega Drain");
                         break;
                     case 27:
-                        learnAndPrintMove(insertPokemon, "Take Down", "Your " + insertPokemon.pokemonName + " learnt Take Down!\n");
+                        learnAndPrintMove(insertPokemon, "Take Down");
                         break;
                     case 31:
-                        learnAndPrintMove(insertPokemon, "Sludge Bomb", "Your " + insertPokemon.pokemonName + " learnt Sludge Bomb!\n");
+                        learnAndPrintMove(insertPokemon, "Sludge Bomb");
                         break;
                     case 35:
-                        learnAndPrintMove(insertPokemon, "Seed Bomb", "Your " + insertPokemon.pokemonName + " learnt Seed Bomb!\n");
+                        learnAndPrintMove(insertPokemon, "Seed Bomb");
                         break;
                 }
                 break;
@@ -265,34 +265,34 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Tackle";
                         break;
                     case 5:
-                        learnAndPrintMove(insertPokemon, "Absorb", "Your " + insertPokemon.pokemonName + " learnt Absorb!\n");
+                        learnAndPrintMove(insertPokemon, "Absorb");
                         break;
                     case 11:
-                        learnAndPrintMove(insertPokemon, "Leech Seed", "Your " + insertPokemon.pokemonName + " learnt Leech Seed!\n");
+                        learnAndPrintMove(insertPokemon, "Leech Seed");
                         break;
                     case 13:
-                        learnAndPrintMove(insertPokemon, "Vine Whip", "Your " + insertPokemon.pokemonName + " learnt Vine Whip!\n");
+                        learnAndPrintMove(insertPokemon, "Vine Whip");
                         break;
                     case 15:
-                        learnAndPrintMove(insertPokemon, "Razor Leaf", "Your " + insertPokemon.pokemonName + " learnt Razor Leaf!\n");
+                        learnAndPrintMove(insertPokemon, "Razor Leaf");
                         break;
                     case 21:
-                        learnAndPrintMove(insertPokemon, "Mega Drain", "Your " + insertPokemon.pokemonName + " learnt Mega Drain!\n");
+                        learnAndPrintMove(insertPokemon, "Mega Drain");
                         break;
                     case 27:
-                        learnAndPrintMove(insertPokemon, "Take Down", "Your " + insertPokemon.pokemonName + " learnt Take Down!\n");
+                        learnAndPrintMove(insertPokemon, "Take Down");
                         break;
                     case 31:
-                        learnAndPrintMove(insertPokemon, "Sludge Bomb", "Your " + insertPokemon.pokemonName + " learnt Sludge Bomb!\n");
+                        learnAndPrintMove(insertPokemon, "Sludge Bomb");
                         break;
                     case 35:
-                        learnAndPrintMove(insertPokemon, "Seed Bomb", "Your " + insertPokemon.pokemonName + " learnt Seed Bomb!\n");
+                        learnAndPrintMove(insertPokemon, "Seed Bomb");
                         break;
                     case 39:
-                        learnAndPrintMove(insertPokemon, "Solar Beam", "Your " + insertPokemon.pokemonName + " learnt Solar Beam!\n");
+                        learnAndPrintMove(insertPokemon, "Solar Beam");
                         break;
                     case 43:
-                        learnAndPrintMove(insertPokemon, "Earthquake", "Your " + insertPokemon.pokemonName + " learnt Earthquake!\n");
+                        learnAndPrintMove(insertPokemon, "Earthquake");
                         break;
                 }
                 break;
@@ -302,19 +302,19 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Tackle";
                         break;
                     case 7:
-                        learnAndPrintMove(insertPokemon, "Quick Attack", "Your " + insertPokemon.pokemonName + " learnt Quick Attack!\n");
+                        learnAndPrintMove(insertPokemon, "Quick Attack");
                         break;
                     case 10:
-                        learnAndPrintMove(insertPokemon, "Bite", "Your " + insertPokemon.pokemonName + " learnt Bite!\n");
+                        learnAndPrintMove(insertPokemon, "Bite");
                         break;
                     case 16:
-                        learnAndPrintMove(insertPokemon, "Hyper Fang", "Your " + insertPokemon.pokemonName + " learnt Hyper Fang!\n");
+                        learnAndPrintMove(insertPokemon, "Hyper Fang");
                         break;
                     case 22:
-                        learnAndPrintMove(insertPokemon, "Crunch", "Your " + insertPokemon.pokemonName + " learnt Crunch!\n");
+                        learnAndPrintMove(insertPokemon, "Crunch");
                         break;
                     case 28:
-                        learnAndPrintMove(insertPokemon, "Super Fang", "Your " + insertPokemon.pokemonName + " learnt Super Fang!\n");
+                        learnAndPrintMove(insertPokemon, "Super Fang");
                         break;
                 }
                 break;
@@ -324,19 +324,19 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Tackle";
                         break;
                     case 4:
-                        learnAndPrintMove(insertPokemon, "Quick Attack", "Your " + insertPokemon.pokemonName + " learnt Quick Attack!\n");
+                        learnAndPrintMove(insertPokemon, "Quick Attack");
                         break;
                     case 10:
-                        learnAndPrintMove(insertPokemon, "Hyper Fang", "Your " + insertPokemon.pokemonName + " learnt Hyper Fang!\n");
+                        learnAndPrintMove(insertPokemon, "Hyper Fang");
                         break;
                     case 16:
-                        learnAndPrintMove(insertPokemon, "Take Down", "Your " + insertPokemon.pokemonName + " learnt Take Down!\n");
+                        learnAndPrintMove(insertPokemon, "Take Down");
                         break;
                     case 24:
-                        learnAndPrintMove(insertPokemon, "Crunch", "Your " + insertPokemon.pokemonName + " learnt Crunch!\n");
+                        learnAndPrintMove(insertPokemon, "Crunch");
                         break;
                     case 34:
-                        learnAndPrintMove(insertPokemon, "Super Fang", "Your " + insertPokemon.pokemonName + " learnt Super Fang!\n");
+                        learnAndPrintMove(insertPokemon, "Super Fang");
                         break;
                 }
                 break;
@@ -346,16 +346,16 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Tackle";
                         break;
                     case 7:
-                        learnAndPrintMove(insertPokemon, "Gust", "Your " + insertPokemon.pokemonName + " learnt Gust!\n");
+                        learnAndPrintMove(insertPokemon, "Gust");
                         break;
                     case 13:
-                        learnAndPrintMove(insertPokemon, "Quick Attack", "Your " + insertPokemon.pokemonName + " learnt Quick Attack!\n");
+                        learnAndPrintMove(insertPokemon, "Quick Attack");
                         break;
                     case 19:
-                        learnAndPrintMove(insertPokemon, "Twister", "Your " + insertPokemon.pokemonName + " learnt Twister!\n");
+                        learnAndPrintMove(insertPokemon, "Twister");
                         break;
                     case 23:
-                        learnAndPrintMove(insertPokemon, "Wing Attack", "Your " + insertPokemon.pokemonName + " learnt Wing Attack!\n");
+                        learnAndPrintMove(insertPokemon, "Wing Attack");
                         break;
                 }
                 break;
@@ -365,16 +365,16 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Gust";
                         break;
                     case 5:
-                        learnAndPrintMove(insertPokemon, "Tackle", "Your " + insertPokemon.pokemonName + " learnt Tackle!\n");
+                        learnAndPrintMove(insertPokemon, "Tackle");
                         break;
                     case 13:
-                        learnAndPrintMove(insertPokemon, "Quick Attack", "Your " + insertPokemon.pokemonName + " learnt Quick Attack!\n");
+                        learnAndPrintMove(insertPokemon, "Quick Attack");
                         break;
                     case 19:
-                        learnAndPrintMove(insertPokemon, "Twister", "Your " + insertPokemon.pokemonName + " learnt Twister!\n");
+                        learnAndPrintMove(insertPokemon, "Twister");
                         break;
                     case 25:
-                        learnAndPrintMove(insertPokemon, "Wing Attack", "Your " + insertPokemon.pokemonName + " learnt Wing Attack!\n");
+                        learnAndPrintMove(insertPokemon, "Wing Attack");
                         break;
                 }
                 break;
@@ -384,22 +384,22 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Tackle";
                         break;
                     case 5:
-                        learnAndPrintMove(insertPokemon, "Gust", "Your " + insertPokemon.pokemonName + " learnt Gust!\n");
+                        learnAndPrintMove(insertPokemon, "Gust");
                         break;
                     case 13:
-                        learnAndPrintMove(insertPokemon, "Quick Attack", "Your " + insertPokemon.pokemonName + " learnt Quick Attack!\n");
+                        learnAndPrintMove(insertPokemon, "Quick Attack");
                         break;
                     case 19:
-                        learnAndPrintMove(insertPokemon, "Twister", "Your " + insertPokemon.pokemonName + " learnt Twister!\n");
+                        learnAndPrintMove(insertPokemon, "Twister");
                         break;
                     case 25:
-                        learnAndPrintMove(insertPokemon, "Wing Attack", "Your " + insertPokemon.pokemonName + " learnt Wing Attack!\n");
+                        learnAndPrintMove(insertPokemon, "Wing Attack");
                         break;
                     case 38:
-                        learnAndPrintMove(insertPokemon, "Hurricane", "Your " + insertPokemon.pokemonName + " learnt Hurricane!\n");
+                        learnAndPrintMove(insertPokemon, "Hurricane");
                         break;
                     case 45:
-                        learnAndPrintMove(insertPokemon, "Brave Bird", "Your " + insertPokemon.pokemonName + " learnt Brave Bird!\n");
+                        learnAndPrintMove(insertPokemon, "Brave Bird");
                         break;
                 }
                 break;
@@ -409,93 +409,96 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Pound";
                         break;
                     case 8:
-                        learnAndPrintMove(insertPokemon, "Bubble", "Your " + insertPokemon.pokemonName + " learnt Bubble!\n");
+                        learnAndPrintMove(insertPokemon, "Bubble");
                         break;
                     case 11:
-                        learnAndPrintMove(insertPokemon, "Peck", "Your " + insertPokemon.pokemonName + " learnt Peck!\n");
+                        learnAndPrintMove(insertPokemon, "Peck");
                         break;
                     case 15:
-                        learnAndPrintMove(insertPokemon, "Water Gun", "Your " + insertPokemon.pokemonName + " learnt Water Gun!\n");
+                        learnAndPrintMove(insertPokemon, "Water Gun");
                         break;
                     case 18:
-                        learnAndPrintMove(insertPokemon, "Bubble Beam", "Your " + insertPokemon.pokemonName + " learnt Bubble Beam!\n");
+                        learnAndPrintMove(insertPokemon, "Bubble Beam");
                         break;
                     case 25:
-                        learnAndPrintMove(insertPokemon, "Fury Attack", "Your " + insertPokemon.pokemonName + " learnt Fury Attack!\n");
+                        learnAndPrintMove(insertPokemon, "Fury Attack");
                         break;
                     case 29:
-                        learnAndPrintMove(insertPokemon, "Brine", "Your " + insertPokemon.pokemonName + " learnt Brine!\n");
+                        learnAndPrintMove(insertPokemon, "Brine");
                         break;
                     case 39:
-                        learnAndPrintMove(insertPokemon, "Drill Peck", "Your " + insertPokemon.pokemonName + " learnt Drill Peck!\n");
+                        learnAndPrintMove(insertPokemon, "Drill Peck");
                         break;
                 }
                 break;
+
             case "Prinplup":
                 switch (insertPokemon.lvl) {
                     case 1:
                         insertPokemon.move1 = "Tackle";
                         break;
                     case 8:
-                        learnAndPrintMove(insertPokemon, "Bubble", "Your " + insertPokemon.pokemonName + " learnt Bubble!\n");
+                        learnAndPrintMove(insertPokemon, "Bubble");
                         break;
                     case 11:
-                        learnAndPrintMove(insertPokemon, "Water Gun", "Your " + insertPokemon.pokemonName + " learnt Water Gun!\n");
+                        learnAndPrintMove(insertPokemon, "Water Gun");
                         break;
                     case 15:
-                        learnAndPrintMove(insertPokemon, "Peck", "Your " + insertPokemon.pokemonName + " learnt Peck!\n");
+                        learnAndPrintMove(insertPokemon, "Peck");
                         break;
                     case 17:
-                        learnAndPrintMove(insertPokemon, "Metal Claw", "Your " + insertPokemon.pokemonName + " learnt Metal Claw!\n");
+                        learnAndPrintMove(insertPokemon, "Metal Claw");
                         break;
                     case 22:
-                        learnAndPrintMove(insertPokemon, "Bubble Beam", "Your " + insertPokemon.pokemonName + " learnt Bubble Beam!\n");
+                        learnAndPrintMove(insertPokemon, "Bubble Beam");
                         break;
                     case 28:
-                        learnAndPrintMove(insertPokemon, "Fury Attack", "Your " + insertPokemon.pokemonName + " learnt Fury Attack!\n");
+                        learnAndPrintMove(insertPokemon, "Fury Attack");
                         break;
                     case 33:
-                        learnAndPrintMove(insertPokemon, "Brine", "Your " + insertPokemon.pokemonName + " learnt Brine!\n");
+                        learnAndPrintMove(insertPokemon, "Brine");
                         break;
                     case 46:
-                        learnAndPrintMove(insertPokemon, "Drill Peck", "Your " + insertPokemon.pokemonName + " learnt Drill Peck!\n");
+                        learnAndPrintMove(insertPokemon, "Drill Peck");
                         break;
                 }
                 break;
+
             case "Empoleon":
                 switch (insertPokemon.lvl) {
                     case 1:
                         insertPokemon.move4 = "Flash Cannon";
                         break;
                     case 15:
-                        learnAndPrintMove(insertPokemon, "Peck", "Your " + insertPokemon.pokemonName + " learnt Peck!\n");
+                        learnAndPrintMove(insertPokemon, "Peck");
                         break;
                     case 16:
-                        learnAndPrintMove(insertPokemon, "Metal Claw", "Your " + insertPokemon.pokemonName + " learnt Metal Claw!\n");
+                        learnAndPrintMove(insertPokemon, "Metal Claw");
                         break;
                     case 19:
-                        learnAndPrintMove(insertPokemon, "Bubble Beam", "Your " + insertPokemon.pokemonName + " learnt Bubble Beam!\n");
+                        learnAndPrintMove(insertPokemon, "Bubble Beam");
                         break;
                     case 28:
-                        learnAndPrintMove(insertPokemon, "Fury Attack", "Your " + insertPokemon.pokemonName + " learnt Fury Attack!\n");
+                        learnAndPrintMove(insertPokemon, "Fury Attack");
                         break;
                     case 33:
-                        learnAndPrintMove(insertPokemon, "Brine", "Your " + insertPokemon.pokemonName + " learnt Brine!\n");
+                        learnAndPrintMove(insertPokemon, "Brine");
                         break;
                     case 37:
-                        learnAndPrintMove(insertPokemon, "Flash Cannon", "Your " + insertPokemon.pokemonName + " learnt Flash Cannon!\n");
+                        learnAndPrintMove(insertPokemon, "Flash Cannon");
                         break;
                     case 41:
-                        learnAndPrintMove(insertPokemon, "Drill Peck", "Your " + insertPokemon.pokemonName + " learnt Drill Peck!\n");
+                        learnAndPrintMove(insertPokemon, "Drill Peck");
                         break;
                     case 49:
-                        learnAndPrintMove(insertPokemon, "Hydro Pump", "Your " + insertPokemon.pokemonName + " learnt Hydro Pump!\n");
+                        learnAndPrintMove(insertPokemon, "Hydro Pump");
                         break;
                     case 55:
-                        learnAndPrintMove(insertPokemon, "Blizzard", "Your " + insertPokemon.pokemonName + " learnt Blizzard!\n");
+                        learnAndPrintMove(insertPokemon, "Blizzard");
                         break;
                 }
                 break;
+
             case "Totodile":
                 switch (insertPokemon.lvl) {
                     case 1:
@@ -503,31 +506,32 @@ public class PokemonLearnSet {
                         insertPokemon.move2 = "Hydro Pump";
                         break;
                     case 6:
-                        learnAndPrintMove(insertPokemon, "Bubble", "Your " + insertPokemon.pokemonName + " learnt Bubble!\n");
+                        learnAndPrintMove(insertPokemon, "Bubble");
                         break;
                     case 11:
-                        learnAndPrintMove(insertPokemon, "Water Gun", "Your " + insertPokemon.pokemonName + " learnt Water Gun!\n");
+                        learnAndPrintMove(insertPokemon, "Water Gun");
                         break;
                     case 15:
-                        learnAndPrintMove(insertPokemon, "Bite", "Your " + insertPokemon.pokemonName + " learnt Bite!\n");
+                        learnAndPrintMove(insertPokemon, "Bite");
                         break;
                     case 24:
-                        learnAndPrintMove(insertPokemon, "Ice Fang", "Your " + insertPokemon.pokemonName + " learnt Ice Fang!\n");
+                        learnAndPrintMove(insertPokemon, "Ice Fang");
                         break;
                     case 27:
-                        learnAndPrintMove(insertPokemon, "Flail", "Your " + insertPokemon.pokemonName + " learnt Flail!\n");
+                        learnAndPrintMove(insertPokemon, "Flail");
                         break;
                     case 33:
-                        learnAndPrintMove(insertPokemon, "Crunch", "Your " + insertPokemon.pokemonName + " learnt Crunch!\n");
+                        learnAndPrintMove(insertPokemon, "Crunch");
                         break;
                     case 41:
-                        learnAndPrintMove(insertPokemon, "Aqua Tail", "Your " + insertPokemon.pokemonName + " learnt Aqua Tail!\n");
+                        learnAndPrintMove(insertPokemon, "Aqua Tail");
                         break;
                     case 45:
-                        learnAndPrintMove(insertPokemon, "Superpower", "Your " + insertPokemon.pokemonName + " learnt Superpower!\n");
+                        learnAndPrintMove(insertPokemon, "Superpower");
                         break;
                 }
                 break;
+
             case "Croconaw":
                 switch (insertPokemon.lvl) {
                     case 1:
@@ -535,34 +539,35 @@ public class PokemonLearnSet {
                         insertPokemon.move2 = "Hydro Pump";
                         break;
                     case 6:
-                        learnAndPrintMove(insertPokemon, "Bubble", "Your " + insertPokemon.pokemonName + " learnt Bubble!\n");
+                        learnAndPrintMove(insertPokemon, "Bubble");
                         break;
                     case 8:
-                        learnAndPrintMove(insertPokemon, "Water Gun", "Your " + insertPokemon.pokemonName + " learnt Water Gun!\n");
+                        learnAndPrintMove(insertPokemon, "Water Gun");
                         break;
                     case 15:
-                        learnAndPrintMove(insertPokemon, "Bite", "Your " + insertPokemon.pokemonName + " learnt Bite!\n");
+                        learnAndPrintMove(insertPokemon, "Bite");
                         break;
                     case 21:
-                        learnAndPrintMove(insertPokemon, "Ice Fang", "Your " + insertPokemon.pokemonName + " learnt Ice Fang!\n");
+                        learnAndPrintMove(insertPokemon, "Ice Fang");
                         break;
                     case 26:
-                        learnAndPrintMove(insertPokemon, "Water Pulse", "Your " + insertPokemon.pokemonName + " learnt Water Pulse!\n");
+                        learnAndPrintMove(insertPokemon, "Water Pulse");
                         break;
                     case 31:
-                        learnAndPrintMove(insertPokemon, "Flail", "Your " + insertPokemon.pokemonName + " learnt Flail!\n");
+                        learnAndPrintMove(insertPokemon, "Flail");
                         break;
                     case 35:
-                        learnAndPrintMove(insertPokemon, "Crunch", "Your " + insertPokemon.pokemonName + " learnt Crunch!\n");
+                        learnAndPrintMove(insertPokemon, "Crunch");
                         break;
                     case 39:
-                        learnAndPrintMove(insertPokemon, "Aqua Tail", "Your " + insertPokemon.pokemonName + " learnt Aqua Tail!\n");
+                        learnAndPrintMove(insertPokemon, "Aqua Tail");
                         break;
                     case 42:
-                        learnAndPrintMove(insertPokemon, "Superpower", "Your " + insertPokemon.pokemonName + " learnt Superpower!\n");
+                        learnAndPrintMove(insertPokemon, "Superpower");
                         break;
                 }
                 break;
+
             case "Feraligatr":
                 switch (insertPokemon.lvl) {
                     case 1:
@@ -570,96 +575,99 @@ public class PokemonLearnSet {
                         insertPokemon.move3 = "Water Gun";
                         break;
                     case 8:
-                        learnAndPrintMove(insertPokemon, "Water Gun", "Your " + insertPokemon.pokemonName + " learnt Water Gun!\n");
+                        learnAndPrintMove(insertPokemon, "Water Gun");
                         break;
                     case 11:
-                        learnAndPrintMove(insertPokemon, "Bite", "Your " + insertPokemon.pokemonName + " learnt Bite!\n");
+                        learnAndPrintMove(insertPokemon, "Bite");
                         break;
                     case 24:
-                        learnAndPrintMove(insertPokemon, "Ice Fang", "Your " + insertPokemon.pokemonName + " learnt Ice Fang!\n");
+                        learnAndPrintMove(insertPokemon, "Ice Fang");
                         break;
                     case 27:
-                        learnAndPrintMove(insertPokemon, "Flail", "Your " + insertPokemon.pokemonName + " learnt Flail!\n");
+                        learnAndPrintMove(insertPokemon, "Flail");
                         break;
                     case 35:
-                        learnAndPrintMove(insertPokemon, "Crunch", "Your " + insertPokemon.pokemonName + " learnt Crunch!\n");
+                        learnAndPrintMove(insertPokemon, "Crunch");
                         break;
                     case 37:
-                        learnAndPrintMove(insertPokemon, "Chip Away", "Your " + insertPokemon.pokemonName + " learnt Chip Away!\n");
+                        learnAndPrintMove(insertPokemon, "Chip Away");
                         break;
                     case 41:
-                        learnAndPrintMove(insertPokemon, "Hydro Pump", "Your " + insertPokemon.pokemonName + " learnt Hydro Pump!\n");
+                        learnAndPrintMove(insertPokemon, "Hydro Pump");
                         break;
                     case 45:
-                        learnAndPrintMove(insertPokemon, "Blizzard", "Your " + insertPokemon.pokemonName + " learnt Blizzard!\n");
+                        learnAndPrintMove(insertPokemon, "Blizzard");
                         break;
                     case 49:
-                        learnAndPrintMove(insertPokemon, "Aqua Tail", "Your " + insertPokemon.pokemonName + " learnt Aqua Tail!\n");
+                        learnAndPrintMove(insertPokemon, "Aqua Tail");
                         break;
                     case 51:
-                        learnAndPrintMove(insertPokemon, "Superpower", "Your " + insertPokemon.pokemonName + " learnt Superpower!\n");
+                        learnAndPrintMove(insertPokemon, "Superpower");
                         break;
                 }
                 break;
+
             case "Lotad":
                 switch (insertPokemon.lvl) {
                     case 1:
                         insertPokemon.move1 = "Tackle";
                         break;
                     case 7:
-                        learnAndPrintMove(insertPokemon, "Absorb", "Your " + insertPokemon.pokemonName + " learnt Absorb!\n");
+                        learnAndPrintMove(insertPokemon, "Absorb");
                         break;
                     case 13:
-                        learnAndPrintMove(insertPokemon, "Bubble", "Your " + insertPokemon.pokemonName + " learnt Bubble!\n");
+                        learnAndPrintMove(insertPokemon, "Bubble");
                         break;
                     case 27:
-                        learnAndPrintMove(insertPokemon, "Mega Drain", "Your " + insertPokemon.pokemonName + " learnt Mega Drain!\n");
+                        learnAndPrintMove(insertPokemon, "Mega Drain");
                         break;
                     case 38:
-                        learnAndPrintMove(insertPokemon, "Giga Drain", "Your " + insertPokemon.pokemonName + " learnt Giga Drain!\n");
+                        learnAndPrintMove(insertPokemon, "Giga Drain");
                         break;
                     case 40:
-                        learnAndPrintMove(insertPokemon, "Zen Headbutt", "Your " + insertPokemon.pokemonName + " learnt Zen Headbutt!\n");
+                        learnAndPrintMove(insertPokemon, "Zen Headbutt");
                         break;
                     case 47:
-                        learnAndPrintMove(insertPokemon, "Energy Ball", "Your " + insertPokemon.pokemonName + " learnt Energy Ball!\n");
+                        learnAndPrintMove(insertPokemon, "Energy Ball");
                         break;
                     case 51:
-                        learnAndPrintMove(insertPokemon, "Hydro Pump", "Your " + insertPokemon.pokemonName + " learnt Hydro Pump!\n");
+                        learnAndPrintMove(insertPokemon, "Hydro Pump");
                         break;
                 }
                 break;
+
             case "Lombre":
                 switch (insertPokemon.lvl) {
                     case 1:
                         insertPokemon.move1 = "Astonish";
                         break;
                     case 7:
-                        learnAndPrintMove(insertPokemon, "Absorb", "Your " + insertPokemon.pokemonName + " learnt Absorb!\n");
+                        learnAndPrintMove(insertPokemon, "Absorb");
                         break;
                     case 18:
-                        learnAndPrintMove(insertPokemon, "Fury Swipes", "Your " + insertPokemon.pokemonName + " learnt Fury Swipes!\n");
+                        learnAndPrintMove(insertPokemon, "Fury Swipes");
                         break;
                     case 22:
-                        learnAndPrintMove(insertPokemon, "Water Pulse", "Your " + insertPokemon.pokemonName + " learnt Water Pulse!\n");
+                        learnAndPrintMove(insertPokemon, "Water Pulse");
                         break;
                     case 27:
-                        learnAndPrintMove(insertPokemon, "Mega Drain", "Your " + insertPokemon.pokemonName + " learnt Mega Drain!\n");
+                        learnAndPrintMove(insertPokemon, "Mega Drain");
                         break;
                     case 37:
-                        learnAndPrintMove(insertPokemon, "Hydro Pump", "Your " + insertPokemon.pokemonName + " learnt Hydro Pump!\n");
+                        learnAndPrintMove(insertPokemon, "Hydro Pump");
                         break;
                     case 41:
-                        learnAndPrintMove(insertPokemon, "Giga Drain", "Your " + insertPokemon.pokemonName + " learnt Giga Drain!\n");
+                        learnAndPrintMove(insertPokemon, "Giga Drain");
                         break;
                     case 45:
-                        learnAndPrintMove(insertPokemon, "Zen Headbutt", "Your " + insertPokemon.pokemonName + " learnt Zen Headbutt!\n");
+                        learnAndPrintMove(insertPokemon, "Zen Headbutt");
                         break;
                     case 51:
-                        learnAndPrintMove(insertPokemon, "Energy Ball", "Your " + insertPokemon.pokemonName + " learnt Energy Ball!\n");
+                        learnAndPrintMove(insertPokemon, "Energy Ball");
                         break;
                 }
                 break;
+
             case "Ludicolo":
                 switch (insertPokemon.lvl) {
                     case 1:
@@ -667,59 +675,61 @@ public class PokemonLearnSet {
                         insertPokemon.move2 = "Absorb";
                         break;
                     case 31:
-                        learnAndPrintMove(insertPokemon, "Fury Swipes", "Your " + insertPokemon.pokemonName + " learnt Fury Swipes!\n");
+                        learnAndPrintMove(insertPokemon, "Fury Swipes");
                         break;
                     case 22:
-                        learnAndPrintMove(insertPokemon, "Water Pulse", "Your " + insertPokemon.pokemonName + " learnt Water Pulse!\n");
+                        learnAndPrintMove(insertPokemon, "Water Pulse");
                         break;
                     case 27:
-                        learnAndPrintMove(insertPokemon, "Mega Drain", "Your " + insertPokemon.pokemonName + " learnt Mega Drain!\n");
+                        learnAndPrintMove(insertPokemon, "Mega Drain");
                         break;
                     case 37:
-                        learnAndPrintMove(insertPokemon, "Hydro Pump", "Your " + insertPokemon.pokemonName + " learnt Hydro Pump!\n");
+                        learnAndPrintMove(insertPokemon, "Hydro Pump");
                         break;
                     case 41:
-                        learnAndPrintMove(insertPokemon, "Giga Drain", "Your " + insertPokemon.pokemonName + " learnt Giga Drain!\n");
+                        learnAndPrintMove(insertPokemon, "Giga Drain");
                         break;
                     case 45:
-                        learnAndPrintMove(insertPokemon, "Zen Headbutt", "Your " + insertPokemon.pokemonName + " learnt Zen Headbutt!\n");
+                        learnAndPrintMove(insertPokemon, "Zen Headbutt");
                         break;
                     case 51:
-                        learnAndPrintMove(insertPokemon, "Energy Ball", "Your " + insertPokemon.pokemonName + " learnt Energy Ball!\n");
+                        learnAndPrintMove(insertPokemon, "Energy Ball");
                         break;
                 }
                 break;
+
             case "Slowpoke":
                 switch (insertPokemon.lvl) {
                     case 1:
                         insertPokemon.move1 = "Tackle";
                         break;
                     case 5:
-                        learnAndPrintMove(insertPokemon, "Tackle", "Your " + insertPokemon.pokemonName + " learnt Tackle!\n");
+                        learnAndPrintMove(insertPokemon, "Tackle");
                         break;
                     case 9:
-                        learnAndPrintMove(insertPokemon, "Bubble", "Your " + insertPokemon.pokemonName + " learnt Bubble!\n");
+                        learnAndPrintMove(insertPokemon, "Bubble");
                         break;
                     case 14:
-                        learnAndPrintMove(insertPokemon, "Water Gun", "Your " + insertPokemon.pokemonName + " learnt Water Gun!\n");
+                        learnAndPrintMove(insertPokemon, "Water Gun");
                         break;
                     case 19:
-                        learnAndPrintMove(insertPokemon, "Confusion", "Your " + insertPokemon.pokemonName + " learnt Confusion!\n");
+                        learnAndPrintMove(insertPokemon, "Confusion");
                         break;
                     case 29:
-                        learnAndPrintMove(insertPokemon, "Headbutt", "Your " + insertPokemon.pokemonName + " learnt Headbutt!\n");
+                        learnAndPrintMove(insertPokemon, "Headbutt");
                         break;
                     case 34:
-                        learnAndPrintMove(insertPokemon, "Water Pulse", "Your " + insertPokemon.pokemonName + " learnt Water Pulse!\n");
+                        learnAndPrintMove(insertPokemon, "Water Pulse");
                         break;
                     case 39:
-                        learnAndPrintMove(insertPokemon, "Zen Headbutt", "Your " + insertPokemon.pokemonName + " learnt Zen Headbutt!\n");
+                        learnAndPrintMove(insertPokemon, "Zen Headbutt");
                         break;
                     case 49:
-                        learnAndPrintMove(insertPokemon, "Psychic", "Your " + insertPokemon.pokemonName + " learnt Psychic!\n");
+                        learnAndPrintMove(insertPokemon, "Psychic");
                         break;
                 }
                 break;
+
             case "Slowbro":
                 switch (insertPokemon.lvl) {
                     case 1:
@@ -727,50 +737,50 @@ public class PokemonLearnSet {
                         insertPokemon.move3 = "Yawn";
                         break;
                     case 6:
-                        learnAndPrintMove(insertPokemon, "Tackle", "Your " + insertPokemon.pokemonName + " learnt Tackle!\n");
+                        learnAndPrintMove(insertPokemon, "Tackle");
                         break;
                     case 9:
-                        learnAndPrintMove(insertPokemon, "Bubble", "Your " + insertPokemon.pokemonName + " learnt Bubble!\n");
+                        learnAndPrintMove(insertPokemon, "Bubble");
                         break;
                     case 14:
-                        learnAndPrintMove(insertPokemon, "Water Gun", "Your " + insertPokemon.pokemonName + " learnt Water Gun!\n");
+                        learnAndPrintMove(insertPokemon, "Water Gun");
                         break;
                     case 19:
-                        learnAndPrintMove(insertPokemon, "Confusion", "Your " + insertPokemon.pokemonName + " learnt Confusion!\n");
+                        learnAndPrintMove(insertPokemon, "Confusion");
                         break;
                     case 29:
-                        learnAndPrintMove(insertPokemon, "Headbutt", "Your " + insertPokemon.pokemonName + " learnt Headbutt!\n");
+                        learnAndPrintMove(insertPokemon, "Headbutt");
                         break;
                     case 39:
-                        learnAndPrintMove(insertPokemon, "Zen Headbutt", "Your " + insertPokemon.pokemonName + " learnt Zen Headbutt!\n");
+                        learnAndPrintMove(insertPokemon, "Zen Headbutt");
                         break;
                     case 44:
-                        learnAndPrintMove(insertPokemon, "Psychic", "Your " + insertPokemon.pokemonName + " learnt Psychic!\n");
+                        learnAndPrintMove(insertPokemon, "Psychic");
                         break;
                     case 49:
-                        learnAndPrintMove(insertPokemon, "Power Gem", "Your " + insertPokemon.pokemonName + " learnt Power Gem!\n");
+                        learnAndPrintMove(insertPokemon, "Power Gem");
                         break;
                 }
                 break;
             case "Slowking":
                 switch (insertPokemon.lvl) {
                     case 6:
-                        learnAndPrintMove(insertPokemon, "Confusion", "Your " + insertPokemon.pokemonName + " learnt Confusion!\n");
+                        learnAndPrintMove(insertPokemon, "Confusion");
                         break;
                     case 14:
-                        learnAndPrintMove(insertPokemon, "Water Gun", "Your " + insertPokemon.pokemonName + " learnt Water Gun!\n");
+                        learnAndPrintMove(insertPokemon, "Water Gun");
                         break;
                     case 29:
-                        learnAndPrintMove(insertPokemon, "Water Pulse", "Your " + insertPokemon.pokemonName + " learnt Water Pulse!\n");
+                        learnAndPrintMove(insertPokemon, "Water Pulse");
                         break;
                     case 37:
-                        learnAndPrintMove(insertPokemon, "Zen Headbutt", "Your " + insertPokemon.pokemonName + " learnt Zen Headbutt!\n");
+                        learnAndPrintMove(insertPokemon, "Zen Headbutt");
                         break;
                     case 44:
-                        learnAndPrintMove(insertPokemon, "Psychic", "Your " + insertPokemon.pokemonName + " learnt Psychic!\n");
+                        learnAndPrintMove(insertPokemon, "Psychic");
                         break;
                     case 49:
-                        learnAndPrintMove(insertPokemon, "Power Gem", "Your " + insertPokemon.pokemonName + " learnt Power Gem!\n");
+                        learnAndPrintMove(insertPokemon, "Power Gem");
                         break;
                 }
                 break;
@@ -780,13 +790,13 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Tackle";
                         break;
                     case 5:
-                        learnAndPrintMove(insertPokemon, "Pound", "Your " + insertPokemon.pokemonName + " learnt Pound!\n");
+                        learnAndPrintMove(insertPokemon, "Pound");
                         break;
                     case 9:
-                        learnAndPrintMove(insertPokemon, "Rollout", "Your " + insertPokemon.pokemonName + " learnt Rollout!\n");
+                        learnAndPrintMove(insertPokemon, "Rollout");
                         break;
                     case 13:
-                        learnAndPrintMove(insertPokemon, "Headbutt", "Your " + insertPokemon.pokemonName + " learnt Headbutt!\n");
+                        learnAndPrintMove(insertPokemon, "Headbutt");
                         break;
                 }
                 break;
@@ -796,22 +806,22 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Tackle";
                         break;
                     case 15:
-                        learnAndPrintMove(insertPokemon, "Rollout", "Your " + insertPokemon.pokemonName + " learnt Rollout!\n");
+                        learnAndPrintMove(insertPokemon, "Rollout");
                         break;
                     case 19:
-                        learnAndPrintMove(insertPokemon, "Water Gun", "Your " + insertPokemon.pokemonName + " learnt Water Gun!\n");
+                        learnAndPrintMove(insertPokemon, "Water Gun");
                         break;
                     case 25:
-                        learnAndPrintMove(insertPokemon, "Headbutt", "Your " + insertPokemon.pokemonName + " learnt Headbutt!\n");
+                        learnAndPrintMove(insertPokemon, "Headbutt");
                         break;
                     case 31:
-                        learnAndPrintMove(insertPokemon, "Hyper Fang", "Your " + insertPokemon.pokemonName + " learnt Hyper Fang!\n");
+                        learnAndPrintMove(insertPokemon, "Hyper Fang");
                         break;
                     case 39:
-                        learnAndPrintMove(insertPokemon, "Super Fang", "Your " + insertPokemon.pokemonName + " learnt Super Fang!\n");
+                        learnAndPrintMove(insertPokemon, "Super Fang");
                         break;
                     case 44:
-                        learnAndPrintMove(insertPokemon, "Hyper Beam", "Your " + insertPokemon.pokemonName + " learnt Hyper Beam!\n");
+                        learnAndPrintMove(insertPokemon, "Hyper Beam");
                         break;
                 }
                 break;
@@ -822,25 +832,25 @@ public class PokemonLearnSet {
                         insertPokemon.move3 = "Tail Whip";
                         break;
                     case 5:
-                        learnAndPrintMove(insertPokemon, "Sand-Attack", "Your " + insertPokemon.pokemonName + " learnt Sand-Attack!\n");
+                        learnAndPrintMove(insertPokemon, "Sand-Attack");
                         break;
                     case 13:
-                        learnAndPrintMove(insertPokemon, "Quick Attack", "Your " + insertPokemon.pokemonName + " learnt Quick Attack!\n");
+                        learnAndPrintMove(insertPokemon, "Quick Attack");
                         break;
                     case 17:
-                        learnAndPrintMove(insertPokemon, "Bite", "Your " + insertPokemon.pokemonName + " learnt Bite!\n");
+                        learnAndPrintMove(insertPokemon, "Bite");
                         break;
                     case 21:
-                        learnAndPrintMove(insertPokemon, "Focus Energy", "Your " + insertPokemon.pokemonName + " learnt Focus Energy!\n");
+                        learnAndPrintMove(insertPokemon, "Focus Energy");
                         break;
                     case 25:
-                        learnAndPrintMove(insertPokemon, "Take Down", "Your " + insertPokemon.pokemonName + " learnt Take Down!\n");
+                        learnAndPrintMove(insertPokemon, "Take Down");
                         break;
                     case 35:
-                        learnAndPrintMove(insertPokemon, "Play Rough", "Your " + insertPokemon.pokemonName + " learnt Play Rough!\n");
+                        learnAndPrintMove(insertPokemon, "Play Rough");
                         break;
                     case 41:
-                        learnAndPrintMove(insertPokemon, "Double-Edge", "Your " + insertPokemon.pokemonName + " learnt Double-Edge!\n");
+                        learnAndPrintMove(insertPokemon, "Double-Edge");
                         break;
                 }
                 break;
@@ -850,25 +860,25 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Tackle";
                         break;
                     case 5:
-                        learnAndPrintMove(insertPokemon, "Rage", "Your " + insertPokemon.pokemonName + " learnt Rage!\n");
+                        learnAndPrintMove(insertPokemon, "Rage");
                         break;
                     case 9:
-                        learnAndPrintMove(insertPokemon, "Horn Attack", "Your " + insertPokemon.pokemonName + " learnt Horn Attack!\n");
+                        learnAndPrintMove(insertPokemon, "Horn Attack");
                         break;
                     case 17:
-                        learnAndPrintMove(insertPokemon, "Pursuit", "Your " + insertPokemon.pokemonName + " learnt Pursuit!\n");
+                        learnAndPrintMove(insertPokemon, "Pursuit");
                         break;
                     case 21:
-                        learnAndPrintMove(insertPokemon, "Take Down", "Your " + insertPokemon.pokemonName + " learnt Take Down!\n");
+                        learnAndPrintMove(insertPokemon, "Take Down");
                         break;
                     case 29:
-                        learnAndPrintMove(insertPokemon, "Double-Edge", "Your " + insertPokemon.pokemonName + " learnt Double-Edge!\n");
+                        learnAndPrintMove(insertPokemon, "Double-Edge");
                         break;
                     case 33:
-                        learnAndPrintMove(insertPokemon, "Thrash", "Your " + insertPokemon.pokemonName + " learnt Thrash!\n");
+                        learnAndPrintMove(insertPokemon, "Thrash");
                         break;
                     case 39:
-                        learnAndPrintMove(insertPokemon, "Earthquake", "Your " + insertPokemon.pokemonName + " learnt Earthquake!\n");
+                        learnAndPrintMove(insertPokemon, "Earthquake");
                         break;
                 }
                 break;
@@ -879,16 +889,16 @@ public class PokemonLearnSet {
                         insertPokemon.move3 = "Powder Snow";
                         break;
                     case 8:
-                        learnAndPrintMove(insertPokemon, "Flail", "Your " + insertPokemon.pokemonName + " learnt Flail!\n");
+                        learnAndPrintMove(insertPokemon, "Flail");
                         break;
                     case 14:
-                        learnAndPrintMove(insertPokemon, "Mud Bomb", "Your " + insertPokemon.pokemonName + " learnt Mud Bomb!\n");
+                        learnAndPrintMove(insertPokemon, "Mud Bomb");
                         break;
                     case 19:
-                        learnAndPrintMove(insertPokemon, "Rock Tomb", "Your " + insertPokemon.pokemonName + " learnt Rock Tomb!\n");
+                        learnAndPrintMove(insertPokemon, "Rock Tomb");
                         break;
                     case 27:
-                        learnAndPrintMove(insertPokemon, "Ice Ball", "Your " + insertPokemon.pokemonName + " learnt Ice Ball!\n");
+                        learnAndPrintMove(insertPokemon, "Ice Ball");
                         break;
                 }
                 break;
@@ -899,25 +909,25 @@ public class PokemonLearnSet {
                         insertPokemon.move3 = "Powder Snow";
                         break;
                     case 12:
-                        learnAndPrintMove(insertPokemon, "Flail", "Your " + insertPokemon.pokemonName + " learnt Flail!\n");
+                        learnAndPrintMove(insertPokemon, "Flail");
                         break;
                     case 19:
-                        learnAndPrintMove(insertPokemon, "Rock Tomb", "Your " + insertPokemon.pokemonName + " learnt Rock Tomb!\n");
+                        learnAndPrintMove(insertPokemon, "Rock Tomb");
                         break;
                     case 28:
-                        learnAndPrintMove(insertPokemon, "Mud Bomb", "Your " + insertPokemon.pokemonName + " learnt Mud Bomb!\n");
+                        learnAndPrintMove(insertPokemon, "Mud Bomb");
                         break;
                     case 37:
-                        learnAndPrintMove(insertPokemon, "Icy Wind", "Your " + insertPokemon.pokemonName + " learnt Icy Wind!\n");
+                        learnAndPrintMove(insertPokemon, "Icy Wind");
                         break;
                     case 41:
-                        learnAndPrintMove(insertPokemon, "Blizzard", "Your " + insertPokemon.pokemonName + " learnt Blizzard!\n");
+                        learnAndPrintMove(insertPokemon, "Blizzard");
                         break;
-                    case 47:
-                        learnAndPrintMove(insertPokemon, "Earthquake", "Your " + insertPokemon.pokemonName + " learnt Earthquake!\n");
+                    case 45:
+                        learnAndPrintMove(insertPokemon, "Earthquake");
                         break;
                     case 52:
-                        learnAndPrintMove(insertPokemon, "Ancient Power", "Your " + insertPokemon.pokemonName + " learnt Ancient Power!\n");
+                        learnAndPrintMove(insertPokemon, "Ancient Power");
                         break;
                 }
                 break;
@@ -928,56 +938,52 @@ public class PokemonLearnSet {
                         insertPokemon.move3 = "Powder Snow";
                         break;
                     case 12:
-                        learnAndPrintMove(insertPokemon, "Flail", "Your " + insertPokemon.pokemonName + " learnt Flail!\n");
+                        learnAndPrintMove(insertPokemon, "Flail");
                         break;
                     case 17:
-                        learnAndPrintMove(insertPokemon, "Rock Tomb", "Your " + insertPokemon.pokemonName + " learnt Rock Tomb!\n");
+                        learnAndPrintMove(insertPokemon, "Rock Tomb");
                         break;
                     case 28:
-                        learnAndPrintMove(insertPokemon, "Mud Bomb", "Your " + insertPokemon.pokemonName + " learnt Mud Bomb!\n");
+                        learnAndPrintMove(insertPokemon, "Mud Bomb");
                         break;
                     case 36:
-                        learnAndPrintMove(insertPokemon, "Icy Wind", "Your " + insertPokemon.pokemonName + " learnt Icy Wind!\n");
+                        learnAndPrintMove(insertPokemon, "Icy Wind");
                         break;
                     case 41:
-                        learnAndPrintMove(insertPokemon, "Blizzard", "Your " + insertPokemon.pokemonName + " learnt Blizzard!\n");
+                        learnAndPrintMove(insertPokemon, "Blizzard");
                         break;
                     case 45:
-                        learnAndPrintMove(insertPokemon, "Earthquake", "Your " + insertPokemon.pokemonName + " learnt Earthquake!\n");
-                        break;
-                    case 49:
-                        learnAndPrintMove(insertPokemon, "Ancient Power", "Your " + insertPokemon.pokemonName + " learnt Ancient Power!\n");
+                        learnAndPrintMove(insertPokemon, "Earthquake");
                         break;
                 }
-                break;
             case "Absol":
                 switch (insertPokemon.lvl) {
                     case 1:
                         insertPokemon.move1 = "Scratch";
                         break;
                     case 9:
-                        learnAndPrintMove(insertPokemon, "Bite", "Your " + insertPokemon.pokemonName + " learnt Bite!\n");
+                        learnAndPrintMove(insertPokemon, "Bite");
                         break;
                     case 13:
-                        learnAndPrintMove(insertPokemon, "Quick Attack", "Your " + insertPokemon.pokemonName + " learnt Quick Attack!\n");
+                        learnAndPrintMove(insertPokemon, "Quick Attack");
                         break;
                     case 17:
-                        learnAndPrintMove(insertPokemon, "Pursuit", "Your " + insertPokemon.pokemonName + " learnt Pursuit!\n");
+                        learnAndPrintMove(insertPokemon, "Pursuit");
                         break;
                     case 21:
-                        learnAndPrintMove(insertPokemon, "Crunch", "Your " + insertPokemon.pokemonName + " learnt Crunch!\n");
+                        learnAndPrintMove(insertPokemon, "Crunch");
                         break;
                     case 29:
-                        learnAndPrintMove(insertPokemon, "Night Slash", "Your " + insertPokemon.pokemonName + " learnt Night Slash!\n");
+                        learnAndPrintMove(insertPokemon, "Night Slash");
                         break;
                     case 36:
-                        learnAndPrintMove(insertPokemon, "Psycho Cut", "Your " + insertPokemon.pokemonName + " learnt Psycho Cut!\n");
+                        learnAndPrintMove(insertPokemon, "Psycho Cut");
                         break;
                     case 41:
-                        learnAndPrintMove(insertPokemon, "Shadow Claw", "Your " + insertPokemon.pokemonName + " learnt Shadow Claw!\n");
+                        learnAndPrintMove(insertPokemon, "Shadow Claw");
                         break;
                     case 47:
-                        learnAndPrintMove(insertPokemon, "Guillotine", "Your " + insertPokemon.pokemonName + " learnt Guillotine!\n");
+                        learnAndPrintMove(insertPokemon, "Guillotine");
                         break;
                 }
                 break;
@@ -987,10 +993,10 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Tackle";
                         break;
                     case 7:
-                        learnAndPrintMove(insertPokemon, "Poison Sting", "Your " + insertPokemon.pokemonName + " learnt Poison Sting!\n");
+                        learnAndPrintMove(insertPokemon, "Poison Sting");
                         break;
                     case 11:
-                        learnAndPrintMove(insertPokemon, "Bug Bite", "Your " + insertPokemon.pokemonName + " learnt Bug Bite!\n");
+                        learnAndPrintMove(insertPokemon, "Bug Bite");
                         break;
                 }
                 break;
@@ -1007,22 +1013,22 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Tackle";
                         break;
                     case 12:
-                        learnAndPrintMove(insertPokemon, "Confusion", "Your " + insertPokemon.pokemonName + " learnt Confusion!\n");
+                        learnAndPrintMove(insertPokemon, "Confusion");
                         break;
                     case 16:
-                        learnAndPrintMove(insertPokemon, "Gust", "Your " + insertPokemon.pokemonName + " learnt Gust!\n");
+                        learnAndPrintMove(insertPokemon, "Gust");
                         break;
                     case 20:
-                        learnAndPrintMove(insertPokemon, "Pin Missile", "Your " + insertPokemon.pokemonName + " learnt Pin Missile!\n");
+                        learnAndPrintMove(insertPokemon, "Pin Missile");
                         break;
                     case 25:
-                        learnAndPrintMove(insertPokemon, "Bug Buzz", "Your " + insertPokemon.pokemonName + " learnt Bug Buzz!\n");
+                        learnAndPrintMove(insertPokemon, "Bug Buzz");
                         break;
                     case 28:
-                        learnAndPrintMove(insertPokemon, "Air Slash", "Your " + insertPokemon.pokemonName + " learnt Air Slash!\n");
+                        learnAndPrintMove(insertPokemon, "Air Slash");
                         break;
                     case 34:
-                        learnAndPrintMove(insertPokemon, "Silver Wind", "Your " + insertPokemon.pokemonName + " learnt Silver Wind!\n");
+                        learnAndPrintMove(insertPokemon, "Silver Wind");
                         break;
                 }
                 break;
@@ -1032,10 +1038,10 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Tackle";
                         break;
                     case 6:
-                        learnAndPrintMove(insertPokemon, "Poison Sting", "Your " + insertPokemon.pokemonName + " learnt Poison Sting!\n");
+                        learnAndPrintMove(insertPokemon, "Poison Sting");
                         break;
                     case 12:
-                        learnAndPrintMove(insertPokemon, "Bug Bite", "Your " + insertPokemon.pokemonName + " learnt Bug Bite!\n");
+                        learnAndPrintMove(insertPokemon, "Bug Bite");
                         break;
                 }
                 break;
@@ -1045,25 +1051,25 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Poison Sting";
                         break;
                     case 12:
-                        learnAndPrintMove(insertPokemon, "Fury Attack", "Your " + insertPokemon.pokemonName + " learnt Fury Attack!\n");
+                        learnAndPrintMove(insertPokemon, "Fury Attack");
                         break;
                     case 18:
-                        learnAndPrintMove(insertPokemon, "Twin Needle", "Your " + insertPokemon.pokemonName + " learnt Twin Needle!\n");
+                        learnAndPrintMove(insertPokemon, "Twin Needle");
                         break;
                     case 24:
-                        learnAndPrintMove(insertPokemon, "Poison Jab", "Your " + insertPokemon.pokemonName + " learnt Poison Jab!\n");
+                        learnAndPrintMove(insertPokemon, "Poison Jab");
                         break;
                     case 25:
-                        learnAndPrintMove(insertPokemon, "Bug Buzz", "Your " + insertPokemon.pokemonName + " learnt Bug Buzz!\n");
+                        learnAndPrintMove(insertPokemon, "Bug Buzz");
                         break;
                     case 28:
-                        learnAndPrintMove(insertPokemon, "Air Slash", "Your " + insertPokemon.pokemonName + " learnt Air Slash!\n");
+                        learnAndPrintMove(insertPokemon, "Air Slash");
                         break;
                     case 34:
-                        learnAndPrintMove(insertPokemon, "X-Scissor", "Your " + insertPokemon.pokemonName + " learnt X-Scissor!\n");
+                        learnAndPrintMove(insertPokemon, "X-Scissor");
                         break;
                     case 40:
-                        learnAndPrintMove(insertPokemon, "Sludge Bomb", "Your " + insertPokemon.pokemonName + " learnt Sludge Bomb!\n");
+                        learnAndPrintMove(insertPokemon, "Sludge Bomb");
                         break;
                 }
                 break;
@@ -1074,10 +1080,10 @@ public class PokemonLearnSet {
                         insertPokemon.move2 = "Bubble";
                         break;
                     case 6:
-                        learnAndPrintMove(insertPokemon, "Quick Attack", "Your " + insertPokemon.pokemonName + " learnt Quick Attack!\n");
+                        learnAndPrintMove(insertPokemon, "Quick Attack");
                         break;
                     case 11:
-                        learnAndPrintMove(insertPokemon, "Water Gun", "Your " + insertPokemon.pokemonName + " learnt Water Gun!\n");
+                        learnAndPrintMove(insertPokemon, "Water Gun");
                         break;
                 }
                 break;
@@ -1087,25 +1093,25 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Bubble";
                         break;
                     case 13:
-                        learnAndPrintMove(insertPokemon, "Quick Attack", "Your " + insertPokemon.pokemonName + " learnt Quick Attack!\n");
+                        learnAndPrintMove(insertPokemon, "Quick Attack");
                         break;
                     case 19:
-                        learnAndPrintMove(insertPokemon, "Air Cutter", "Your " + insertPokemon.pokemonName + " learnt Air Cutter!\n");
+                        learnAndPrintMove(insertPokemon, "Air Cutter");
                         break;
                     case 28:
-                        learnAndPrintMove(insertPokemon, "Water Pulse", "Your " + insertPokemon.pokemonName + " learnt Water Pulse!\n");
+                        learnAndPrintMove(insertPokemon, "Water Pulse");
                         break;
                     case 34:
-                        learnAndPrintMove(insertPokemon, "Giga Drain", "Your " + insertPokemon.pokemonName + " learnt Giga Drain!\n");
+                        learnAndPrintMove(insertPokemon, "Giga Drain");
                         break;
                     case 39:
-                        learnAndPrintMove(insertPokemon, "Bug Buzz", "Your " + insertPokemon.pokemonName + " learnt Bug Buzz!\n");
+                        learnAndPrintMove(insertPokemon, "Bug Buzz");
                         break;
                     case 43:
-                        learnAndPrintMove(insertPokemon, "Air Slash", "Your " + insertPokemon.pokemonName + " learnt Air Slash!\n");
+                        learnAndPrintMove(insertPokemon, "Air Slash");
                         break;
                     case 49:
-                        learnAndPrintMove(insertPokemon, "Silver Wind", "Your " + insertPokemon.pokemonName + " learnt Silver Wind!\n");
+                        learnAndPrintMove(insertPokemon, "Silver Wind");
                         break;
                 }
                 break;
@@ -1115,48 +1121,48 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Lick";
                         break;
                     case 19:
-                        learnAndPrintMove(insertPokemon, "Night Shade", "Your " + insertPokemon.pokemonName + " learnt Night Shade!\n");
+                        learnAndPrintMove(insertPokemon, "Night Shade");
                         break;
                     case 26:
-                        learnAndPrintMove(insertPokemon, "Shadow Ball", "Your " + insertPokemon.pokemonName + " learnt Shadow Ball!\n");
+                        learnAndPrintMove(insertPokemon, "Shadow Ball");
                         break;
                 }
                 break;
             case "Haunter":
                 switch (insertPokemon.lvl) {
                     case 1:
-                        learnAndPrintMove(insertPokemon, "Lick", "Your " + insertPokemon.pokemonName + " learnt Lick!\n");
+                        learnAndPrintMove(insertPokemon, "Lick");
                         break;
                     case 26:
-                        learnAndPrintMove(insertPokemon, "Shadow Ball", "Your " + insertPokemon.pokemonName + " learnt Shadow Ball!\n");
+                        learnAndPrintMove(insertPokemon, "Shadow Ball");
                         break;
                     case 33:
-                        learnAndPrintMove(insertPokemon, "Dream Eater", "Your " + insertPokemon.pokemonName + " learnt Dream Eater!\n");
+                        learnAndPrintMove(insertPokemon, "Dream Eater");
                         break;
                 }
                 break;
             case "Gengar":
                 switch (insertPokemon.lvl) {
                     case 1:
-                        learnAndPrintMove(insertPokemon, "Lick", "Your " + insertPokemon.pokemonName + " learnt Lick!\n");
+                        learnAndPrintMove(insertPokemon, "Lick");
                         break;
                     case 26:
-                        learnAndPrintMove(insertPokemon, "Shadow Ball", "Your " + insertPokemon.pokemonName + " learnt Shadow Ball!\n");
+                        learnAndPrintMove(insertPokemon, "Shadow Ball");
                         break;
                     case 31:
-                        learnAndPrintMove(insertPokemon, "Dark Pulse", "Your " + insertPokemon.pokemonName + " learnt Dark Pulse!\n");
+                        learnAndPrintMove(insertPokemon, "Dark Pulse");
                         break;
                     case 36:
-                        learnAndPrintMove(insertPokemon, "Dream Eater", "Your " + insertPokemon.pokemonName + " learnt Dream Eater!\n");
+                        learnAndPrintMove(insertPokemon, "Dream Eater");
                         break;
                     case 41:
-                        learnAndPrintMove(insertPokemon, "Dazzling Gleam", "Your " + insertPokemon.pokemonName + " learnt Dazzling Gleam!\n");
+                        learnAndPrintMove(insertPokemon, "Dazzling Gleam");
                         break;
                     case 45:
-                        learnAndPrintMove(insertPokemon, "Poison Jab", "Your " + insertPokemon.pokemonName + " learnt Poison Jab!\n");
+                        learnAndPrintMove(insertPokemon, "Poison Jab");
                         break;
                     case 51:
-                        learnAndPrintMove(insertPokemon, "Phantom Force", "Your " + insertPokemon.pokemonName + " learnt Phantom Force!\n");
+                        learnAndPrintMove(insertPokemon, "Phantom Force");
                         break;
                 }
                 break;
@@ -1166,19 +1172,19 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Bite";
                         break;
                     case 5:
-                        learnAndPrintMove(insertPokemon, "Rock Throw", "Your " + insertPokemon.pokemonName + " learnt Rock Throw!\n");
+                        learnAndPrintMove(insertPokemon, "Rock Throw");
                         break;
                     case 10:
-                        learnAndPrintMove(insertPokemon, "Crunch", "Your " + insertPokemon.pokemonName + " learnt Crunch!\n");
+                        learnAndPrintMove(insertPokemon, "Crunch");
                         break;
                     case 14:
-                        learnAndPrintMove(insertPokemon, "Rock Tomb", "Your " + insertPokemon.pokemonName + " learnt Rock Tomb!\n");
+                        learnAndPrintMove(insertPokemon, "Rock Tomb");
                         break;
                     case 19:
-                        learnAndPrintMove(insertPokemon, "Chip Away", "Your " + insertPokemon.pokemonName + " learnt Chip Away!\n");
+                        learnAndPrintMove(insertPokemon, "Chip Away");
                         break;
                     case 23:
-                        learnAndPrintMove(insertPokemon, "Rock Slide", "Your " + insertPokemon.pokemonName + " learnt Rock Slide!\n");
+                        learnAndPrintMove(insertPokemon, "Rock Slide");
                         break;
                 }
                 break;
@@ -1188,16 +1194,16 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Bite";
                         break;
                     case 37:
-                        learnAndPrintMove(insertPokemon, "Magnitude", "Your " + insertPokemon.pokemonName + " learnt Scary Magnitude!\n");
+                        learnAndPrintMove(insertPokemon, "Magnitude");
                         break;
                     case 41:
-                        learnAndPrintMove(insertPokemon, "Rock Slide", "Your " + insertPokemon.pokemonName + " learnt Rock Slide!\n");
+                        learnAndPrintMove(insertPokemon, "Rock Slide");
                         break;
                     case 45:
-                        learnAndPrintMove(insertPokemon, "Dark Pulse", "Your " + insertPokemon.pokemonName + " learnt Dark Pulse!\n");
+                        learnAndPrintMove(insertPokemon, "Dark Pulse");
                         break;
                     case 51:
-                        learnAndPrintMove(insertPokemon, "Stone Edge", "Your " + insertPokemon.pokemonName + " learnt Stone Edge!\n");
+                        learnAndPrintMove(insertPokemon, "Stone Edge");
                         break;
                 }
                 break;
@@ -1207,10 +1213,10 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Bite";
                         break;
                     case 56:
-                        learnAndPrintMove(insertPokemon, "Earthquake", "Your " + insertPokemon.pokemonName + " learnt Earthquake!\n");
+                        learnAndPrintMove(insertPokemon, "Earthquake");
                         break;
                     case 60:
-                        learnAndPrintMove(insertPokemon, "Hyper Beam", "Your " + insertPokemon.pokemonName + " learnt Hyper Beam!\n");
+                        learnAndPrintMove(insertPokemon, "Hyper Beam");
                         break;
                 }
                 break;
@@ -1220,13 +1226,13 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Wrap";
                         break;
                     case 9:
-                        learnAndPrintMove(insertPokemon, "Poison Sting", "Your " + insertPokemon.pokemonName + " learnt Poison Sting!\n");
+                        learnAndPrintMove(insertPokemon, "Poison Sting");
                         break;
                     case 14:
-                        learnAndPrintMove(insertPokemon, "Bite", "Your " + insertPokemon.pokemonName + " learnt Bite!\n");
+                        learnAndPrintMove(insertPokemon, "Bite");
                         break;
                     case 19:
-                        learnAndPrintMove(insertPokemon, "Sludge", "Your " + insertPokemon.pokemonName + " learnt Sludge!\n");
+                        learnAndPrintMove(insertPokemon, "Sludge");
                         break;
                 }
                 break;
@@ -1236,13 +1242,13 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Wrap";
                         break;
                     case 23:
-                        learnAndPrintMove(insertPokemon, "Mud Bomb", "Your " + insertPokemon.pokemonName + " learnt Mud Bomb!\n");
+                        learnAndPrintMove(insertPokemon, "Mud Bomb");
                         break;
                     case 29:
-                        learnAndPrintMove(insertPokemon, "Sludge Bomb", "Your " + insertPokemon.pokemonName + " learnt Sludge Bomb!\n");
+                        learnAndPrintMove(insertPokemon, "Sludge Bomb");
                         break;
                     case 36:
-                        learnAndPrintMove(insertPokemon, "Crunch", "Your " + insertPokemon.pokemonName + " learnt Crunch!\n");
+                        learnAndPrintMove(insertPokemon, "Crunch");
                         break;
                 }
                 break;
@@ -1252,19 +1258,19 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Scratch";
                         break;
                     case 8:
-                        learnAndPrintMove(insertPokemon, "Tackle", "Your " + insertPokemon.pokemonName + " learnt Tackle!\n");
+                        learnAndPrintMove(insertPokemon, "Tackle");
                         break;
                     case 13:
-                        learnAndPrintMove(insertPokemon, "Poison Sting", "Your " + insertPokemon.pokemonName + " learnt Poison Sting!\n");
+                        learnAndPrintMove(insertPokemon, "Poison Sting");
                         break;
                     case 21:
-                        learnAndPrintMove(insertPokemon, "Double Kick", "Your " + insertPokemon.pokemonName + " learnt Double Kick!\n");
+                        learnAndPrintMove(insertPokemon, "Double Kick");
                         break;
                     case 27:
-                        learnAndPrintMove(insertPokemon, "Fury Swipes", "Your " + insertPokemon.pokemonName + " learnt Fury Swipes!\n");
+                        learnAndPrintMove(insertPokemon, "Fury Swipes");
                         break;
                     case 31:
-                        learnAndPrintMove(insertPokemon, "Bite", "Your " + insertPokemon.pokemonName + " learnt Bite!\n");
+                        learnAndPrintMove(insertPokemon, "Bite");
                         break;
                 }
                 break;
@@ -1275,156 +1281,159 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Scratch";
                         break;
                     case 8:
-                        learnAndPrintMove(insertPokemon, "Tackle", "Your " + insertPokemon.pokemonName + " learnt Tackle!\n");
+                        learnAndPrintMove(insertPokemon, "Tackle");
                         break;
                     case 14:
-                        learnAndPrintMove(insertPokemon, "Poison Sting", "Your " + insertPokemon.pokemonName + " learnt Poison Sting!\n");
+                        learnAndPrintMove(insertPokemon, "Poison Sting");
                         break;
                     case 17:
-                        learnAndPrintMove(insertPokemon, "Double Kick", "Your " + insertPokemon.pokemonName + " learnt Double Kick!\n");
+                        learnAndPrintMove(insertPokemon, "Double Kick");
                         break;
                     case 22:
-                        learnAndPrintMove(insertPokemon, "Fury Swipes", "Your " + insertPokemon.pokemonName + " learnt Fury Swipes!\n");
+                        learnAndPrintMove(insertPokemon, "Fury Swipes");
                         break;
                     case 26:
-                        learnAndPrintMove(insertPokemon, "Bite", "Your " + insertPokemon.pokemonName + " learnt Bite!\n");
+                        learnAndPrintMove(insertPokemon, "Bite");
                         break;
                 }
                 break;
+
             case "Nidorino":
                 switch (insertPokemon.lvl) {
                     case 1:
                         insertPokemon.move1 = "Peck";
                         break;
                     case 8:
-                        learnAndPrintMove(insertPokemon, "Tackle", "Your " + insertPokemon.pokemonName + " learnt Tackle!\n");
+                        learnAndPrintMove(insertPokemon, "Tackle");
                         break;
                     case 14:
-                        learnAndPrintMove(insertPokemon, "Poison Sting", "Your " + insertPokemon.pokemonName + " learnt Poison Sting!\n");
+                        learnAndPrintMove(insertPokemon, "Poison Sting");
                         break;
                     case 17:
-                        learnAndPrintMove(insertPokemon, "Double Kick", "Your " + insertPokemon.pokemonName + " learnt Double Kick!\n");
+                        learnAndPrintMove(insertPokemon, "Double Kick");
                         break;
                     case 22:
-                        learnAndPrintMove(insertPokemon, "Fury Swipes", "Your " + insertPokemon.pokemonName + " learnt Fury Swipes!\n");
+                        learnAndPrintMove(insertPokemon, "Fury Swipes");
                         break;
                     case 26:
-                        learnAndPrintMove(insertPokemon, "Horn Attack", "Your " + insertPokemon.pokemonName + " learnt Horn Attack!\n");
+                        learnAndPrintMove(insertPokemon, "Horn Attack");
                         break;
                 }
                 break;
+
             case "Nidoqueen":
                 switch (insertPokemon.lvl) {
                     case 1:
                         insertPokemon.move1 = "Scratch";
                         break;
                     case 14:
-                        learnAndPrintMove(insertPokemon, "Tackle", "Your " + insertPokemon.pokemonName + " learnt Tackle!\n");
+                        learnAndPrintMove(insertPokemon, "Tackle");
                         break;
                     case 21:
-                        learnAndPrintMove(insertPokemon, "Double Kick", "Your " + insertPokemon.pokemonName + " learnt Double Kick!\n");
+                        learnAndPrintMove(insertPokemon, "Double Kick");
                         break;
                     case 29:
-                        learnAndPrintMove(insertPokemon, "Poison Sting", "Your " + insertPokemon.pokemonName + " learnt Poison Sting!\n");
+                        learnAndPrintMove(insertPokemon, "Poison Sting");
                         break;
                     case 32:
-                        learnAndPrintMove(insertPokemon, "Earthquake", "Your " + insertPokemon.pokemonName + " learnt Earthquake!\n");
+                        learnAndPrintMove(insertPokemon, "Earthquake");
                         break;
                     case 38:
-                        learnAndPrintMove(insertPokemon, "Stone Edge", "Your " + insertPokemon.pokemonName + " learnt Stone Edge!\n");
+                        learnAndPrintMove(insertPokemon, "Stone Edge");
                         break;
                     case 43:
-                        learnAndPrintMove(insertPokemon, "Body Slam", "Your " + insertPokemon.pokemonName + " learnt Body Slam!\n");
+                        learnAndPrintMove(insertPokemon, "Body Slam");
                         break;
                     case 47:
-                        learnAndPrintMove(insertPokemon, "Blizzard", "Your " + insertPokemon.pokemonName + " learnt Blizzard!\n");
+                        learnAndPrintMove(insertPokemon, "Blizzard");
                         break;
                     case 52:
-                        learnAndPrintMove(insertPokemon, "Super Power", "Your " + insertPokemon.pokemonName + " learnt Super Power!\n");
+                        learnAndPrintMove(insertPokemon, "Super Power");
                         break;
                 }
                 break;
+
             case "Nidoking":
                 switch (insertPokemon.lvl) {
                     case 1:
                         insertPokemon.move1 = "Scratch";
                         break;
                     case 14:
-                        learnAndPrintMove(insertPokemon, "Tackle", "Your " + insertPokemon.pokemonName + " learnt Tackle!\n");
+                        learnAndPrintMove(insertPokemon, "Tackle");
                         break;
                     case 21:
-                        learnAndPrintMove(insertPokemon, "Double Kick", "Your " + insertPokemon.pokemonName + " learnt Double Kick!\n");
+                        learnAndPrintMove(insertPokemon, "Double Kick");
                         break;
                     case 29:
-                        learnAndPrintMove(insertPokemon, "Poison Sting", "Your " + insertPokemon.pokemonName + " learnt Poison Sting!\n");
+                        learnAndPrintMove(insertPokemon, "Poison Sting");
                         break;
                     case 35:
-                        learnAndPrintMove(insertPokemon, "Earth Power", "Your " + insertPokemon.pokemonName + " learnt Earth Power!\n");
+                        learnAndPrintMove(insertPokemon, "Earth Power");
                         break;
                     case 42:
-                        learnAndPrintMove(insertPokemon, "Body Slam", "Your " + insertPokemon.pokemonName + " learnt Body Slam!\n");
+                        learnAndPrintMove(insertPokemon, "Body Slam");
                         break;
                     case 47:
-                        learnAndPrintMove(insertPokemon, "Sludge Wave", "Your " + insertPokemon.pokemonName + " learnt Sludge Wave!\n");
+                        learnAndPrintMove(insertPokemon, "Sludge Wave");
                         break;
                     case 52:
-                        learnAndPrintMove(insertPokemon, "Megahorn", "Your " + insertPokemon.pokemonName + " learnt Megahorn!\n");
+                        learnAndPrintMove(insertPokemon, "Megahorn");
                         break;
                 }
                 break;
         }
     }
-    private void learnAndPrintMove (GeneratedPokemon insertPokemon, String newMove, String message){
+    private void learnAndPrintMove (GeneratedPokemon insertPokemon, String newMove) throws IOException {
         if (insertPokemon.move2.equals(" ")) {
             insertPokemon.move2 = newMove;
-            System.out.println(message);
+            System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour+ " learnt " + CM.cM(callMove(newMove).moveType) + newMove + CM.resetColour + "!");
         }
         else if (insertPokemon.move3.equals(" ")) {
             insertPokemon.move3 = newMove;
-            System.out.println(message);
+            System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour+ " learnt " + CM.cM(callMove(newMove).moveType) + newMove + CM.resetColour + "!");
         }
         else if (insertPokemon.move4.equals(" ")) {
             insertPokemon.move4 = newMove;
-            System.out.println(message);
+            System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour+ " learnt " + CM.cM(callMove(newMove).moveType) + newMove + CM.resetColour + "!");
         }
         else {
-            System.out.println("Your " + insertPokemon.pokemonName + " is trying to learn " + newMove + "!");
-            System.out.println("Will you replace it with a move your " + insertPokemon.pokemonName + " already knows?");
+            System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " is trying to learn " + CM.cM(callMove(newMove).moveType) + newMove + CM.resetColour + "!");
+            System.out.println("Will you replace it with a move your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " already knows?");
             System.out.println("Yes / No");
             while (true) {
                 String op1 = tastatur.next();
                 op1 = spellingControl(op1);
                 if (op1.equals("Yes")) {
                     System.out.println("Select a move to forget:");
-                    System.out.println("1. " + insertPokemon.move1);
-                    System.out.println("2. " + insertPokemon.move2);
-                    System.out.println("3. " + insertPokemon.move3);
-                    System.out.println("4. " + insertPokemon.move4);
+                    System.out.println("1. " + CM.cM(callMove(insertPokemon.move1).moveType) + insertPokemon.move1 + CM.resetColour);
+                    System.out.println("2. " + CM.cM(callMove(insertPokemon.move2).moveType) + insertPokemon.move2 + CM.resetColour);
+                    System.out.println("3. " + CM.cM(callMove(insertPokemon.move3).moveType) + insertPokemon.move3 + CM.resetColour);
+                    System.out.println("4. " + CM.cM(callMove(insertPokemon.move4).moveType) + insertPokemon.move4 + CM.resetColour);
                     String op2 = tastatur.next();
                     if (op2.equals("1")) {
-                        System.out.println("Your " + insertPokemon.pokemonName + " forgot " + insertPokemon.move1 + "...");
+                        System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " forgot "+ CM.cM(callMove(insertPokemon.move1).moveType) + insertPokemon.move1 + "...");
                         insertPokemon.move1 = newMove;
-                        System.out.println("Your " + insertPokemon.pokemonName + " learnt " + insertPokemon.move1 + "!");
+                        System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " learnt " + CM.cM(callMove(insertPokemon.move1).moveType) + insertPokemon.move1 + "!");
                         break;
                     } else if (op2.equals("2")) {
-                        System.out.println("Your " + insertPokemon.pokemonName + " forgot " + insertPokemon.move2 + "...");
+                        System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " forgot " + CM.cM(callMove(insertPokemon.move2).moveType) + insertPokemon.move2 + "...");
                         insertPokemon.move2 = newMove;
-                        System.out.println("Your " + insertPokemon.pokemonName + " learnt " + insertPokemon.move2 + "!");
+                        System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " learnt " + CM.cM(callMove(insertPokemon.move2).moveType) + insertPokemon.move2 + "!");
                         break;
                     } else if (op2.equals("3")) {
-                        System.out.println("Your " + insertPokemon.pokemonName + " forgot " + insertPokemon.move3 + "...");
+                        System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " forgot " + CM.cM(callMove(insertPokemon.move3).moveType) + insertPokemon.move3 + "...");
                         insertPokemon.move3 = newMove;
-                        System.out.println("Your " + insertPokemon.pokemonName + " learnt " + insertPokemon.move3 + "!");
+                        System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " learnt " + CM.cM(callMove(insertPokemon.move3).moveType) + insertPokemon.move3 + "!");
                         break;
                     } else if (op2.equals("4")) {
-                        System.out.println("Your " + insertPokemon.pokemonName + " forgot " + insertPokemon.move4 + "...");
+                        System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " forgot " + CM.cM(callMove(insertPokemon.move4).moveType) + insertPokemon.move4 + "...");
                         insertPokemon.move4 = newMove;
-                        System.out.println("Your " + insertPokemon.pokemonName + " learnt " + insertPokemon.move4 + "!");
+                        System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " learnt " + CM.cM(callMove(insertPokemon.move4).moveType) + insertPokemon.move4 + "!");
                         break;
                     }
 
                 } else if (op1.equals("No")) {
-                    System.out.println("Your " + insertPokemon.pokemonName + " did not learn " + newMove + ".");
+                    System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " did not learn " + CM.cM(callMove(newMove).moveType) + newMove + ".");
                 }
             }
         }
@@ -1432,6 +1441,12 @@ public class PokemonLearnSet {
     public String spellingControl(String str) {
         if (str == null || str.isEmpty()) return str;
         return str.substring(0,1).toUpperCase() + str.substring(1);
+    }
+    public PokemonMoveList callMove(String moveID) throws IOException {
+        PokemonMoveList findMove = new PokemonMoveList(moveID);
+        findMove.getMoveData(findMove.getMove(moveID));
+
+        return findMove;
     }
 }
 

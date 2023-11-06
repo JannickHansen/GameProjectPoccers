@@ -80,6 +80,7 @@ Crunch,80,0,Dark,
 Dark Pulse,80,0,Dark,
 
 Bulldoze,60,0,Ground,
+Mud Bomb,65,0,Ground,
 Magnitude,70,0,Ground,
 Earthquake,100,0,Ground,
 
