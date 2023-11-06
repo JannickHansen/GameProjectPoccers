@@ -456,6 +456,6 @@ public class RouteController {
     { return ThreadLocalRandom.current().nextInt(minValue,maxValue+1); }
     int randomNumberRangeForMoney(int minValue, int maxValue) {
         int awardedPokeDollars = ThreadLocalRandom.current().nextInt(minValue,maxValue+1);
-        System.out.println("You were awarded "+awardedPokeDollars+" p$!");
+        System.out.println("You were awarded "+CM.getItems+awardedPokeDollars+" p$"+CM.resetColour+"!");
         return awardedPokeDollars; }
 }

@@ -1,6 +1,6 @@
 public class CM {
     public static final String resetColour = "\u001B[0m";
-    public static final String getNormal = "\u001B[37m";          // Normal
+    public static final String getNormal = "\u001B[37m";         // Normal
     public static final String getFire = "\u001B[31m";           // Fire
     public static final String getWater = "\u001B[34m";          // Water
     public static final String getElectric = "\u001B[93m";       // Electric
@@ -112,4 +112,4 @@ public class CM {
 
         return colorCode;
     }
-    }
+}

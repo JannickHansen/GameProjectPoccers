@@ -7,7 +7,6 @@ public class PokemonGym {
     List<GeneratedPokemon> opponentPokemonParty;
     PlayerBag playerBag;
     Scanner tastatur = new Scanner(System.in);
-    String op1;
     boolean pokemonGym1 = false;
     boolean pokemonGym2 = false;
     boolean pokemonGym3 = false;
@@ -36,7 +35,7 @@ public class PokemonGym {
         System.out.println("The speciality of this Pokemon Gym is: Normal Types!");
         System.out.println("Are you ready to start the challenge? (Yes / No)");
         while (true) {
-            op1 = tastatur.nextLine();
+            String op1 = tastatur.next();
             op1 = spellingControl(op1);
             if (op1.equals("Yes") && !pokemonGym1) {
                 System.out.println("The first trainer of the challenge is <School Kid Martha>\n");
@@ -88,7 +87,7 @@ public class PokemonGym {
                 opponentPokemonParty.get(0).move1 = "Fire Punch";
                 opponentPokemonParty.get(0).move2 = "Ice Punch";
                 opponentPokemonParty.get(0).move3 = "Thunder Punch";
-                opponentPokemonParty.get(0).move3 = "Quick Attack";
+                opponentPokemonParty.get(0).move4 = "Quick Attack";
                 opponentPokemonParty.get(1).setImportPokemonData("Taurus",12);
                 opponentPokemonParty.get(1).remainingHp = opponentPokemonParty.get(1).hp;
                 opponentPokemonParty.get(1).move1 = "Horn Attack";
@@ -103,18 +102,19 @@ public class PokemonGym {
                 System.out.println("Your journey have officially started.. I can't wait to see what you'll accomplish!");
                 System.out.println("Press a to continue");
                 tastatur.next();
-                System.out.println("You were awarded 176 p$!");
+                System.out.println("You were awarded "+CM.getItems+"176 p$"+CM.resetColour+"!");
                 System.out.println("You were awarded "+CM.getItems+"a Super Potion"+CM.resetColour+".");
                 playerBag.pokeDollars = playerBag.pokeDollars + 128;
                 playerBag.superPotion = playerBag.superPotion + 1;
                 System.out.println("Press a to continue");
-                System.out.println("As you have now bested me, I shall grant you entrance to the pokeMall!");
-                System.out.println("The pokeMall contains different shops with different items for sale.");
+                System.out.println("As you have now bested me, I shall grant you entrance to the "+CM.getItems+"pokeMall"+CM.resetColour+"!");
+                System.out.println("The "+CM.getItems+"pokeMall"+CM.resetColour+" contains different shops with different items for sale.");
                 System.out.println("This includes "+CM.getItems+"medicines"+CM.resetColour+", "+CM.getItems+"pokeballs"+CM.resetColour+" and even "+CM.getItems+"moveTMs"+CM.resetColour+"!");
                 System.out.println("However, each Gym Badge you earn will slowly unlock the different items up for graps.");
                 System.out.println("Press a to continue");
                 System.out.println("You can find the pokeMall in the <Overworld Menu>");
                 System.out.println("Now go on!");
+                System.out.println("Press a to continue");
                 tastatur.next();
                 break;
             }

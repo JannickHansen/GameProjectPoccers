@@ -235,6 +235,7 @@ public class OverworldControl {
                         }
                         break;
                     }
+                    break;
                 case "5":
                     while (true) {
                         System.out.println("\n<PokeMall>\n");
@@ -313,6 +314,7 @@ public class OverworldControl {
 
         while (true) {
             System.out.println("\n<General Store>\n");
+            System.out.println("p$: "+CM.getItems+playerBag.pokeDollars+ CM.resetColour+ "\n");
             for (int i = 0; i < storeItem.size(); i++) {
                 System.out.println((i + 1) + ". " + storeItem.get(i) + "\t" + storeItemPrice.get(i) + "p$");
             }

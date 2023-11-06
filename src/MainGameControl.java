@@ -26,17 +26,13 @@ public class MainGameControl {
 
     void mainGameHub() throws IOException {
         initiateGame();
-        pickStarter.selectionStart(); // 75306128
+        pickStarter.selectionStart();
         startBattle.mainBattleController();
         pickStarter.postFirstBattle();
         overworldHub.overworldMenu();
 
         //MAIN PRIORITY LIST
         // ADD COLOUR TO ITEMS, MOVES, TYPES, POKEMON <-- TYPES, RED HP ETC
-        // Create method which can be called whenever an item, pokemon or type is printed within that method, so that it can identify and change colour accordingly by itself.
-
-
-        // POKEMALL
 
         // OTHER TO-DO LIST
         // Add legendary roaming pokemon - 1/1000 chance everywhere? release after certain gym? random route with 1/50 chance based on trainer comments post battle?
