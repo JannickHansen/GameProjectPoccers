@@ -6,6 +6,7 @@ public class ItemDesciptions {
     }
 
     public void findItemDescription(String chosenItem) {
+        System.out.println("\n"+CM.getItems+chosenItem+CM.resetColour);
         foundDescription = switch (chosenItem) {
             case "Pokeball" -> "A ball used to catch pokemon.. Kind of implied in the name";
             case "Greatball" -> "The Pokeballs great cousin.. 1.5x better at catching stuff!";
@@ -17,6 +18,6 @@ public class ItemDesciptions {
             default -> "Please make a valid choice.";
 
         };
-        System.out.println(foundDescription+"\n");
+        System.out.println(foundDescription);
     }
 }

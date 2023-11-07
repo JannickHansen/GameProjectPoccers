@@ -282,13 +282,13 @@ public class BattleController {
                         chooseMove();
                         break;
                     } else if (op4.equals("1") || op4.equals("2") || op4.equals("3") || op4.equals("4") || op4.equals("5") || op4.equals("6") || op4.equals("7") || op4.equals("8")) {
-                        itemName = playerBag.nameOfItemsInInventory.get(playerBag.itemSlotCounter.get(convertReadIntInput.getOrDefault(op4, 0)));
+                        itemName = PlayerBag.nameOfItemsInInventory.get(playerBag.itemSlotCounter.get(convertReadIntInput.getOrDefault(op4, 0)));
                         System.out.println("Use " + CM.getItems + itemName + CM.resetColour + "? Yes / No");
                         String op5 = tastatur.next();
                         op5 = spellingControl(op5);
                         if (op5.equals("No")) ;
                         else if (op5.equals("Yes") && ((itemName.equals("Pokeball") && !trainer) || (itemName.equals("Greatball") && !trainer) || (itemName.equals("Ultraball") && !trainer))) {
-                            playerBag.pokeballs = playerBag.pokeballs - 1;
+                            PlayerBag.numberOfItemsInInventory.set(0, PlayerBag.numberOfItemsInInventory.get(0) - 1); // later, see difference between balls
                             boolean op6 = usePokeballs(itemName);
                             if (playerPokemonParty.get(1).pokemonName.equals(" ") && op6) {
                                 transferData(playerPokemonParty, activeOpponentPokemon, 1);
@@ -341,7 +341,7 @@ public class BattleController {
                             System.out.println("You can not use this item in combat!");
                         }
                         else if (itemName.equals("Potion")) {
-                            playerBag.potion = playerBag.potion - 1;
+                            PlayerBag.numberOfItemsInInventory.set(3, PlayerBag.numberOfItemsInInventory.get(3) - 1);
                             System.out.println("You used a " + CM.getItems + itemName + CM.resetColour + " on your "+activePlayerPokemon.pokemonName+"!");
                             System.out.println("The " + CM.getItems + itemName + CM.resetColour + " healed your "+activePlayerPokemon.pokemonName+" for 20hp!");
                             activePlayerPokemon.remainingHp = activePlayerPokemon.remainingHp + 20;
@@ -351,7 +351,7 @@ public class BattleController {
                             playerUsedItem = true;
                             break;
                         } else if (itemName.equals("Super Potion")) {
-                            playerBag.superPotion = playerBag.superPotion - 1;
+                            PlayerBag.numberOfItemsInInventory.set(4, PlayerBag.numberOfItemsInInventory.get(4) - 1);
                             System.out.println("You used a " + CM.getItems + itemName + CM.resetColour + " on your "+activePlayerPokemon.pokemonName+"!");
                             System.out.println("The " + CM.getItems + itemName + CM.resetColour + " healed your "+activePlayerPokemon.pokemonName+" for 50hp!");
                             activePlayerPokemon.remainingHp = activePlayerPokemon.remainingHp + 50;
@@ -361,7 +361,7 @@ public class BattleController {
                             playerUsedItem = true;
                             break;
                         } else if (itemName.equals("Hyper Potion")) {
-                            playerBag.hyperPotion = playerBag.hyperPotion - 1;
+                            PlayerBag.numberOfItemsInInventory.set(5, PlayerBag.numberOfItemsInInventory.get(5) - 1);
                             System.out.println("You used a " + CM.getItems + itemName + CM.resetColour + " on your "+activePlayerPokemon.pokemonName+"!");
                             System.out.println("The " + CM.getItems + itemName + CM.resetColour + " healed your "+activePlayerPokemon.pokemonName+" for 200hp!");
                             activePlayerPokemon.remainingHp = activePlayerPokemon.remainingHp + 200;
@@ -372,9 +372,9 @@ public class BattleController {
                             break;
                         }
                     } else System.out.println("Make a valid choice.");
-                    }
                 }
         }
+    }
     void transferData(List<GeneratedPokemon> playerPokemonParty, GeneratedPokemon activeOpponentPokemon, int i) {
         playerPokemonParty.get(i).pokemonName = activeOpponentPokemon.pokemonName;
         playerPokemonParty.get(i).hasBeenGenerated = true;

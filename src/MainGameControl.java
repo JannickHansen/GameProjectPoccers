@@ -5,7 +5,7 @@ import java.util.List;
 public class MainGameControl {
     List<GeneratedPokemon> playerPokemonParty = new ArrayList<>();
     List<GeneratedPokemon> opponentPokemonParty = new ArrayList<>();
-    PlayerBag playerBag = new PlayerBag();
+    PlayerBag playerBag = new PlayerBag(playerPokemonParty);
     GeneratedPokemon uniqueOpponent1 = new GeneratedPokemon();
     GeneratedPokemon uniqueOpponent2 = new GeneratedPokemon();
     GeneratedPokemon uniqueOpponent3 = new GeneratedPokemon();
@@ -18,7 +18,7 @@ public class MainGameControl {
     GeneratedPokemon playerPokemon4 = new GeneratedPokemon();
     GeneratedPokemon playerPokemon5 = new GeneratedPokemon();
     GeneratedPokemon playerPokemon6 = new GeneratedPokemon();
-    PickStarter pickStarter = new PickStarter(playerPokemonParty, opponentPokemonParty, playerBag);
+    PickStarter pickStarter = new PickStarter(playerPokemonParty, opponentPokemonParty);
     BattleController startBattle = new BattleController(playerPokemonParty, opponentPokemonParty, playerBag);
     OverworldControl overworldHub = new OverworldControl(playerPokemonParty, opponentPokemonParty, playerBag);
     MainGameControl() {

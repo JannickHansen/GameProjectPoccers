@@ -484,18 +484,27 @@ public class RouteController {
             if (op1.equals("1")) {
                 op1 = "";
                 op2 = randomNumberGenerator();
-                if (op2 < 95) {
+                if (op2 <= 80) {
                     opponentPokemonParty.get(0).setImportPokemonData("Slowpoke", randomNumberRange(12, 15));
                     opponentPokemonParty.get(0).remainingHp = opponentPokemonParty.get(0).hp;
                     opponentPokemonParty.get(0).move1 = "Tackle";
                     opponentPokemonParty.get(0).move2 = "Water Gun";
-                    opponentPokemonParty.get(0).move2 = "Bubble";
-                } else if (op2 < 96) {
+                    opponentPokemonParty.get(0).move3 = "Bubble";
+                } else if (op2 <= 94) {
+                    opponentPokemonParty.get(0).setImportPokemonData("Slowpoke", randomNumberRange(14, 16));
+                    opponentPokemonParty.get(0).remainingHp = opponentPokemonParty.get(0).hp;
+                    opponentPokemonParty.get(0).move1 = "Tackle";
+                    opponentPokemonParty.get(0).move2 = "Water Gun";
+                    opponentPokemonParty.get(0).move3 = "Confusion";
+                } else if (op2 <= 96) {
                     System.out.println("You found a "+CM.getItems+"Potion"+CM.resetColour+"!");
-                } else if (op2 < 99) {
+                    PlayerBag.numberOfItemsInInventory.set(3, PlayerBag.numberOfItemsInInventory.get(3) + 1);
+                } else if (op2 <= 99) {
                     System.out.println("You found a "+CM.getItems+"Pokeball"+CM.resetColour+"!");
+                    PlayerBag.numberOfItemsInInventory.set(0, PlayerBag.numberOfItemsInInventory.get(0) + 1);
                 } else if (op2 == 100) {
                     System.out.println("You found a piece of "+CM.getItems+"Rare Candy"+CM.resetColour+"!");
+                    PlayerBag.numberOfItemsInInventory.set(6, PlayerBag.numberOfItemsInInventory.get(6) + 1);
                 }
             }
         }

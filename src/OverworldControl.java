@@ -333,14 +333,33 @@ public class OverworldControl {
 
                 if (playerBag.pokeDollars >= itemPrice) {
                     playerBag.pokeDollars = playerBag.pokeDollars - itemPrice;
+                    int tempHold = 1;
 
                     switch (itemName) {
-                        case "Pokeball" -> playerBag.pokeballs++;
-                        case "Greatball" -> playerBag.greatballs++;
-                        case "Ultraball" -> playerBag.ultraballs++;
-                        case "Potion" -> playerBag.potion++;
-                        case "Super Potion" -> playerBag.superPotion++;
-                        case "Hyper Potion" -> playerBag.hyperPotion++;
+                        case "Pokeball":
+                            tempHold = tempHold + PlayerBag.numberOfItemsInInventory.get(0);
+                            PlayerBag.numberOfItemsInInventory.set(0,tempHold);
+                            break;
+                        case "Greatball":
+                            tempHold = tempHold + PlayerBag.numberOfItemsInInventory.get(1);
+                            PlayerBag.numberOfItemsInInventory.set(1,tempHold);
+                            break;
+                        case "Ultraball":
+                            tempHold = tempHold + PlayerBag.numberOfItemsInInventory.get(2);
+                            PlayerBag.numberOfItemsInInventory.set(2,tempHold);
+                            break;
+                        case "Potion":
+                            tempHold = tempHold + PlayerBag.numberOfItemsInInventory.get(3);
+                            PlayerBag.numberOfItemsInInventory.set(3,tempHold);
+                            break;
+                        case "Super Potion":
+                            tempHold = tempHold + PlayerBag.numberOfItemsInInventory.get(4);
+                            PlayerBag.numberOfItemsInInventory.set(4,tempHold);
+                            break;
+                        case "Hyper Potion":
+                            tempHold = tempHold + PlayerBag.numberOfItemsInInventory.get(5);
+                            PlayerBag.numberOfItemsInInventory.set(5,tempHold);
+                            break;
                     }
 
                     System.out.println("You purchased a " + itemName + " for " + itemPrice + "p$!");

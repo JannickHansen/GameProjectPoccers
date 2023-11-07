@@ -1,22 +1,16 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class PlayerBag {
-    public List<String> nameOfItemsInInventory = new ArrayList<>();
-    public List<Integer> numberOfItemsInInventory = new ArrayList<>();
+    public static List<String> nameOfItemsInInventory = new ArrayList<>();
+    public static List<Integer> numberOfItemsInInventory = new ArrayList<>();
     List<GeneratedPokemon> playerPokemonParty;
+    public static List<Integer> itemSlotCounter = new ArrayList<>();
     Scanner tastatur = new Scanner(System.in);
-    List<Integer> itemSlotCounter;
     int pokeDollars = 0;
-    int pokeballs = 0;
-    int greatballs = 0;
-    int ultraballs = 0;
-    int potion = 0;
-    int superPotion = 0;
-    int hyperPotion = 0;
-    int rareCandy = 0;
     PlayerBag(List<GeneratedPokemon> playerPokemonParty) {
 
         nameOfItemsInInventory.add("Pokeball");
@@ -38,79 +32,85 @@ public class PlayerBag {
         this.playerPokemonParty = playerPokemonParty;
     }
     void printPlayerBag () {
-        itemSlotCounter = new ArrayList<>();
         int i = 1;
         System.out.println("\nPlayer Bag\n");
         System.out.println("PokeDollars: "+CM.getItems+pokeDollars+"p$"+CM.resetColour+"\n");
-        if (pokeballs > 0) {
-            System.out.println(i + ". "+ CM.getItems+"Pokeball"+ CM.resetColour+" x"+pokeballs);
-            itemSlotCounter.add(i);
-            nameOfItemsInInventory.set(i,"Pokeball");
-            numberOfItemsInInventory.set(i,pokeballs);
+        if (numberOfItemsInInventory.get(0) > 0) {
+            System.out.println(i + ". "+ CM.getItems+"Pokeball"+ CM.resetColour+" x"+ numberOfItemsInInventory.get(0));
+            nameOfItemsInInventory.set(0,"Pokeball");
+            itemSlotCounter.add(0);
             i++;
         }
-        if (greatballs > 0) {
-            System.out.println(i + ". "+ CM.getItems+"Greatball"+ CM.resetColour+" x"+greatballs);
-            itemSlotCounter.add(i);
-            nameOfItemsInInventory.set(i,"Greatball");
-            numberOfItemsInInventory.set(i,greatballs);
+        if (numberOfItemsInInventory.get(1) > 0) {
+            System.out.println(i + ". "+ CM.getItems+"Greatball"+ CM.resetColour+" x"+numberOfItemsInInventory.get(1));
+            nameOfItemsInInventory.set(1,"Greatball");
+            itemSlotCounter.add(1);
             i++;
         }
-        if (ultraballs > 0) {
-            System.out.println(i + ". "+ CM.getItems+"Ultraball"+ CM.resetColour+" x"+ultraballs);
-            itemSlotCounter.add(i);
-            nameOfItemsInInventory.set(i,"Ultraball");
-            numberOfItemsInInventory.set(i,ultraballs);
+        if (numberOfItemsInInventory.get(2) > 0) {
+            System.out.println(i + ". "+ CM.getItems+"Ultraball"+ CM.resetColour+" x"+numberOfItemsInInventory.get(2));
+            nameOfItemsInInventory.set(2,"Ultraball");
+            itemSlotCounter.add(2);
             i++;
         }
-        if (potion > 0) {
-            System.out.println(i + ". "+ CM.getItems+"Potion"+ CM.resetColour+" x"+potion);
-            itemSlotCounter.add(i);
-            nameOfItemsInInventory.set(i,"Potion");
-            numberOfItemsInInventory.set(i,potion);
+        if (numberOfItemsInInventory.get(3) > 0) {
+            System.out.println(i + ". "+ CM.getItems+"Potion"+ CM.resetColour+" x"+numberOfItemsInInventory.get(3));
+            nameOfItemsInInventory.set(3,"Potion");
+            itemSlotCounter.add(3);
             i++;
         }
-        if (superPotion > 0) {
-            System.out.println(i + ". "+ CM.getItems+"Super Potion"+ CM.resetColour+" x"+superPotion);
-            itemSlotCounter.add(i);
-            nameOfItemsInInventory.set(i,"Super Potion");
-            numberOfItemsInInventory.set(i,superPotion);
+        if (numberOfItemsInInventory.get(4) > 0) {
+            System.out.println(i + ". "+ CM.getItems+"Super Potion"+ CM.resetColour+" x"+numberOfItemsInInventory.get(4));
+            nameOfItemsInInventory.set(4,"Super Potion");
+            itemSlotCounter.add(4);
             i++;
 
         }
-        if (hyperPotion > 0) {
-            System.out.println(i + ". "+ CM.getItems+"Hyper Potion"+ CM.resetColour+" x"+hyperPotion);
-            itemSlotCounter.add(i);
-            nameOfItemsInInventory.set(i,"Hyper Potion");
-            numberOfItemsInInventory.set(i,hyperPotion);
+        if (numberOfItemsInInventory.get(5) > 0) {
+            System.out.println(i + ". "+ CM.getItems+"Hyper Potion"+ CM.resetColour+" x"+numberOfItemsInInventory.get(5));
+            nameOfItemsInInventory.set(5,"Hyper Potion");
+            itemSlotCounter.add(5);
             i++;
         }
-        if (rareCandy > 0) {
-            System.out.println(i + ". "+ CM.getItems+"Rare Candy"+ CM.resetColour+" x"+rareCandy);
-            itemSlotCounter.add(i);
-            nameOfItemsInInventory.set(i,"Rare Candy");
-            numberOfItemsInInventory.set(i,rareCandy);
+        if (numberOfItemsInInventory.get(6) > 0) {
+            System.out.println(i + ". "+ CM.getItems+"Rare Candy"+ CM.resetColour+" x"+numberOfItemsInInventory.get(6));
+            nameOfItemsInInventory.set(6,"Rare Candy");
+            itemSlotCounter.add(6);
             i++;
         }
     }
     void printItemEffect(List<String> nameOfItemsInInventory) throws IOException {
         ItemDesciptions getItem = new ItemDesciptions();
-        
+
         while (true) {
             System.out.println("\n9. to exit bag");
-            System.out.println("Select item: ");
-            int op1 = tastatur.nextInt();
-            if (op1 == 9) break;
-            if (!nameOfItemsInInventory.get(op1).isEmpty() && numberOfItemsInInventory.get(op1) > 0) {
-                System.out.println(CM.getItems + nameOfItemsInInventory.get(op1) + CM.resetColour);
-                getItem.findItemDescription(nameOfItemsInInventory.get(op1));
-                if (nameOfItemsInInventory.get(op1).equals("Rare Candy") && rareCandy > 0) {
-                    useRareCandy();
-                    numberOfItemsInInventory.set(op1, numberOfItemsInInventory.get(op1) - 1);
-                    rareCandy--;
+            System.out.print("Select Item: ");
+
+            try {
+                int itemIndex = tastatur.nextInt();
+
+                if (itemIndex == 9) {
+                    break;
                 }
+                itemIndex = itemSlotCounter.get(itemIndex - 1);
+
+                if (itemIndex >= 0 && itemIndex < numberOfItemsInInventory.size() && numberOfItemsInInventory.get(itemIndex) > 0) {
+                    String itemName = nameOfItemsInInventory.get(itemIndex);
+                    getItem.findItemDescription(itemName);
+                    if (itemName.equals("Rare Candy") && numberOfItemsInInventory.get(6) > 0) {
+                        useRareCandy();
+                    }
+                } else {
+                    System.out.println("\nPlease make a valid choice.\n");
+                }
+
+                printPlayerBag();
+            } catch (InputMismatchException e) {
+                System.out.println("\nPlease make a valid choice.\n");
+                tastatur.next();
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("\nPlease make a valid choice.\n");
             }
-            printPlayerBag();
         }
     }
         void levelUp (GeneratedPokemon insertPokemon) throws IOException {
@@ -140,6 +140,7 @@ public class PlayerBag {
                 }
                 op3 = tastatur.nextInt() -1;
                 playerPokemonParty.get(op3).exp = playerPokemonParty.get(op3).expToNextLvl;
+                numberOfItemsInInventory.set(6, numberOfItemsInInventory.get(6) - 1);
                 levelUp(playerPokemonParty.get(op3));
                 break;
             }

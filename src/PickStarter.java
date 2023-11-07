@@ -8,15 +8,13 @@ public class PickStarter {
     List<GeneratedPokemon> opponentPokemonParty;
     GeneratedPokemon playerPokemon = new GeneratedPokemon();
     GeneratedPokemon opponentPokemon = new GeneratedPokemon();
-    PlayerBag playerBag;
     Scanner tastatur = new Scanner(System.in);
     String starterPick;
     String op2;
     boolean op3 = false;
-    PickStarter(List<GeneratedPokemon> playerPokemonParty, List<GeneratedPokemon> opponentPokemonParty, PlayerBag playerBag){
+    PickStarter(List<GeneratedPokemon> playerPokemonParty, List<GeneratedPokemon> opponentPokemonParty){
         this.playerPokemonParty = playerPokemonParty;
         this.opponentPokemonParty = opponentPokemonParty;
-        this.playerBag = playerBag;
     }
     public String spellingControl(String str) {
         if (str == null || str.isEmpty()) return str;
@@ -116,8 +114,8 @@ public class PickStarter {
         System.out.println("Items can be anything from pokeballs to potions, handy things to have in battle.");
         System.out.println("You'll get "+ CM.getItems+"5 pokeballs"+ CM.resetColour+" right now! Do use them wisely.");
         System.out.println("Oh well, I'll also throw in "+ CM.getItems+"a Potion"+ CM.resetColour+" just for you!");
-        playerBag.pokeballs = 5;
-        playerBag.potion = 1;
+        PlayerBag.numberOfItemsInInventory.set(0, PlayerBag.numberOfItemsInInventory.get(0) + 5);
+        PlayerBag.numberOfItemsInInventory.set(3, PlayerBag.numberOfItemsInInventory.get(3) + 1);
         System.out.println("Press a to continue");
         tastatur.next();
         System.out.println("Now its time for you to proceed to route 1!");

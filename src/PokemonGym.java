@@ -106,7 +106,7 @@ public class PokemonGym {
                 System.out.println("You were awarded 176 p$!");
                 System.out.println("You were awarded "+CM.getItems+"a Super Potion"+CM.resetColour+".");
                 playerBag.pokeDollars = playerBag.pokeDollars + 128;
-                playerBag.superPotion = playerBag.superPotion + 1;
+                PlayerBag.numberOfItemsInInventory.set(4, PlayerBag.numberOfItemsInInventory.get(4) + 1);
                 System.out.println("Press a to continue");
                 System.out.println("As you have now bested me, I shall grant you entrance to the pokeMall!");
                 System.out.println("The pokeMall contains different shops with different items for sale.");
