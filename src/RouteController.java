@@ -460,8 +460,6 @@ public class RouteController {
     }
     void well(List<GeneratedPokemon> playerPokemonParty, List<GeneratedPokemon> opponentPokemonParty, PlayerBag playerBag) throws IOException {
         BattleController startBattle = new BattleController(playerPokemonParty, opponentPokemonParty, playerBag);
-        int minValue = 1;
-        int maxValue = 7;
         op1 = "";
         op2 = 0;
         op3 = 0;
@@ -476,27 +474,29 @@ public class RouteController {
             opponentPokemonParty.get(5).remainingHp = 0;
 
             if (op1.equals("9")) break;
-            System.out.println("\n<Route 3>\n");
+            System.out.println("\n<Dark Well>\n");
             System.out.println("Select what you will do:");
             System.out.println("1. Look around in the dark to see what you can find.");
-            System.out.println("9. Return to the <Route Menu>");
+            System.out.println("9. Crawl out of the well, and return to the <Route Menu>");
             op1 = tastatur.next();
             if (op1.equals("1")) {
                 op1 = "";
                 op2 = randomNumberGenerator();
-                if (op2 <= 80) {
+                if (op2 <= 70) {
                     opponentPokemonParty.get(0).setImportPokemonData("Slowpoke", randomNumberRange(12, 15));
                     opponentPokemonParty.get(0).remainingHp = opponentPokemonParty.get(0).hp;
                     opponentPokemonParty.get(0).move1 = "Tackle";
                     opponentPokemonParty.get(0).move2 = "Water Gun";
                     opponentPokemonParty.get(0).move3 = "Bubble";
-                } else if (op2 <= 94) {
+                    startBattle.mainBattleController();
+                } else if (op2 <= 87) {
                     opponentPokemonParty.get(0).setImportPokemonData("Slowpoke", randomNumberRange(14, 16));
                     opponentPokemonParty.get(0).remainingHp = opponentPokemonParty.get(0).hp;
                     opponentPokemonParty.get(0).move1 = "Tackle";
                     opponentPokemonParty.get(0).move2 = "Water Gun";
                     opponentPokemonParty.get(0).move3 = "Confusion";
-                } else if (op2 <= 96) {
+                    startBattle.mainBattleController();
+                } else if (op2 <= 94) {
                     System.out.println("You found a "+CM.getItems+"Potion"+CM.resetColour+"!");
                     PlayerBag.numberOfItemsInInventory.set(3, PlayerBag.numberOfItemsInInventory.get(3) + 1);
                 } else if (op2 <= 99) {
