@@ -46,8 +46,8 @@ public class PickStarter {
             starterPick = spellingControl(tastatur.next());
             pickStarter(starterPick);
         }
-        if (starterPick.equals("Charmander") || starterPick.equals("Squirtle") || starterPick.equals("Bulbasaur") || starterPick.equals("!753061280710")) {
-            if (starterPick.equals("!753061280710")) starterPick = "Spheal";
+        if (starterPick.equals("Charmander") || starterPick.equals("Squirtle") || starterPick.equals("Bulbasaur") || starterPick.equals("Spheal")) {
+            if (starterPick.equals("Spheal")) starterPick = "Spheal";
             pickStarter(starterPick);
             setImportData(playerPokemon, starterPick); //Sets unique stats for "uniqueStarter"
             printSummery(playerPokemon);  //Summery to show player what pokemon they've got
@@ -68,7 +68,7 @@ public class PickStarter {
     }
 
     void pickStarter(String op1) {
-        if (starterPick.equals("Charmander") || starterPick.equals("Squirtle") || starterPick.equals("Bulbasaur") || starterPick.equals("!753061280710")) {
+        if (starterPick.equals("Charmander") || starterPick.equals("Squirtle") || starterPick.equals("Bulbasaur") || starterPick.equals("Spheal")) {
         while (true) {
             if (op3) break;
             System.out.println(op1 + ", Great choice!");

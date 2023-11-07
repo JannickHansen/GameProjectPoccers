@@ -89,7 +89,7 @@ public class PokemonGym {
                 opponentPokemonParty.get(0).move2 = "Ice Punch";
                 opponentPokemonParty.get(0).move3 = "Thunder Punch";
                 opponentPokemonParty.get(0).move3 = "Quick Attack";
-                opponentPokemonParty.get(1).setImportPokemonData("Taurus",12);
+                opponentPokemonParty.get(1).setImportPokemonData("Tauros",12);
                 opponentPokemonParty.get(1).remainingHp = opponentPokemonParty.get(1).hp;
                 opponentPokemonParty.get(1).move1 = "Horn Attack";
                 opponentPokemonParty.get(1).move2 = "Iron Head";
@@ -112,9 +112,9 @@ public class PokemonGym {
                 System.out.println("The pokeMall contains different shops with different items for sale.");
                 System.out.println("This includes "+CM.getItems+"medicines"+CM.resetColour+", "+CM.getItems+"pokeballs"+CM.resetColour+" and even "+CM.getItems+"moveTMs"+CM.resetColour+"!");
                 System.out.println("However, each Gym Badge you earn will slowly unlock the different items up for graps.");
-                System.out.println("Press a to continue");
                 System.out.println("You can find the pokeMall in the <Overworld Menu>");
                 System.out.println("Now go on!");
+                System.out.println("Press a to continue");
                 tastatur.next();
                 break;
             }

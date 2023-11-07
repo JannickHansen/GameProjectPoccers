@@ -233,7 +233,7 @@ public class RouteController {
                             op4 = false;
                             startBattle.trainer = true;
                             System.out.println("You found <Nature Enthusiast Carl> on the route, and challenged him to a duel!\n");
-                            opponentPokemonParty.get(0).setImportPokemonData("Bibarel",11);
+                            opponentPokemonParty.get(0).setImportPokemonData("Bibarel",10);
                             opponentPokemonParty.get(0).move1 = "Headbutt";
                             opponentPokemonParty.get(0).move2 = "Water Gun";
                             opponentPokemonParty.get(0).move3 = "Bite";
@@ -362,30 +362,42 @@ public class RouteController {
                 case "1":
                     op1 = "";
                     op2 = randomNumberGenerator();
-                    if (op2 < 11) {
-                        opponentPokemonParty.get(0).setImportPokemonData("Bidoof",randomNumberRange(3,5));
+                    if (op2 < 10) {
+                        opponentPokemonParty.get(0).setImportPokemonData("Flaffy", randomNumberRange(13, 15));
                         opponentPokemonParty.get(0).remainingHp = opponentPokemonParty.get(0).hp;
-                        opponentPokemonParty.get(0).move1 = "Tackle";
-                        opponentPokemonParty.get(0).move2 = "Water Gun";
-                    } else if (op2 < 41) {
-                        opponentPokemonParty.get(0).setImportPokemonData("Rattata",randomNumberRange(2,4));
+                        opponentPokemonParty.get(0).move1 = "Thunder Shock";
+                        opponentPokemonParty.get(0).move2 = "Take Down";
+                        opponentPokemonParty.get(0).move3 = "Charge Beam";
+                    } else if (op2 < 37) {
+                        opponentPokemonParty.get(0).setImportPokemonData("Mareep", randomNumberRange(12, 14));
                         opponentPokemonParty.get(0).remainingHp = opponentPokemonParty.get(0).hp;
-                        opponentPokemonParty.get(0).move1 = "Quick Attack";
+                        opponentPokemonParty.get(0).move1 = "Thunder Shock";
                         opponentPokemonParty.get(0).move2 = "Tackle";
-                    } else if (op2 < 71) {
-                        opponentPokemonParty.get(0).setImportPokemonData("Pidgey",randomNumberRange(2,4));
+                    } else if (op2 < 61) {
+                        opponentPokemonParty.get(0).setImportPokemonData("Ponyta", randomNumberRange(12, 14));
                         opponentPokemonParty.get(0).remainingHp = opponentPokemonParty.get(0).hp;
                         opponentPokemonParty.get(0).move1 = "Tackle";
-                        opponentPokemonParty.get(0).move2 = "Gust";
+                        opponentPokemonParty.get(0).move2 = "Fire Spin";
+                        opponentPokemonParty.get(0).move3 = "Ember";
+                        opponentPokemonParty.get(0).move4 = "Stomp";
+                    } else if (op2 < 81) {
+                        opponentPokemonParty.get(0).setImportPokemonData("Girafarig", randomNumberRange(12, 14));
+                        opponentPokemonParty.get(0).remainingHp = opponentPokemonParty.get(0).hp;
+                        opponentPokemonParty.get(0).move1 = "Astonish";
+                        opponentPokemonParty.get(0).move2 = "Confusion";
+                        opponentPokemonParty.get(0).move3 = "Stomp";
                     } else if (op2 <= 100) {
-                        opponentPokemonParty.get(0).setImportPokemonData("Ekans",randomNumberRange(2,4));
+                        opponentPokemonParty.get(0).setImportPokemonData("Miltank", randomNumberRange(12, 14));
                         opponentPokemonParty.get(0).remainingHp = opponentPokemonParty.get(0).hp;
-                        opponentPokemonParty.get(0).move1 = "Wrap";
-                        opponentPokemonParty.get(0).move2 = "Tackle";
+                        opponentPokemonParty.get(0).move1 = "Tackle";
+                        opponentPokemonParty.get(0).move2 = "Stomp";
+                        opponentPokemonParty.get(0).move3 = "Rollout";
+                        opponentPokemonParty.get(0).move4 = "Milk Drink";
                     }
                     System.out.println("A wild "+opponentPokemonParty.get(0).pokemonName+" has appeared!\n");
                     startBattle.mainBattleController();
                     break;
+
                 case "2":
                     op1 = "";
                     op3 = randomNumberRange(minValue,maxValue);
@@ -394,60 +406,60 @@ public class RouteController {
                             op3 = 0;
                             op4 = false;
                             startBattle.trainer = true;
-                            System.out.println("You found <Youngster Joey> on the route, and challenged him to a duel!\n");
-                            opponentPokemonParty.get(0).setImportPokemonData("Rattata",5);
-                            opponentPokemonParty.get(0).move1 = "Tackle";
-                            opponentPokemonParty.get(0).move2 = "Quick Attack";
-                            opponentPokemonParty.get(1).setImportPokemonData("Rattata",5);
+                            System.out.println("You found <Horse Girl Tiffany> on the route, and challenged him to a duel!\n");
+                            opponentPokemonParty.get(0).setImportPokemonData("Ponyta",15);
+                            opponentPokemonParty.get(0).move1 = "Stomp";
+                            opponentPokemonParty.get(0).move2 = "Flame Charge";
+                            opponentPokemonParty.get(1).setImportPokemonData("Ponyta",15);
                             opponentPokemonParty.get(1).remainingHp = opponentPokemonParty.get(1).hp;
-                            opponentPokemonParty.get(1).move1 = "Quick Attack";
-                            opponentPokemonParty.get(1).move2 = "Tackle";
+                            opponentPokemonParty.get(0).move1 = "Stomp";
+                            opponentPokemonParty.get(0).move2 = "Flame Charge";
+                            opponentPokemonParty.get(0).move3 = "Quick Attack";
                             op4 = startBattle.mainBattleController();
                             if (op4) {
                                 n++;
                                 System.out.println();
-                                playerBag.pokeDollars = playerBag.pokeDollars + randomNumberRangeForMoney(26,38);
+                                playerBag.pokeDollars = playerBag.pokeDollars + randomNumberRangeForMoney(30,41);
                             }
                             break;
                         case 2:
                             op3 = 0;
                             op4 = false;
                             startBattle.trainer = true;
-                            System.out.println("You found <Birdkeeper !@#$%^&*()> on the route, and challenged her to a duel!\n");
-                            opponentPokemonParty.get(0).setImportPokemonData("Pidgey",5);
-                            opponentPokemonParty.get(0).move1 = "Quick Attack";
-                            opponentPokemonParty.get(0).move2 = "Gust";
-                            opponentPokemonParty.get(1).setImportPokemonData("Pidove",6);
+                            System.out.println("You found <Fluff-fan Tommy> on the route, and challenged her to a duel!\n");
+                            opponentPokemonParty.get(0).setImportPokemonData("Mareep",14);
+                            opponentPokemonParty.get(0).move1 = "Thunder Shock";
+                            opponentPokemonParty.get(0).move2 = "Tackle";
+                            opponentPokemonParty.get(1).setImportPokemonData("Flaffy",15);
                             opponentPokemonParty.get(1).remainingHp = opponentPokemonParty.get(1).hp;
-                            opponentPokemonParty.get(1).move1 = "Quick Attack";
-                            opponentPokemonParty.get(1).move2 = "Peck";
+                            opponentPokemonParty.get(0).move1 = "Thunder Shock";
+                            opponentPokemonParty.get(0).move2 = "Take Down";
+                            opponentPokemonParty.get(0).move3 = "Charge Beam";
                             op4 = startBattle.mainBattleController();
                             if (op4) {
                                 n++;
-                                playerBag.pokeDollars = playerBag.pokeDollars + randomNumberRangeForMoney(26,38);
+                                playerBag.pokeDollars = playerBag.pokeDollars + randomNumberRangeForMoney(30,41);
                             }
                             break;
                         case 3:
                             op3 = 0;
                             op4 = false;
                             startBattle.trainer = true;
-                            System.out.println("You found <Bugcatcher Cathrine> on the route, and challenged her to a duel!\n");
-                            opponentPokemonParty.get(0).setImportPokemonData("Caterpie",5);
+                            System.out.println("You found <Old Farmer Greg> on the route, and challenged her to a duel!\n");
+                            opponentPokemonParty.get(0).setImportPokemonData("Miltank",15);
                             opponentPokemonParty.get(0).move1 = "Tackle";
-                            opponentPokemonParty.get(0).move2 = "Bug Bite";
-                            opponentPokemonParty.get(1).setImportPokemonData("Weedle",5);
+                            opponentPokemonParty.get(0).move2 = "Stomp";
+                            opponentPokemonParty.get(0).move3 = "Rollout";
+                            opponentPokemonParty.get(0).move4 = "Milk Drink";
+                            opponentPokemonParty.get(1).setImportPokemonData("Tauros",14);
                             opponentPokemonParty.get(1).remainingHp = opponentPokemonParty.get(1).hp;
-                            opponentPokemonParty.get(1).move1 = "Poison Sting";
-                            opponentPokemonParty.get(1).move2 = "Bug Bite";
-                            opponentPokemonParty.get(2).setImportPokemonData("Surskit",5);
-                            opponentPokemonParty.get(2).remainingHp = opponentPokemonParty.get(2).hp;
-                            opponentPokemonParty.get(2).move1 = "Bubble";
-                            opponentPokemonParty.get(2).move2 = "Bug Bite";
-                            opponentPokemonParty.get(2).move3 = "Quick Attack";
+                            opponentPokemonParty.get(1).move1 = "Take Down";
+                            opponentPokemonParty.get(1).move2 = "Stomp";
+                            opponentPokemonParty.get(1).move3 = "Bulldoze";
                             op4 = startBattle.mainBattleController();
                             if (op4) {
                                 n++;
-                                playerBag.pokeDollars = playerBag.pokeDollars + randomNumberRangeForMoney(26,38);
+                                playerBag.pokeDollars = playerBag.pokeDollars + randomNumberRangeForMoney(30,41);
                             }
                             break;
                     }
@@ -460,8 +472,6 @@ public class RouteController {
     }
     void well(List<GeneratedPokemon> playerPokemonParty, List<GeneratedPokemon> opponentPokemonParty, PlayerBag playerBag) throws IOException {
         BattleController startBattle = new BattleController(playerPokemonParty, opponentPokemonParty, playerBag);
-        int minValue = 1;
-        int maxValue = 7;
         op1 = "";
         op2 = 0;
         op3 = 0;
@@ -476,27 +486,29 @@ public class RouteController {
             opponentPokemonParty.get(5).remainingHp = 0;
 
             if (op1.equals("9")) break;
-            System.out.println("\n<Route 3>\n");
+            System.out.println("\n<Dark Well>\n");
             System.out.println("Select what you will do:");
             System.out.println("1. Look around in the dark to see what you can find.");
-            System.out.println("9. Return to the <Route Menu>");
+            System.out.println("9. Crawl out of the well, and return to the <Route Menu>");
             op1 = tastatur.next();
             if (op1.equals("1")) {
                 op1 = "";
                 op2 = randomNumberGenerator();
-                if (op2 <= 80) {
+                if (op2 <= 70) {
                     opponentPokemonParty.get(0).setImportPokemonData("Slowpoke", randomNumberRange(12, 15));
                     opponentPokemonParty.get(0).remainingHp = opponentPokemonParty.get(0).hp;
                     opponentPokemonParty.get(0).move1 = "Tackle";
                     opponentPokemonParty.get(0).move2 = "Water Gun";
                     opponentPokemonParty.get(0).move3 = "Bubble";
-                } else if (op2 <= 94) {
+                    startBattle.mainBattleController();
+                } else if (op2 <= 87) {
                     opponentPokemonParty.get(0).setImportPokemonData("Slowpoke", randomNumberRange(14, 16));
                     opponentPokemonParty.get(0).remainingHp = opponentPokemonParty.get(0).hp;
                     opponentPokemonParty.get(0).move1 = "Tackle";
                     opponentPokemonParty.get(0).move2 = "Water Gun";
                     opponentPokemonParty.get(0).move3 = "Confusion";
-                } else if (op2 <= 96) {
+                    startBattle.mainBattleController();
+                } else if (op2 <= 94) {
                     System.out.println("You found a "+CM.getItems+"Potion"+CM.resetColour+"!");
                     PlayerBag.numberOfItemsInInventory.set(3, PlayerBag.numberOfItemsInInventory.get(3) + 1);
                 } else if (op2 <= 99) {

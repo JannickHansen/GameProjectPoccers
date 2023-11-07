@@ -33,7 +33,12 @@ public class MainGameControl {
 
         //MAIN PRIORITY LIST
         // ADD COLOUR TO ITEMS, MOVES, TYPES, POKEMON <-- TYPES, RED HP ETC
-        // Create method which can be called whenever an item, pokemon or type is printed within that method, so that it can identify and change colour accordingly by itself.
+        // PROGRAM ELECTROBALL, Gyro ball
+        // PIN MISSILE, FURY SWIPES MULTIPLE HITS EACH ROUND, DOUBLE HIT
+        // Rollout one hit increasing each round
+        // SUPER FANG TAKES HALF THE OPPONENTS REMAINING HP <-- CODE THIS
+        // BRINE DOUBLE DMG IF TARGET.REMAININGHP < 50
+        // BOUNCE, DIG, FLY,
 
 
         // POKEMALL
@@ -43,9 +48,6 @@ public class MainGameControl {
         // add a cave, poketower or something cool like that, forest? <-- make routes have themes regarding their pokemon
         // Add evolutions (mandatory evolution for now at a set level)
         // Make better OpponentAI and give it randomness // 50/50 to use best move etc
-        // PIN MISSILE, FURY SWIPES MULTIPLE HITS EACH ROUND
-        // SUPER FANG TAKES HALF THE OPPONENTS REMAINING HP <-- CODE THIS
-        // BRINE DOUBLE DMG IF TARGET.REMAININGHP < 50%
     }
     void initiateGame() {
 

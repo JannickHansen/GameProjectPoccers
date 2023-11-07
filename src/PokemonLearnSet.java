@@ -1381,6 +1381,207 @@ public class PokemonLearnSet {
                         break;
                 }
                 break;
+            case "Ponyta":
+                switch (insertPokemon.lvl) {
+                    case 1:
+                        insertPokemon.move1 = "Tackle";
+                        break;
+                    case 10:
+                        learnAndPrintMove(insertPokemon, "Fire Spin");
+                        break;
+                    case 17:
+                        learnAndPrintMove(insertPokemon, "Ember");
+                        break;
+                    case 22:
+                        learnAndPrintMove(insertPokemon, "Stomp");
+                        break;
+                    case 28:
+                        learnAndPrintMove(insertPokemon, "Double Kick");
+                        break;
+                    case 35:
+                        learnAndPrintMove(insertPokemon, "Take Down");
+                        break;
+                    case 41:
+                        learnAndPrintMove(insertPokemon, "Inferno");
+                        break;
+                    case 49:
+                        learnAndPrintMove(insertPokemon, "Fire Blast");
+                        break;
+                    case 53:
+                        learnAndPrintMove(insertPokemon, "Bounce");
+                        break;
+                }
+                break;
+            case "Rapidash":
+                switch (insertPokemon.lvl) {
+                    case 1:
+                        insertPokemon.move1 = "Tackle";
+                        insertPokemon.move2 = "Fire Spin";
+                        insertPokemon.move3 = "Ember";
+                        break;
+                    case 21:
+                        learnAndPrintMove(insertPokemon, "Ember");
+                        break;
+                    case 28:
+                        learnAndPrintMove(insertPokemon, "Double Kick");
+                        break;
+                    case 31:
+                        learnAndPrintMove(insertPokemon, "Quick Attack");
+                        break;
+                    case 35:
+                        learnAndPrintMove(insertPokemon, "Stomp");
+                        break;
+                    case 41:
+                        learnAndPrintMove(insertPokemon, "Flame Wheel");
+                        break;
+                    case 47:
+                        learnAndPrintMove(insertPokemon, "Take Down");
+                        break;
+                    case 52:
+                        learnAndPrintMove(insertPokemon, "Inferno");
+                        break;
+                    case 55:
+                        learnAndPrintMove(insertPokemon, "Bounce");
+                        break;
+                }
+                break;
+            case "Miltank":
+                switch (insertPokemon.lvl) {
+                    case 1:
+                        insertPokemon.move1 = "Tackle";
+                        break;
+                    case 10:
+                        learnAndPrintMove(insertPokemon, "Stomp");
+                        break;
+                    case 15:
+                        learnAndPrintMove(insertPokemon, "Milk Drink");
+                        break;
+                    case 23:
+                        learnAndPrintMove(insertPokemon, "Rollout");
+                        break;
+                    case 27:
+                        learnAndPrintMove(insertPokemon, "Body Slam");
+                        break;
+                    case 32:
+                        learnAndPrintMove(insertPokemon, "Zen Headbutt");
+                        break;
+                    case 37:
+                        learnAndPrintMove(insertPokemon, "Bulldoze");
+                        break;
+                    case 45:
+                        learnAndPrintMove(insertPokemon, "Gyro Ball");
+                        break;
+                    case 51:
+                        learnAndPrintMove(insertPokemon, "Giga Impact");
+                        break;
+                }
+                break;
+            case "Girafarig":
+                switch (insertPokemon.lvl) {
+                    case 1:
+                        insertPokemon.move1 = "Tackle";
+                        break;
+                    case 5:
+                        learnAndPrintMove(insertPokemon, "Astonish");
+                        break;
+                    case 10:
+                        learnAndPrintMove(insertPokemon, "Confusion");
+                        break;
+                    case 19:
+                        learnAndPrintMove(insertPokemon, "Stomp");
+                        break;
+                    case 24:
+                        learnAndPrintMove(insertPokemon, "Double Kick");
+                        break;
+                    case 29:
+                        learnAndPrintMove(insertPokemon, "Psybeam");
+                        break;
+                    case 32:
+                        learnAndPrintMove(insertPokemon, "Take Down");
+                        break;
+                    case 37:
+                        learnAndPrintMove(insertPokemon, "Double Hit");
+                        break;
+                    case 41:
+                        learnAndPrintMove(insertPokemon, "Crunch");
+                        break;
+                    case 46:
+                        learnAndPrintMove(insertPokemon, "Psychic");
+                        break;
+                }
+                break;
+            case "Mareep":
+                switch (insertPokemon.lvl) {
+                    case 1:
+                        insertPokemon.move1 = "Tackle";
+                        break;
+                    case 8:
+                        learnAndPrintMove(insertPokemon, "Thunder Shock");
+                        break;
+                    case 14:
+                        learnAndPrintMove(insertPokemon, "Charge Beam");
+                        break;
+                    case 29:
+                        learnAndPrintMove(insertPokemon, "Take Down");
+                        break;
+                    case 36:
+                        learnAndPrintMove(insertPokemon, "Electro Ball");
+                        break;
+                    case 41:
+                        learnAndPrintMove(insertPokemon, "Discharge");
+                        break;
+                }
+                break;
+            case "Flaaffy":
+                switch (insertPokemon.lvl) {
+                    case 1:
+                        insertPokemon.move1 = "Tackle";
+                        break;
+                    case 17:
+                        learnAndPrintMove(insertPokemon, "Take Down");
+                        break;
+                    case 22:
+                        learnAndPrintMove(insertPokemon, "Thunder Punch");
+                        break;
+                    case 29:
+                        learnAndPrintMove(insertPokemon, "Electro Ball");
+                        break;
+                    case 41:
+                        learnAndPrintMove(insertPokemon, "Discharge");
+                        break;
+                }
+                break;
+            case "Ampharos":
+                switch (insertPokemon.lvl) {
+                    case 1:
+                        insertPokemon.move1 = "Tackle";
+                        break;
+                    case 29:
+                        learnAndPrintMove(insertPokemon, "Take Down");
+                        break;
+                    case 31:
+                        learnAndPrintMove(insertPokemon, "Electro Ball");
+                        break;
+                    case 32:
+                        learnAndPrintMove(insertPokemon, "Power Gem");
+                        break;
+                    case 37:
+                        learnAndPrintMove(insertPokemon, "Thunderball");
+                        break;
+                    case 41:
+                        learnAndPrintMove(insertPokemon, "Dazzling Gleam");
+                        break;
+                    case 47:
+                        learnAndPrintMove(insertPokemon, "Hyper Beam");
+                        break;
+                    case 51:
+                        learnAndPrintMove(insertPokemon, "Thunder");
+                        break;
+                    case 56:
+                        learnAndPrintMove(insertPokemon, "Zap Cannon");
+                        break;
+                }
+                break;
         }
     }
     private void learnAndPrintMove (GeneratedPokemon insertPokemon, String newMove) throws IOException {
