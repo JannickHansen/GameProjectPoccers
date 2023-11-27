@@ -55,6 +55,9 @@ public class CM {
             moveType = "Item";
         }
         switch (moveType) {
+            case "Normal":
+                colorCode = getNormal;
+                break;
             case "Fire":
                 colorCode = getFire;
                 break;

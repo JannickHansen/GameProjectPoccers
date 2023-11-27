@@ -13,6 +13,8 @@ public class PokemonLearnSet {
                     case 5:
                         insertPokemon.move1 = "Tackle";
                         insertPokemon.move2 = "Bubble";
+                        insertPokemon.move3 = "Milk Drink";
+                        insertPokemon.move4 = "Flail";
                         break;
                     case 6:
                         learnAndPrintMove(insertPokemon, "Play Rough");
@@ -1532,7 +1534,7 @@ public class PokemonLearnSet {
                         break;
                 }
                 break;
-            case "Flaaffy":
+            case "Flaffy":
                 switch (insertPokemon.lvl) {
                     case 1:
                         insertPokemon.move1 = "Tackle";
@@ -1582,6 +1584,13 @@ public class PokemonLearnSet {
                         break;
                 }
                 break;
+            case "Ditto":
+                switch (insertPokemon.lvl) {
+                    case 1:
+                        insertPokemon.move1 = "Transform";
+                        break;
+                }
+                break;
         }
     }
     private void learnAndPrintMove (GeneratedPokemon insertPokemon, String newMove) throws IOException {
@@ -1613,24 +1622,24 @@ public class PokemonLearnSet {
                     System.out.println("4. " + CM.cM(callMove(insertPokemon.move4).moveType) + insertPokemon.move4 + CM.resetColour);
                     String op2 = tastatur.next();
                     if (op2.equals("1")) {
-                        System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " forgot "+ CM.cM(callMove(insertPokemon.move1).moveType) + insertPokemon.move1 + "...");
+                        System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " forgot "+ CM.cM(callMove(insertPokemon.move1).moveType) + insertPokemon.move1 + CM.resetColour + "...");
                         insertPokemon.move1 = newMove;
-                        System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " learnt " + CM.cM(callMove(insertPokemon.move1).moveType) + insertPokemon.move1 + "!");
+                        System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " learnt " + CM.cM(callMove(insertPokemon.move1).moveType) + insertPokemon.move1 + CM.resetColour + "!");
                         break;
                     } else if (op2.equals("2")) {
-                        System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " forgot " + CM.cM(callMove(insertPokemon.move2).moveType) + insertPokemon.move2 + "...");
+                        System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " forgot " + CM.cM(callMove(insertPokemon.move2).moveType) + insertPokemon.move2 + CM.resetColour + "...");
                         insertPokemon.move2 = newMove;
-                        System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " learnt " + CM.cM(callMove(insertPokemon.move2).moveType) + insertPokemon.move2 + "!");
+                        System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " learnt " + CM.cM(callMove(insertPokemon.move2).moveType) + insertPokemon.move2 + CM.resetColour + "!");
                         break;
                     } else if (op2.equals("3")) {
-                        System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " forgot " + CM.cM(callMove(insertPokemon.move3).moveType) + insertPokemon.move3 + "...");
+                        System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " forgot " + CM.cM(callMove(insertPokemon.move3).moveType) + insertPokemon.move3 + CM.resetColour + "...");
                         insertPokemon.move3 = newMove;
-                        System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " learnt " + CM.cM(callMove(insertPokemon.move3).moveType) + insertPokemon.move3 + "!");
+                        System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " learnt " + CM.cM(callMove(insertPokemon.move3).moveType) + insertPokemon.move3 + CM.resetColour + "!");
                         break;
                     } else if (op2.equals("4")) {
-                        System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " forgot " + CM.cM(callMove(insertPokemon.move4).moveType) + insertPokemon.move4 + "...");
+                        System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " forgot " + CM.cM(callMove(insertPokemon.move4).moveType) + insertPokemon.move4 + CM.resetColour + "...");
                         insertPokemon.move4 = newMove;
-                        System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " learnt " + CM.cM(callMove(insertPokemon.move4).moveType) + insertPokemon.move4 + "!");
+                        System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " learnt " + CM.cM(callMove(insertPokemon.move4).moveType) + insertPokemon.move4 + CM.resetColour + "!");
                         break;
                     }
 

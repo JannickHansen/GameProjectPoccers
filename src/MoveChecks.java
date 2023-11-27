@@ -8,9 +8,9 @@ public class MoveChecks {
         int effectType = 0;
         effectType = switch (usedMove) {
             case "Absorb", "Mega Drain", "Giga Drain" -> 1;
-            case "Wrap" -> 2;
-            case "Fire Spin" -> 2;
+            case "Wrap", "Fire Spin" -> 2;
             case "Leech Seed" -> 3;
+            case "Flail" -> 4;
             default -> 0;
         };
         return effectType;

@@ -34,7 +34,7 @@ public class OverworldControl {
                 if (unlockedGym.pokemonGym1) {
                     System.out.println("5. pokeMall");
                 }
-                System.out.println("9 to quit game // dev command // ");
+                System.out.println("9 to quit game"); // dev command
                 op1 = tastatur.next();
                 if (op1.equals("1") || op1.equals("2") || op1.equals("3") || op1.equals("4") || (op1.equals("5") && unlockedGym.pokemonGym1) || op1.equals("9"))
                     break;

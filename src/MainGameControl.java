@@ -26,7 +26,7 @@ public class MainGameControl {
 
     void mainGameHub() throws IOException {
         initiateGame();
-        pickStarter.selectionStart(); // 75306128
+        pickStarter.selectionStart();
         startBattle.mainBattleController();
         pickStarter.postFirstBattle();
         overworldHub.overworldMenu();
@@ -35,10 +35,12 @@ public class MainGameControl {
         // ADD COLOUR TO ITEMS, MOVES, TYPES, POKEMON <-- TYPES, RED HP ETC
         // PROGRAM ELECTROBALL, Gyro ball
         // PIN MISSILE, FURY SWIPES MULTIPLE HITS EACH ROUND, DOUBLE HIT
-        // Rollout one hit increasing each round
+        // Rollout one hit increasing each round, Ice Ball
         // SUPER FANG TAKES HALF THE OPPONENTS REMAINING HP <-- CODE THIS
-        // BRINE DOUBLE DMG IF TARGET.REMAININGHP < 50
-        // BOUNCE, DIG, FLY,
+        // BRINE DOUBLE DMG IF TARGET.REMAININGHP > 50
+        // BOUNCE, DIG, FLY, Shadow Force
+        // Milk drink, recover = heal
+        // Transform
 
 
         // POKEMALL

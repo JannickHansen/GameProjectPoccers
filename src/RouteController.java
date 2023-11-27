@@ -412,9 +412,9 @@ public class RouteController {
                             opponentPokemonParty.get(0).move2 = "Flame Charge";
                             opponentPokemonParty.get(1).setImportPokemonData("Ponyta",15);
                             opponentPokemonParty.get(1).remainingHp = opponentPokemonParty.get(1).hp;
-                            opponentPokemonParty.get(0).move1 = "Stomp";
-                            opponentPokemonParty.get(0).move2 = "Flame Charge";
-                            opponentPokemonParty.get(0).move3 = "Quick Attack";
+                            opponentPokemonParty.get(1).move1 = "Stomp";
+                            opponentPokemonParty.get(1).move2 = "Flame Charge";
+                            opponentPokemonParty.get(1).move3 = "Quick Attack";
                             op4 = startBattle.mainBattleController();
                             if (op4) {
                                 n++;
@@ -432,9 +432,9 @@ public class RouteController {
                             opponentPokemonParty.get(0).move2 = "Tackle";
                             opponentPokemonParty.get(1).setImportPokemonData("Flaffy",15);
                             opponentPokemonParty.get(1).remainingHp = opponentPokemonParty.get(1).hp;
-                            opponentPokemonParty.get(0).move1 = "Thunder Shock";
-                            opponentPokemonParty.get(0).move2 = "Take Down";
-                            opponentPokemonParty.get(0).move3 = "Charge Beam";
+                            opponentPokemonParty.get(1).move1 = "Thunder Shock";
+                            opponentPokemonParty.get(1).move2 = "Take Down";
+                            opponentPokemonParty.get(1).move3 = "Charge Beam";
                             op4 = startBattle.mainBattleController();
                             if (op4) {
                                 n++;

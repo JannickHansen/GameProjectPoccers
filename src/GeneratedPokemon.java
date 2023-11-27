@@ -96,10 +96,10 @@ public class GeneratedPokemon {
         return findMove;
     }
     public String toString()  {
-        printMove1 = equalLengthMoves(move1,' ',9);
-        printMove2 = equalLengthMoves(move2,' ',9);
-        printMove3 = equalLengthMoves(move3,' ',9);
-        printMove4 = equalLengthMoves(move4,' ',9);
+        printMove1 = equalLengthMoves(move1,' ',12);
+        printMove2 = equalLengthMoves(move2,' ',12);
+        printMove3 = equalLengthMoves(move3,' ',12);
+        printMove4 = equalLengthMoves(move4,' ',12);
         String mt1; String mt2; String mt3; String mt4;
         try {
             basePower1 = callMove(move1).basePower;
