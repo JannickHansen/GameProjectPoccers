@@ -339,7 +339,7 @@ public class RouteController {
                 tastatur.next();
             }
             if (n >= 6 && !route4) {
-                route4 = true;
+                route3 = true;
                 n = 0;
                 System.out.println("\nRoute 4 have been unlocked!\n");
             }

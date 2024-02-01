@@ -13,7 +13,7 @@ public class PokemonLearnSet {
                     case 5:
                         insertPokemon.move1 = "Tackle";
                         insertPokemon.move2 = "Bubble";
-                        insertPokemon.move3 = "Milk Drink";
+                        insertPokemon.move3 = "Recover";
                         insertPokemon.move4 = "Flail";
                         break;
                     case 6:

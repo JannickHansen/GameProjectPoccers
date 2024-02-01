@@ -8,7 +8,7 @@ public class PokemonGym {
     PlayerBag playerBag;
     Scanner tastatur = new Scanner(System.in);
     String op1;
-    boolean pokemonGym1 = true;
+    boolean pokemonGym1 = false;
     boolean pokemonGym2 = false;
     boolean pokemonGym3 = false;
     boolean pokemonGym4 = false;

@@ -79,7 +79,7 @@ public class BattleController {
         if (isCaught) {
             foundWinner = true;
         } else if (playerUsedItem) { // IF PLAYER USED AN ITEM // CAN MAKE DUPLICATE IF OPPONENT USE ITEM
-            if (saveMoveName.equals("Leech Seed") && !foundWinner) {
+            if ((saveMoveName.equals("Leech Seed") || saveMoveName.equals("Milk Drink") || saveMoveName.equals("Recover")) && !foundWinner) {
                 System.out.println("The opposing " + activeOpponentPokemon.pokemonName + " uses " + opponentColorCode + saveMoveName + CM.resetColour + "!");
                 checkMove.performMoveEffect(saveMoveName, activeOpponentPokemon, activePlayerPokemon, idealMove);
             } else if (!foundWinner) {
@@ -91,7 +91,7 @@ public class BattleController {
                 }
             }
         } else if (moveFirst == 0 && !foundWinner) { //IF PLAYER IS FASTER
-            if (playerUseMove.equals("Leech Seed")) {
+            if (playerUseMove.equals("Leech Seed") || playerUseMove.equals("Milk Drink") || playerUseMove.equals("Recover")) {
                 System.out.println(activePlayerPokemon.pokemonName + " uses " + playerColorCode + playerUseMove + CM.resetColour + "!");
                 checkMove.performMoveEffect(playerUseMove, activePlayerPokemon, activeOpponentPokemon, playerDamage);
             } else {
@@ -102,7 +102,7 @@ public class BattleController {
                     ifOpponentLose();
                 }
             }
-            if (saveMoveName.equals("Leech Seed") && !foundWinner && !pokemonFainted) {
+            if ((saveMoveName.equals("Leech Seed") || saveMoveName.equals("Milk Drink") || saveMoveName.equals("Recover")) && !foundWinner && !pokemonFainted) {
                 System.out.println("The opposing " + activeOpponentPokemon.pokemonName + " uses " + opponentColorCode + saveMoveName + CM.resetColour + "!");
                 checkMove.performMoveEffect(saveMoveName, activeOpponentPokemon, activePlayerPokemon, idealMove);
             } else if (!foundWinner && !pokemonFainted) {
@@ -114,7 +114,7 @@ public class BattleController {
                 }
             }
         } else if (moveFirst == 1 && !foundWinner) { // IF OPPONENT IS FASTER
-            if (saveMoveName.equals("Leech Seed")) {
+            if (saveMoveName.equals("Leech Seed") || saveMoveName.equals("Milk Drink") || saveMoveName.equals("Recover")) {
                 System.out.println("The opposing " + activeOpponentPokemon.pokemonName + " uses " + opponentColorCode + saveMoveName + CM.resetColour + "!");
                 checkMove.performMoveEffect(saveMoveName, activeOpponentPokemon, activePlayerPokemon, idealMove);
             } else {
@@ -125,7 +125,7 @@ public class BattleController {
                     ifPlayerLose();
                 }
             }
-            if (playerUseMove.equals("Leech Seed") && !foundWinner && !pokemonFainted) {
+            if ((playerUseMove.equals("Leech Seed") || playerUseMove.equals("Milk Drink") || playerUseMove.equals("Recover")) && !foundWinner && !pokemonFainted) {
                 System.out.println(activePlayerPokemon.pokemonName + " uses " + playerColorCode + playerUseMove + CM.resetColour + "!");
                 checkMove.performMoveEffect(playerUseMove, activePlayerPokemon, activeOpponentPokemon, playerDamage);
             } else if (!foundWinner && !pokemonFainted) {
@@ -155,19 +155,19 @@ public class BattleController {
     void opponentBasicAI() throws IOException {
         opponentMoveType = callMove(activeOpponentPokemon.move1).moveType;
         opponentBasePower = callMove(activeOpponentPokemon.move1).basePower;
-        int move1 = damageCalc(opponentBasePower, activeOpponentPokemon.atk, activePlayerPokemon.def, activeOpponentPokemon.lvl, opponentMoveType, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.move1, activeOpponentPokemon);
+        int move1 = damageCalc(opponentBasePower, activeOpponentPokemon.atk, activePlayerPokemon.def, activeOpponentPokemon.lvl, opponentMoveType, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.move1, activeOpponentPokemon, activePlayerPokemon);
 
         opponentMoveType = callMove(activeOpponentPokemon.move2).moveType;
         opponentBasePower = callMove(activeOpponentPokemon.move2).basePower;
-        int move2 = damageCalc(opponentBasePower, activeOpponentPokemon.atk, activePlayerPokemon.def, activeOpponentPokemon.lvl, opponentMoveType, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.move2, activeOpponentPokemon);
+        int move2 = damageCalc(opponentBasePower, activeOpponentPokemon.atk, activePlayerPokemon.def, activeOpponentPokemon.lvl, opponentMoveType, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.move2, activeOpponentPokemon, activePlayerPokemon);
 
         opponentMoveType = callMove(activeOpponentPokemon.move3).moveType;
         opponentBasePower = callMove(activeOpponentPokemon.move3).basePower;
-        int move3 = damageCalc(opponentBasePower, activeOpponentPokemon.atk, activePlayerPokemon.def, activeOpponentPokemon.lvl, opponentMoveType, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.move3, activeOpponentPokemon);
+        int move3 = damageCalc(opponentBasePower, activeOpponentPokemon.atk, activePlayerPokemon.def, activeOpponentPokemon.lvl, opponentMoveType, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.move3, activeOpponentPokemon, activePlayerPokemon);
 
         opponentMoveType = callMove(activeOpponentPokemon.move4).moveType;
         opponentBasePower = callMove(activeOpponentPokemon.move4).basePower;
-        int move4 = damageCalc(opponentBasePower, activeOpponentPokemon.atk, activePlayerPokemon.def, activeOpponentPokemon.lvl, opponentMoveType, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.move4, activeOpponentPokemon);
+        int move4 = damageCalc(opponentBasePower, activeOpponentPokemon.atk, activePlayerPokemon.def, activeOpponentPokemon.lvl, opponentMoveType, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.move4, activeOpponentPokemon, activePlayerPokemon);
 
         if (activePlayerPokemon.repeatedMove > 0 || activePlayerPokemon.leechSeed) {
             if (activeOpponentPokemon.move1.equals("Fire Spin") || activeOpponentPokemon.move1.equals("Wrap") || activeOpponentPokemon.move1.equals("Leech Seed")) {
@@ -250,28 +250,28 @@ public class BattleController {
                 priorityCheckPlayer = callMove(playerUseMove).priorityMove;
                 playerMoveType = callMove(playerUseMove).moveType;
                 playerBasePower = callMove(playerUseMove).basePower;
-                playerDamage = damageCalc(playerBasePower, activePlayerPokemon.atk, activeOpponentPokemon.def, activePlayerPokemon.lvl, playerMoveType, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, playerUseMove, activePlayerPokemon);
+                playerDamage = damageCalc(playerBasePower, activePlayerPokemon.atk, activeOpponentPokemon.def, activePlayerPokemon.lvl, playerMoveType, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, playerUseMove, activePlayerPokemon, activeOpponentPokemon);
                 break;
             case "2":
                 playerUseMove = activePlayerPokemon.move2;
                 priorityCheckPlayer = callMove(playerUseMove).priorityMove;
                 playerMoveType = callMove(playerUseMove).moveType;
                 playerBasePower = callMove(playerUseMove).basePower;
-                playerDamage = damageCalc(playerBasePower, activePlayerPokemon.atk, activeOpponentPokemon.def, activePlayerPokemon.lvl, playerMoveType, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, playerUseMove, activePlayerPokemon);
+                playerDamage = damageCalc(playerBasePower, activePlayerPokemon.atk, activeOpponentPokemon.def, activePlayerPokemon.lvl, playerMoveType, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, playerUseMove, activePlayerPokemon, activeOpponentPokemon);
                 break;
             case "3":
                 playerUseMove = activePlayerPokemon.move3;
                 playerBasePower = callMove(playerUseMove).basePower;
                 playerMoveType = callMove(playerUseMove).moveType;
                 priorityCheckPlayer = callMove(playerUseMove).priorityMove;
-                playerDamage = damageCalc(playerBasePower, activePlayerPokemon.atk, activeOpponentPokemon.def, activePlayerPokemon.lvl, playerMoveType, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, playerUseMove, activePlayerPokemon);
+                playerDamage = damageCalc(playerBasePower, activePlayerPokemon.atk, activeOpponentPokemon.def, activePlayerPokemon.lvl, playerMoveType, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, playerUseMove, activePlayerPokemon, activeOpponentPokemon);
                 break;
             case "4":
                 playerUseMove = activePlayerPokemon.move4;
                 playerBasePower = callMove(playerUseMove).basePower;
                 playerMoveType = callMove(playerUseMove).moveType;
                 priorityCheckPlayer = callMove(playerUseMove).priorityMove;
-                playerDamage = damageCalc(playerBasePower, activePlayerPokemon.atk, activeOpponentPokemon.def, activePlayerPokemon.lvl, playerMoveType, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, playerUseMove, activePlayerPokemon);
+                playerDamage = damageCalc(playerBasePower, activePlayerPokemon.atk, activeOpponentPokemon.def, activePlayerPokemon.lvl, playerMoveType, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, playerUseMove, activePlayerPokemon, activeOpponentPokemon);
                 break;
             case "5":
                 while (true) {
@@ -573,7 +573,7 @@ public class BattleController {
         op3 = true;
     }
 
-    public int damageCalc(int basePower, int atk, int def, int lvl, String attackType, String userType1, String userType2, String opponentType1, String opponentType2, String moveUsed, GeneratedPokemon moveUser) {
+    public int damageCalc(int basePower, int atk, int def, int lvl, String attackType, String userType1, String userType2, String opponentType1, String opponentType2, String moveUsed, GeneratedPokemon moveUser, GeneratedPokemon moveTarget) {
         double STAB;
         double effectiveness = (checkMove.checkEffective(attackType, opponentType1) * checkMove.checkEffective(attackType, opponentType2));
         if (attackType.equals(userType1) || attackType.equals(userType2)) {
@@ -581,6 +581,7 @@ public class BattleController {
         } else STAB = 1;
         basePower = checkMove.calcNewBasePower(moveUsed, basePower, moveUser);
         double resultDamage = (((double) ((((2 * lvl) / 5) + 2) * basePower * (atk / def)) / 50) + 2) * STAB * effectiveness;
+        resultDamage = checkMove.calcNewDamageDone(moveUsed, moveUser, moveTarget, resultDamage);
         return (int) Math.round(resultDamage);
     }
 

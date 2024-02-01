@@ -11,6 +11,8 @@ public class MoveChecks {
             case "Wrap", "Fire Spin" -> 2;
             case "Leech Seed" -> 3;
             case "Flail" -> 4;
+            case "Super Fang" -> 5;
+            case "Milk Drink", "Recover" -> 6;
             default -> 0;
         };
         return effectType;
@@ -40,6 +42,16 @@ public class MoveChecks {
                     moveTarget.leechSeed = true;
                     break;
                 }
+            case 6:
+                if (moveUser.remainingHp + (moveUser.hp / 2) > moveUser.hp) {
+                    System.out.println(moveUser.pokemonName + " recovered " + (moveUser.hp - moveUser.remainingHp) + " health!" );
+                    moveUser.remainingHp = moveUser.hp;
+                }
+                else {
+                    moveUser.remainingHp = moveUser.remainingHp + (moveUser.hp / 2);
+                    System.out.println(moveUser.pokemonName + " recovered " + (moveUser.remainingHp + (moveUser.hp / 2)) + " health!");
+                }
+                break;
             default:
                 break;
         }
@@ -63,6 +75,21 @@ public class MoveChecks {
                 break;
         }
         return basePower;
+    }
+
+    public double calcNewDamageDone (String usedMove, GeneratedPokemon moveUser, GeneratedPokemon moveTarget, double resultDamage) {
+        int checkResult = checkSpecialMoveEffect(usedMove);
+        switch (checkResult) {
+            case 5:
+                if (moveTarget.pokemonType1.equals("Ghost") || moveTarget.pokemonType2.equals("Ghost")) {
+                    resultDamage = 0;
+                }
+                else {
+                    resultDamage = (double) moveTarget.remainingHp / 2;
+                }
+                break;
+        }
+        return resultDamage;
     }
     void endOfTurnEffects(GeneratedPokemon affectedPokemon, GeneratedPokemon opposingPokemon, int damageDone) {
         if (affectedPokemon.repeatedMove >= 1) {
