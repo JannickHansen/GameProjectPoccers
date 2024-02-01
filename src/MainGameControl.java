@@ -36,9 +36,7 @@ public class MainGameControl {
         // PROGRAM ELECTROBALL, Gyro ball
         // PIN MISSILE, FURY SWIPES MULTIPLE HITS EACH ROUND, DOUBLE HIT
         // Rollout one hit increasing each round, Ice Ball
-        // BRINE DOUBLE DMG IF TARGET.REMAININGHP > 50
         // BOUNCE, DIG, FLY, Shadow Force
-        // Milk drink, recover = heal
         // Transform
 
 

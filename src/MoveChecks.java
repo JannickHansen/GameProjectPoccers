@@ -13,6 +13,7 @@ public class MoveChecks {
             case "Flail" -> 4;
             case "Super Fang" -> 5;
             case "Milk Drink", "Recover" -> 6;
+            case "Brine" -> 7;
             default -> 0;
         };
         return effectType;
@@ -86,6 +87,11 @@ public class MoveChecks {
                 }
                 else {
                     resultDamage = (double) moveTarget.remainingHp / 2;
+                }
+                break;
+            case 7:
+                if (moveTarget.remainingHp < moveTarget.hp / 2) {
+                    resultDamage = resultDamage * 2;
                 }
                 break;
         }

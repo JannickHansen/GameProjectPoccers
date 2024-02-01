@@ -14,7 +14,7 @@ public class PokemonLearnSet {
                         insertPokemon.move1 = "Tackle";
                         insertPokemon.move2 = "Bubble";
                         insertPokemon.move3 = "Recover";
-                        insertPokemon.move4 = "Flail";
+                        insertPokemon.move4 = "Brine";
                         break;
                     case 6:
                         learnAndPrintMove(insertPokemon, "Play Rough");
