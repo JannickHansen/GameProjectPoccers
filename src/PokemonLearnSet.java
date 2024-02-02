@@ -12,7 +12,7 @@ public class PokemonLearnSet {
                 switch (insertPokemon.lvl) {
                     case 5:
                         insertPokemon.move1 = "Tackle";
-                        insertPokemon.move2 = "Bubble";
+                        insertPokemon.move2 = "Dive";
                         insertPokemon.move3 = "Double Hit";
                         insertPokemon.move4 = "Rollout";
                         break;

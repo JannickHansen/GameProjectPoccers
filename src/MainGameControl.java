@@ -21,7 +21,7 @@ public class MainGameControl {
     PickStarter pickStarter = new PickStarter(playerPokemonParty, opponentPokemonParty);
     BattleController startBattle = new BattleController(playerPokemonParty, opponentPokemonParty, playerBag);
     OverworldControl overworldHub = new OverworldControl(playerPokemonParty, opponentPokemonParty, playerBag);
-    MainGameControl() {
+    MainGameControl() throws IOException {
     }
 
     void mainGameHub() throws IOException {
@@ -34,8 +34,7 @@ public class MainGameControl {
         //MAIN PRIORITY LIST
         // ADD COLOUR TO ITEMS, MOVES, TYPES, POKEMON <-- TYPES, RED HP ETC
         // PROGRAM ELECTROBALL, Gyro ball
-        // Rollout one hit increasing each round, Ice Ball
-        // BOUNCE, DIG, FLY, Shadow Force
+        // BOUNCE, DIG, FLY, Shadow Force <-- virker halvt korrekt, virker kun hvis brugeren går først. prøv med avoidDamageStage
         // Transform
 
 

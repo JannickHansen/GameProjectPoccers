@@ -43,6 +43,8 @@ public class GeneratedPokemon {
     int lockedState;
     int lockedMove;
     String lockedMoveName;
+    boolean avoidDamage;
+    int avoidDamageStage;
 
     GeneratedPokemon() {
     }

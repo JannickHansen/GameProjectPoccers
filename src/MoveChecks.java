@@ -17,6 +17,7 @@ public class MoveChecks {
             case "Brine" -> 7;
             case "Pin Missile", "Fury Swipes", "Double Hit" -> 8;
             case "Rollout", "Ice Ball" -> 9;
+            case "Fly", "Dive", "Shadow Force", "Bounce", "Dig" -> 10;
             default -> 0;
         };
         return effectType;
@@ -76,6 +77,7 @@ public class MoveChecks {
             } else basePower = 20;
             break;
             case 9:
+                System.out.println(moveUser.lockedState);
                 if (moveUser.lockedState > 0 ) {
                     switch (moveUser.lockedState) {
                         case 1:
@@ -95,8 +97,7 @@ public class MoveChecks {
                             moveUser.lockedState--;
                             break;
                     }
-                }
-                else {
+                } else {
                     moveUser.lockedState = 4;
                     break;
                 }
@@ -133,6 +134,14 @@ public class MoveChecks {
                     resultDamage = resultDamage * numberOfHits;
                     System.out.println(moveUser.pokemonName + "'s " + usedMove + " hit "+numberOfHits+" times!");
                 }
+                break;
+            case 10:
+                if (!moveUser.avoidDamage) {
+                    moveUser.avoidDamage = true;
+                    resultDamage = 0;
+                    break;
+                }
+                moveUser.avoidDamage = false;
                 break;
         }
         return resultDamage;
