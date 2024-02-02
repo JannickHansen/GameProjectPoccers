@@ -34,7 +34,6 @@ public class MainGameControl {
         //MAIN PRIORITY LIST
         // ADD COLOUR TO ITEMS, MOVES, TYPES, POKEMON <-- TYPES, RED HP ETC
         // PROGRAM ELECTROBALL, Gyro ball
-        // PIN MISSILE, FURY SWIPES MULTIPLE HITS EACH ROUND, DOUBLE HIT
         // Rollout one hit increasing each round, Ice Ball
         // BOUNCE, DIG, FLY, Shadow Force
         // Transform

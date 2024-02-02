@@ -80,7 +80,7 @@ Ice Fang,65,0,Ice,
 Ice Punch,75,0,Ice,
 Ice Beam,90,0,Ice,
 Blizzard,110,0,Ice,
-Ice Ball,40,0,Ice,
+Ice Ball,30,0,Ice,
 Sheer Cold,170,0,Ice,
 
 Bite,60,0,Dark,

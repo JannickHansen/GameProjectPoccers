@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class MoveChecks {
@@ -14,6 +15,8 @@ public class MoveChecks {
             case "Super Fang" -> 5;
             case "Milk Drink", "Recover" -> 6;
             case "Brine" -> 7;
+            case "Pin Missile", "Fury Swipes", "Double Hit" -> 8;
+            case "Rollout", "Ice Ball" -> 9;
             default -> 0;
         };
         return effectType;
@@ -72,6 +75,31 @@ public class MoveChecks {
                 basePower = 40;
             } else basePower = 20;
             break;
+            case 9:
+                if (moveUser.lockedState > 0 ) {
+                    switch (moveUser.lockedState) {
+                        case 1:
+                            basePower = 480;
+                            moveUser.lockedState--;
+                            break;
+                        case 2:
+                            basePower = 240;
+                            moveUser.lockedState--;
+                            break;
+                        case 3:
+                            basePower = 120;
+                            moveUser.lockedState--;
+                            break;
+                        case 4:
+                            basePower = 60;
+                            moveUser.lockedState--;
+                            break;
+                    }
+                }
+                else {
+                    moveUser.lockedState = 4;
+                    break;
+                }
             default:
                 break;
         }
@@ -92,6 +120,18 @@ public class MoveChecks {
             case 7:
                 if (moveTarget.remainingHp < moveTarget.hp / 2) {
                     resultDamage = resultDamage * 2;
+                }
+                break;
+            case 8:
+                Random r = new Random();
+                if (usedMove.equals("Double Hit")) {
+                    resultDamage = resultDamage * 2;
+                    System.out.println(moveUser.pokemonName + "'s " + usedMove + " hits twice!");
+                }
+                else if (usedMove.equals("Pin Missile") || usedMove.equals("Fury Swipes")) {
+                    int numberOfHits = r.nextInt(2,5+1);
+                    resultDamage = resultDamage * numberOfHits;
+                    System.out.println(moveUser.pokemonName + "'s " + usedMove + " hit "+numberOfHits+" times!");
                 }
                 break;
         }

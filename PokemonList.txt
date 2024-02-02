@@ -50,7 +50,7 @@ Nidoran♀,47,52,41,55,Poison,Null,55,235,
 Nidorino,72,57,65,61,Poison,Null,128,120,
 Nidoking,102,77,85,81,Poison,Ground,227,45,
 
-Spheal,120,120,120,120,Ice,Water,58,255,
+Spheal,50,50,50,120,Ice,Water,58,255,
 Swinub,50,40,50,50,Ice,Ground,50,225,
 Piloswine,100,80,50,100,Ice,Ground,158,75,
 Mamoswine,130,80,80,110,Ice,Ground,239,50,

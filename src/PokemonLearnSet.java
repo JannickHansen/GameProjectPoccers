@@ -13,8 +13,8 @@ public class PokemonLearnSet {
                     case 5:
                         insertPokemon.move1 = "Tackle";
                         insertPokemon.move2 = "Bubble";
-                        insertPokemon.move3 = "Recover";
-                        insertPokemon.move4 = "Brine";
+                        insertPokemon.move3 = "Double Hit";
+                        insertPokemon.move4 = "Rollout";
                         break;
                     case 6:
                         learnAndPrintMove(insertPokemon, "Play Rough");
@@ -1645,6 +1645,7 @@ public class PokemonLearnSet {
 
                 } else if (op1.equals("No")) {
                     System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " did not learn " + CM.cM(callMove(newMove).moveType) + newMove + ".");
+                    break;
                 }
             }
         }

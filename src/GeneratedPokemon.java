@@ -40,6 +40,10 @@ public class GeneratedPokemon {
     int IVSpd;
     int IVHp;
     int catchRate;
+    int lockedState;
+    int lockedMove;
+    String lockedMoveName;
+
     GeneratedPokemon() {
     }
     public void setImportPokemonData(String pokemonName, int lvl) throws IOException {
