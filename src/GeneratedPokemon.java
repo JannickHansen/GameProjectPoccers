@@ -44,7 +44,6 @@ public class GeneratedPokemon {
     int lockedMove;
     String lockedMoveName;
     boolean avoidDamage;
-    int avoidDamageStage;
 
     GeneratedPokemon() {
     }

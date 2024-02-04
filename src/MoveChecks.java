@@ -136,11 +136,11 @@ public class MoveChecks {
                 }
                 break;
             case 10:
-                if (!moveUser.avoidDamage) {
-                    moveUser.avoidDamage = true;
+                if (moveUser.avoidDamage) {
                     resultDamage = 0;
                     break;
                 }
+                else
                 moveUser.avoidDamage = false;
                 break;
         }
