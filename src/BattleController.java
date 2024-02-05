@@ -83,26 +83,32 @@ public class BattleController {
                 System.out.println("The opposing " + activeOpponentPokemon.pokemonName + " uses " + opponentColorCode + saveMoveName + CM.resetColour + " for " + idealMove + " damage!");
                 activePlayerPokemon.remainingHp = activePlayerPokemon.remainingHp - idealMove;
                 checkMove.performMoveEffect(saveMoveName, activeOpponentPokemon, activePlayerPokemon, idealMove);
-                if (activePlayerPokemon.remainingHp <= 0) {
-                    ifPlayerLose();
-                }
+            }
+            if (activePlayerPokemon.remainingHp <= 0) {
+                ifPlayerLose();
             }
         } else if (moveFirst == 0 && !foundWinner) { //IF PLAYER IS FASTER
             if (playerUseMove.equals("Leech Seed") || playerUseMove.equals("Milk Drink") || playerUseMove.equals("Recover")) {
                 System.out.println(activePlayerPokemon.pokemonName + " uses " + playerColorCode + playerUseMove + CM.resetColour + "!");
                 checkMove.performMoveEffect(playerUseMove, activePlayerPokemon, activeOpponentPokemon, playerDamage);
-            } /*else if (checkMove.checkSpecialMoveEffect(playerUseMove) == 10 && activePlayerPokemon.avoidDamage) {
+            } else if (checkMove.checkSpecialMoveEffect(playerUseMove) == 10 && !activePlayerPokemon.avoidDamage) {
                 System.out.println(activePlayerPokemon.pokemonName + " uses " + playerColorCode + playerUseMove + CM.resetColour + "!");
                 checkMove.calcNewDamageDone(playerUseMove, activePlayerPokemon, activeOpponentPokemon, playerDamage);
                 activePlayerPokemon.avoidDamage = true;
-            } else if (checkMove.checkSpecialMoveEffect(playerUseMove) == 10 && !activePlayerPokemon.avoidDamage) {
+            }
+            else if (checkMove.checkSpecialMoveEffect(playerUseMove) == 10 && activePlayerPokemon.avoidDamage && !activeOpponentPokemon.avoidDamage) {
                 System.out.println(activePlayerPokemon.pokemonName + " uses " + playerColorCode + playerUseMove + CM.resetColour + " for " + playerDamage + " damage!");
                 activeOpponentPokemon.remainingHp = activeOpponentPokemon.remainingHp - playerDamage;
                 activePlayerPokemon.avoidDamage = false;
-            }*/
+            }
             else {
-                if (activeOpponentPokemon.avoidDamage) {
+                if (checkMove.checkSpecialMoveEffect(playerUseMove) == 10 && activeOpponentPokemon.avoidDamage) {
                     System.out.println(activePlayerPokemon.pokemonName + " missed the attack!");
+                    activePlayerPokemon.avoidDamage = false;
+                    activePlayerPokemon.lockedState = 0;
+                } else if (activeOpponentPokemon.avoidDamage) {
+                    System.out.println(activePlayerPokemon.pokemonName + " missed the attack!");
+                    activePlayerPokemon.lockedState = 0;
                 }
                 else {
                     System.out.println(activePlayerPokemon.pokemonName + " uses " + playerColorCode + playerUseMove + CM.resetColour + " for " + playerDamage + " damage!");
@@ -117,75 +123,85 @@ public class BattleController {
                 System.out.println("The opposing " + activeOpponentPokemon.pokemonName + " uses " + opponentColorCode + saveMoveName + CM.resetColour + "!");
                 checkMove.performMoveEffect(saveMoveName, activeOpponentPokemon, activePlayerPokemon, idealMove);
             } else if (!foundWinner && !pokemonFainted) {
-                /*if (checkMove.checkSpecialMoveEffect(saveMoveName) == 10 && activeOpponentPokemon.avoidDamage) {
+                if (checkMove.checkSpecialMoveEffect(saveMoveName) == 10 && !activeOpponentPokemon.avoidDamage) {
                     System.out.println("The opposing " + activeOpponentPokemon.pokemonName + " uses " + opponentColorCode + saveMoveName + CM.resetColour + "!");
                     checkMove.calcNewDamageDone(saveMoveName, activeOpponentPokemon, activePlayerPokemon, idealMove);
                     activeOpponentPokemon.avoidDamage = true;
-                } else if (checkMove.checkSpecialMoveEffect(saveMoveName) == 10 && !activeOpponentPokemon.avoidDamage) {
+                } else if (checkMove.checkSpecialMoveEffect(saveMoveName) == 10 && activeOpponentPokemon.avoidDamage && !activePlayerPokemon.avoidDamage) {
                     System.out.println("The opposing " + activeOpponentPokemon.pokemonName + " uses " + opponentColorCode + saveMoveName + CM.resetColour + " for " + idealMove + " damage!");
                     activePlayerPokemon.remainingHp = activePlayerPokemon.remainingHp - idealMove;
                     activeOpponentPokemon.avoidDamage = false;
                 }
-                else */if (activePlayerPokemon.avoidDamage) {
+                else if (activePlayerPokemon.avoidDamage) {
                     System.out.println(activeOpponentPokemon.pokemonName + " missed the attack!");
+                    activeOpponentPokemon.lockedState = 0;
+                    activeOpponentPokemon.avoidDamage = false;
                 } else {
                     System.out.println("The opposing " + activeOpponentPokemon.pokemonName + " uses " + opponentColorCode + saveMoveName + CM.resetColour + " for " + idealMove + " damage!");
                     activePlayerPokemon.remainingHp = activePlayerPokemon.remainingHp - idealMove;
                     checkMove.performMoveEffect(saveMoveName, activeOpponentPokemon, activePlayerPokemon, idealMove);
                 }
-                if (activePlayerPokemon.remainingHp <= 0) {
-                    ifPlayerLose();
-                }
+            }
+            if (activePlayerPokemon.remainingHp <= 0) {
+                ifPlayerLose();
             }
         } else if (moveFirst == 1 && !foundWinner) { // IF OPPONENT IS FASTER
             if (saveMoveName.equals("Leech Seed") || saveMoveName.equals("Milk Drink") || saveMoveName.equals("Recover")) {
                 System.out.println("The opposing " + activeOpponentPokemon.pokemonName + " uses " + opponentColorCode + saveMoveName + CM.resetColour + "!");
                 checkMove.performMoveEffect(saveMoveName, activeOpponentPokemon, activePlayerPokemon, idealMove);
-            } /*else if (checkMove.checkSpecialMoveEffect(saveMoveName) == 10 && activeOpponentPokemon.avoidDamage) {
+            } else if (checkMove.checkSpecialMoveEffect(saveMoveName) == 10 && !activeOpponentPokemon.avoidDamage) {
                 System.out.println("The opposing " + activeOpponentPokemon.pokemonName + " uses " + opponentColorCode + saveMoveName + CM.resetColour + "!");
                 checkMove.calcNewDamageDone(saveMoveName, activeOpponentPokemon, activePlayerPokemon, idealMove);
                 activeOpponentPokemon.avoidDamage = true;
-            } else if (checkMove.checkSpecialMoveEffect(saveMoveName) == 10 && !activeOpponentPokemon.avoidDamage) {
+            } else if (checkMove.checkSpecialMoveEffect(saveMoveName) == 10 && activeOpponentPokemon.avoidDamage && !activePlayerPokemon.avoidDamage) {
                 System.out.println("The opposing " + activeOpponentPokemon.pokemonName + " uses " + opponentColorCode + saveMoveName + CM.resetColour + " for " + idealMove + " damage!");
                 activePlayerPokemon.remainingHp = activePlayerPokemon.remainingHp - idealMove;
                 activeOpponentPokemon.avoidDamage = false;
-            }*/
+            }
             else {
-                if (activePlayerPokemon.avoidDamage) {
+                if (checkMove.checkSpecialMoveEffect(saveMoveName) == 10 && activePlayerPokemon.avoidDamage) {
                     System.out.println(activeOpponentPokemon.pokemonName + " missed the attack!");
-                } else {
+                    activeOpponentPokemon.avoidDamage = false;
+                    activeOpponentPokemon.lockedState = 0;
+                } else if (activePlayerPokemon.avoidDamage) {
+                    System.out.println(activeOpponentPokemon.pokemonName + " missed the attack!");
+                    activeOpponentPokemon.lockedState = 0;
+                }
+                else {
                     System.out.println("The opposing " + activeOpponentPokemon.pokemonName + " uses " + opponentColorCode + saveMoveName + CM.resetColour + " for " + idealMove + " damage!");
                     activePlayerPokemon.remainingHp = activePlayerPokemon.remainingHp - idealMove;
                     checkMove.performMoveEffect(saveMoveName, activeOpponentPokemon, activePlayerPokemon, idealMove);
                 }
-                if (activePlayerPokemon.remainingHp <= 0 && !foundWinner) {
-                    ifPlayerLose();
-                }
+            }
+            if (activePlayerPokemon.remainingHp <= 0 && !foundWinner) {
+                ifPlayerLose();
             }
             if ((playerUseMove.equals("Leech Seed") || playerUseMove.equals("Milk Drink") || playerUseMove.equals("Recover")) && !foundWinner && !pokemonFainted) {
                 System.out.println(activePlayerPokemon.pokemonName + " uses " + playerColorCode + playerUseMove + CM.resetColour + "!");
                 checkMove.performMoveEffect(playerUseMove, activePlayerPokemon, activeOpponentPokemon, playerDamage);
             }
             else if (!foundWinner && !pokemonFainted) {
-                /*if (checkMove.checkSpecialMoveEffect(playerUseMove) == 10 && activePlayerPokemon.avoidDamage) {
+                if (checkMove.checkSpecialMoveEffect(playerUseMove) == 10 && !activePlayerPokemon.avoidDamage) {
                     System.out.println(activePlayerPokemon.pokemonName + " uses " + playerColorCode + playerUseMove + CM.resetColour + "!");
                     checkMove.calcNewDamageDone(playerUseMove, activePlayerPokemon, activeOpponentPokemon, playerDamage);
                     activePlayerPokemon.avoidDamage = true;
-                } else if (checkMove.checkSpecialMoveEffect(playerUseMove) == 10 && !activePlayerPokemon.avoidDamage) {
+                } else if (checkMove.checkSpecialMoveEffect(playerUseMove) == 10 && activePlayerPokemon.avoidDamage && !activeOpponentPokemon.avoidDamage) {
                     System.out.println(activePlayerPokemon.pokemonName + " uses " + playerColorCode + playerUseMove + CM.resetColour + " for " + playerDamage + " damage!");
                     activeOpponentPokemon.remainingHp = activeOpponentPokemon.remainingHp - playerDamage;
                     activePlayerPokemon.avoidDamage = false;
                 }
-                else*/ if (activeOpponentPokemon.avoidDamage) {
+                else if (activeOpponentPokemon.avoidDamage) {
                     System.out.println(activePlayerPokemon.pokemonName + " missed the attack!");
+                    activePlayerPokemon.lockedState = 0;
+                    activePlayerPokemon.avoidDamage = false;
                 } else {
                     System.out.println(activePlayerPokemon.pokemonName + " uses " + playerColorCode + playerUseMove + CM.resetColour + " for " + playerDamage + " damage!");
                     activeOpponentPokemon.remainingHp = activeOpponentPokemon.remainingHp - playerDamage;
                     checkMove.performMoveEffect(playerUseMove, activePlayerPokemon, activeOpponentPokemon, playerDamage);
                 }
-                if (activeOpponentPokemon.remainingHp <= 0) {
-                    ifOpponentLose();
-                }
+            }
+            if (activeOpponentPokemon.remainingHp <= 0) {
+                ifOpponentLose();
             }
         }
         System.out.println();
@@ -204,6 +220,27 @@ public class BattleController {
     }
 
     void opponentBasicAI() throws IOException {
+
+        if (activeOpponentPokemon.avoidDamage) {
+            if (activeOpponentPokemon.move1.equals("Dive") || activeOpponentPokemon.move1.equals("Dig") || activeOpponentPokemon.move1.equals("Fly") || activeOpponentPokemon.move1.equals("Bounce") || activeOpponentPokemon.move1.equals("Shadow Force")) {
+                opponentMoveType = callMove(activeOpponentPokemon.move1).moveType;
+                opponentBasePower = callMove(activeOpponentPokemon.move1).basePower;
+                idealMove = damageCalc(opponentBasePower, activeOpponentPokemon.atk, activePlayerPokemon.def, activeOpponentPokemon.lvl, opponentMoveType, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.move1, activeOpponentPokemon, activePlayerPokemon);
+            } else if (activeOpponentPokemon.move2.equals("Dive") || activeOpponentPokemon.move2.equals("Dig") || activeOpponentPokemon.move2.equals("Fly") || activeOpponentPokemon.move2.equals("Bounce") || activeOpponentPokemon.move2.equals("Shadow Force")) {
+                opponentMoveType = callMove(activeOpponentPokemon.move2).moveType;
+                opponentBasePower = callMove(activeOpponentPokemon.move2).basePower;
+                idealMove = damageCalc(opponentBasePower, activeOpponentPokemon.atk, activePlayerPokemon.def, activeOpponentPokemon.lvl, opponentMoveType, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.move2, activeOpponentPokemon, activePlayerPokemon);
+            } else if (activeOpponentPokemon.move3.equals("Dive") || activeOpponentPokemon.move3.equals("Dig") || activeOpponentPokemon.move3.equals("Fly") || activeOpponentPokemon.move3.equals("Bounce") || activeOpponentPokemon.move3.equals("Shadow Force")) {
+                opponentMoveType = callMove(activeOpponentPokemon.move3).moveType;
+                opponentBasePower = callMove(activeOpponentPokemon.move3).basePower;
+                idealMove = damageCalc(opponentBasePower, activeOpponentPokemon.atk, activePlayerPokemon.def, activeOpponentPokemon.lvl, opponentMoveType, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.move3, activeOpponentPokemon, activePlayerPokemon);
+            } else if (activeOpponentPokemon.move4.equals("Dive") || activeOpponentPokemon.move4.equals("Dig") || activeOpponentPokemon.move4.equals("Fly") || activeOpponentPokemon.move4.equals("Bounce") || activeOpponentPokemon.move4.equals("Shadow Force")) {
+                opponentMoveType = callMove(activeOpponentPokemon.move4).moveType;
+                opponentBasePower = callMove(activeOpponentPokemon.move4).basePower;
+                idealMove = damageCalc(opponentBasePower, activeOpponentPokemon.atk, activePlayerPokemon.def, activeOpponentPokemon.lvl, opponentMoveType, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.move4, activeOpponentPokemon, activePlayerPokemon);
+            }
+
+        } else {
 
             opponentMoveType = callMove(activeOpponentPokemon.move1).moveType;
             opponentBasePower = callMove(activeOpponentPokemon.move1).basePower;
@@ -235,11 +272,14 @@ public class BattleController {
             if (activeOpponentPokemon.lockedState > 0) {
                 if (!activeOpponentPokemon.move1.equals("Rollout") && !activeOpponentPokemon.move1.equals("Ice Ball")) {
                     move1 = 0;
-                } if (!activeOpponentPokemon.move2.equals("Rollout") && !activeOpponentPokemon.move2.equals("Ice Ball")) {
+                }
+                if (!activeOpponentPokemon.move2.equals("Rollout") && !activeOpponentPokemon.move2.equals("Ice Ball")) {
                     move2 = 0;
-                } if (!activeOpponentPokemon.move3.equals("Rollout") && !activeOpponentPokemon.move3.equals("Ice Ball")) {
+                }
+                if (!activeOpponentPokemon.move3.equals("Rollout") && !activeOpponentPokemon.move3.equals("Ice Ball")) {
                     move3 = 0;
-                } if (!activeOpponentPokemon.move4.equals("Rollout") && !activeOpponentPokemon.move4.equals("Ice Ball")) {
+                }
+                if (!activeOpponentPokemon.move4.equals("Rollout") && !activeOpponentPokemon.move4.equals("Ice Ball")) {
                     move4 = 0;
                 }
             }
@@ -289,6 +329,7 @@ public class BattleController {
             }
             activeOpponentPokemon.lockedMove = idealMove;
         }
+    }
 
 
     void chooseMove() throws IOException {
@@ -301,14 +342,14 @@ public class BattleController {
             playerMoveType = callMove(playerUseMove).moveType;
             playerBasePower = callMove(playerUseMove).basePower;
             playerDamage = damageCalc(playerBasePower, activePlayerPokemon.atk, activeOpponentPokemon.def, activePlayerPokemon.lvl, playerMoveType, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, playerUseMove, activePlayerPokemon, activeOpponentPokemon);
-        } /*else if (activePlayerPokemon.avoidDamage) {
+        } else if (activePlayerPokemon.avoidDamage) {
             playerUseMove = activePlayerPokemon.lockedMoveName;
             priorityCheckPlayer = callMove(playerUseMove).priorityMove;
             playerMoveType = callMove(playerUseMove).moveType;
             playerBasePower = callMove(playerUseMove).basePower;
             playerDamage = damageCalc(playerBasePower, activePlayerPokemon.atk, activeOpponentPokemon.def, activePlayerPokemon.lvl, playerMoveType, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, playerUseMove, activePlayerPokemon, activeOpponentPokemon);
-            activePlayerPokemon.avoidDamage = false;
-        } */else {
+            System.out.println(playerDamage+"////////");
+        } else {
 
         System.out.println("Choose your move:");
         System.out.println("1. " + CM.cM(callMove(activePlayerPokemon.move1).moveType)+activePlayerPokemon.move1 + CM.resetColour);

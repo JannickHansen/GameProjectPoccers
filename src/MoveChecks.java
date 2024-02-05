@@ -135,14 +135,6 @@ public class MoveChecks {
                     System.out.println(moveUser.pokemonName + "'s " + usedMove + " hit "+numberOfHits+" times!");
                 }
                 break;
-            case 10:
-                if (moveUser.avoidDamage) {
-                    resultDamage = 0;
-                    break;
-                }
-                else
-                moveUser.avoidDamage = false;
-                break;
         }
         return resultDamage;
     }

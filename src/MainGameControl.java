@@ -34,7 +34,6 @@ public class MainGameControl {
         //MAIN PRIORITY LIST
         // ADD COLOUR TO ITEMS, MOVES, TYPES, POKEMON <-- TYPES, RED HP ETC
         // PROGRAM ELECTROBALL, Gyro ball
-        // BOUNCE, DIG, FLY, Shadow Force <-- virker halvt korrekt, virker kun hvis brugeren går først. prøv med avoidDamageStage
         // Transform
 
 
