@@ -15,7 +15,7 @@ public class MoveChecks {
             case "Super Fang" -> 5;
             case "Milk Drink", "Recover" -> 6;
             case "Brine" -> 7;
-            case "Pin Missile", "Fury Swipes", "Double Hit" -> 8;
+            case "Pin Missile", "Fury Swipes","Bullet Seed", "Double Hit" -> 8;
             case "Rollout", "Ice Ball" -> 9;
             case "Fly", "Dive", "Shadow Force", "Bounce", "Dig" -> 10;
             default -> 0;
@@ -129,7 +129,7 @@ public class MoveChecks {
                     resultDamage = resultDamage * 2;
                     System.out.println(moveUser.pokemonName + "'s " + usedMove + " hits twice!");
                 }
-                else if (usedMove.equals("Pin Missile") || usedMove.equals("Fury Swipes")) {
+                else if (usedMove.equals("Pin Missile") || usedMove.equals("Fury Swipes") || usedMove.equals("Bullet Seed")) {
                     int numberOfHits = r.nextInt(2,5+1);
                     resultDamage = resultDamage * numberOfHits;
                     System.out.println(moveUser.pokemonName + "'s " + usedMove + " hit "+numberOfHits+" times!");

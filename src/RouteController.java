@@ -339,7 +339,7 @@ public class RouteController {
                 well = true;
                 tastatur.next();
             }
-            if (n >= 1 && !mayVilleFarm) {
+            if (n >= 6 && !mayVilleFarm) {
                 mayVilleFarm = true;
                 n = 0;
                 System.out.println("\nRoute 3 have been unlocked!\n");
@@ -480,7 +480,7 @@ public class RouteController {
         op2 = 0;
         op3 = 0;
         while (true) {
-            if (n >= 3 && !route3) {
+            if (n >= 2 && !route3) {
                 route3 = true;
                 n = 0;
                 System.out.println("\nThe second Pokemon Gym have been unlocked!\n");
@@ -517,25 +517,18 @@ public class RouteController {
                         opponentPokemonParty.get(0).move2 = "Quick Attack";
                         opponentPokemonParty.get(0).move3 = "Rock Throw";
                     } else if (op2 < 61) {
-                        opponentPokemonParty.get(0).setImportPokemonData("", randomNumberRange(14, 19));
+                        opponentPokemonParty.get(0).setImportPokemonData("Hoppip", randomNumberRange(14, 19));
                         opponentPokemonParty.get(0).remainingHp = opponentPokemonParty.get(0).hp;
-                        opponentPokemonParty.get(0).move1 = "";
-                        opponentPokemonParty.get(0).move2 = "";
-                        opponentPokemonParty.get(0).move3 = "";
-                        opponentPokemonParty.get(0).move4 = "";
+                        opponentPokemonParty.get(0).move1 = "Tackle";
+                        opponentPokemonParty.get(0).move2 = "Leech Seed";
+                        opponentPokemonParty.get(0).move3 = "Absorb";
                     } else if (op2 < 81) {
-                        opponentPokemonParty.get(0).setImportPokemonData("", randomNumberRange(14, 17));
+                        opponentPokemonParty.get(0).setImportPokemonData("Skiploom", randomNumberRange(16, 19));
                         opponentPokemonParty.get(0).remainingHp = opponentPokemonParty.get(0).hp;
-                        opponentPokemonParty.get(0).move1 = "";
-                        opponentPokemonParty.get(0).move2 = "";
-                        opponentPokemonParty.get(0).move3 = "";
-                    } else if (op2 <= 100) {
-                        opponentPokemonParty.get(0).setImportPokemonData("", randomNumberRange(15, 18));
-                        opponentPokemonParty.get(0).remainingHp = opponentPokemonParty.get(0).hp;
-                        opponentPokemonParty.get(0).move1 = "";
-                        opponentPokemonParty.get(0).move2 = "";
-                        opponentPokemonParty.get(0).move3 = "";
-                        opponentPokemonParty.get(0).move4 = "";
+                        opponentPokemonParty.get(0).move1 = "Tackle";
+                        opponentPokemonParty.get(0).move2 = "Absorb";
+                        opponentPokemonParty.get(0).move3 = "Bullet Seed";
+                        opponentPokemonParty.get(0).move4 = "Leech Seed";
                     }
                     System.out.println("A wild "+opponentPokemonParty.get(0).pokemonName+" has appeared!\n");
                     startBattle.mainBattleController();
@@ -549,15 +542,16 @@ public class RouteController {
                             op3 = 0;
                             op4 = false;
                             startBattle.trainer = true;
-                            System.out.println("You found <Horse Girl Tiffany> on the route, and challenged him to a duel!\n");
-                            opponentPokemonParty.get(0).setImportPokemonData("Ponyta",15);
-                            opponentPokemonParty.get(0).move1 = "Stomp";
-                            opponentPokemonParty.get(0).move2 = "Flame Charge";
-                            opponentPokemonParty.get(1).setImportPokemonData("Ponyta",15);
+                            System.out.println("You found <Flower Girl Melanie> on the route, and challenged him to a duel!\n");
+                            opponentPokemonParty.get(0).setImportPokemonData("Oddish",18);
+                            opponentPokemonParty.get(0).move1 = "Absorb";
+                            opponentPokemonParty.get(0).move2 = "Bullet Seed";
+                            opponentPokemonParty.get(0).move3 = "Tackle";
+                            opponentPokemonParty.get(1).setImportPokemonData("Surskit",19);
                             opponentPokemonParty.get(1).remainingHp = opponentPokemonParty.get(1).hp;
-                            opponentPokemonParty.get(1).move1 = "Stomp";
-                            opponentPokemonParty.get(1).move2 = "Flame Charge";
-                            opponentPokemonParty.get(1).move3 = "Quick Attack";
+                            opponentPokemonParty.get(1).move1 = "Bubble Beam";
+                            opponentPokemonParty.get(1).move2 = "Quick Attack";
+                            opponentPokemonParty.get(1).move3 = "Air Cutter";
                             op4 = startBattle.mainBattleController();
                             if (op4) {
                                 n++;
@@ -569,15 +563,12 @@ public class RouteController {
                             op3 = 0;
                             op4 = false;
                             startBattle.trainer = true;
-                            System.out.println("You found <Fluff-fan Tommy> on the route, and challenged her to a duel!\n");
-                            opponentPokemonParty.get(0).setImportPokemonData("Mareep",14);
-                            opponentPokemonParty.get(0).move1 = "Thunder Shock";
-                            opponentPokemonParty.get(0).move2 = "Tackle";
-                            opponentPokemonParty.get(1).setImportPokemonData("Flaffy",15);
-                            opponentPokemonParty.get(1).remainingHp = opponentPokemonParty.get(1).hp;
-                            opponentPokemonParty.get(1).move1 = "Thunder Shock";
-                            opponentPokemonParty.get(1).move2 = "Take Down";
-                            opponentPokemonParty.get(1).move3 = "Charge Beam";
+                            System.out.println("You found <Airheaded Ben> on the route, and challenged her to a duel!\n");
+                            opponentPokemonParty.get(0).setImportPokemonData("Skiploom",21);
+                            opponentPokemonParty.get(0).move1 = "Mega Drain";
+                            opponentPokemonParty.get(0).move2 = "Leech Seed";
+                            opponentPokemonParty.get(0).move3 = "Bullet Seed";
+                            opponentPokemonParty.get(0).move4 = "Air Cutter";
                             op4 = startBattle.mainBattleController();
                             if (op4) {
                                 n++;
@@ -588,17 +579,17 @@ public class RouteController {
                             op3 = 0;
                             op4 = false;
                             startBattle.trainer = true;
-                            System.out.println("You found <Old Farmer Greg> on the route, and challenged her to a duel!\n");
-                            opponentPokemonParty.get(0).setImportPokemonData("Miltank",15);
-                            opponentPokemonParty.get(0).move1 = "Tackle";
-                            opponentPokemonParty.get(0).move2 = "Stomp";
-                            opponentPokemonParty.get(0).move3 = "Rollout";
-                            opponentPokemonParty.get(0).move4 = "Milk Drink";
-                            opponentPokemonParty.get(1).setImportPokemonData("Tauros",14);
+                            System.out.println("You found <New Trainer Mike> on the route, and challenged her to a duel!\n");
+                            opponentPokemonParty.get(0).setImportPokemonData("Pidgey",16);
+                            opponentPokemonParty.get(0).move1 = "Quick Attack";
+                            opponentPokemonParty.get(0).move2 = "Twister";
+                            opponentPokemonParty.get(0).move3 = "Wing Attack";
+                            opponentPokemonParty.get(1).setImportPokemonData("Bulbasaur",18);
                             opponentPokemonParty.get(1).remainingHp = opponentPokemonParty.get(1).hp;
-                            opponentPokemonParty.get(1).move1 = "Take Down";
-                            opponentPokemonParty.get(1).move2 = "Stomp";
-                            opponentPokemonParty.get(1).move3 = "Bulldoze";
+                            opponentPokemonParty.get(1).move1 = "Razor Leaf";
+                            opponentPokemonParty.get(1).move2 = "Leech Seed";
+                            opponentPokemonParty.get(1).move3 = "Sludge";
+                            opponentPokemonParty.get(1).move4 = "Absorb";
                             op4 = startBattle.mainBattleController();
                             if (op4) {
                                 n++;
