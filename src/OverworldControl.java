@@ -104,13 +104,13 @@ public class OverworldControl {
                         if (op2.equals("9")) break;
                         System.out.println("\nSelect Route:");
                         System.out.println("1. Route 1");
-                        printRouteInMenu(2, unlockedRoute.route1);
-                        printRouteInMenu(3, unlockedGym.pokemonGym1);
+                        printRouteInMenu(2, 2, unlockedRoute.route1);
+                        printSpecialPlaces(3, unlockedGym.pokemonGym1, "Mayville Farm");
                         printSpecialPlaces(4, unlockedRoute.well,"Dark Well");
-                        printRouteInMenu(5, unlockedRoute.route4);
-                        printRouteInMenu(6, unlockedRoute.route5);
-                        printRouteInMenu(7, unlockedRoute.route6);
-                        printRouteInMenu(8, unlockedRoute.route7);
+                        printRouteInMenu(5, 3, unlockedRoute.mayVilleFarm);
+                        printRouteInMenu(6, 4, unlockedRoute.route4);
+                        printRouteInMenu(7, 5, unlockedRoute.route5);
+                        printRouteInMenu(8, 6, unlockedRoute.route6);
                         System.out.println("9. Return to the <Overworld Menu>");
                         while (true) {
                             op2 = tastatur.next();
@@ -131,20 +131,22 @@ public class OverworldControl {
                                 break;
                             case "3":
                                 if (unlockedGym.pokemonGym1) {
-                                    unlockedRoute.routeThree(playerPokemonParty, opponentPokemonParty, playerBag);
+                                    unlockedRoute.mayVilleFarm(playerPokemonParty, opponentPokemonParty, playerBag);
                                 } else {
                                     System.out.println("You have not unlocked this Route yet.");
                                 }
                                 break;
                             case "4":
-                                if (unlockedGym.pokemonGym1) {
+                                if (unlockedRoute.well) {
                                     unlockedRoute.well(playerPokemonParty, opponentPokemonParty, playerBag);
                                 } else {
                                     System.out.println("You have not unlocked this Route yet.");
                                     break;
                                 }
                             case "5":
-                                if (!unlockedRoute.route5) {
+                                if (unlockedRoute.mayVilleFarm) {
+                                    unlockedRoute.routeThree(playerPokemonParty, opponentPokemonParty, playerBag);
+                                } else {
                                     System.out.println("You have not unlocked this Route yet.");
                                     break;
                                 }
@@ -267,11 +269,11 @@ public class OverworldControl {
         }
     }
 
-    void printRouteInMenu(int routeNumber, boolean route) {
+    void printRouteInMenu(int callNumber, int routeNumber, boolean route) {
         if (route) {
-            System.out.println(routeNumber + ". Route " + routeNumber);
+            System.out.println(callNumber + ". Route " + routeNumber);
         } else {
-            System.out.println(routeNumber + ". ");
+            System.out.println(callNumber + ". ");
         }
     }
     void printSpecialPlaces(int callNumber, boolean requirement, String nameOfPlace) {

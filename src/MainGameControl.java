@@ -34,6 +34,9 @@ public class MainGameControl {
         //MAIN PRIORITY LIST
         // ADD COLOUR TO ITEMS, MOVES, TYPES, POKEMON <-- TYPES, RED HP ETC
         // PROGRAM ELECTROBALL, Gyro ball
+        // ADD LEARN SETS TO ALL POKEMON, ODDISH LINE, BUNEARY LINE
+        // FINISH ROUTE 3
+        // CREATE 2ND GYM (TYPE?)
         // Transform
 
 

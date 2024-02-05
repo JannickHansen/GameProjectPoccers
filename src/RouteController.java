@@ -10,6 +10,7 @@ public class RouteController {
     Scanner tastatur = new Scanner(System.in);
     boolean route1 = false;
     boolean route2 = false;
+    boolean mayVilleFarm = false;
     boolean route3 = false;
     boolean route4 = false;
     boolean route5 = false;
@@ -323,7 +324,7 @@ public class RouteController {
             }
         }
     }
-    void routeThree(List<GeneratedPokemon> playerPokemonParty, List<GeneratedPokemon> opponentPokemonParty, PlayerBag playerBag) throws IOException {
+    void mayVilleFarm(List<GeneratedPokemon> playerPokemonParty, List<GeneratedPokemon> opponentPokemonParty, PlayerBag playerBag) throws IOException {
         BattleController startBattle = new BattleController(playerPokemonParty, opponentPokemonParty, playerBag);
         int minValue = 1;
         int maxValue = 7;
@@ -338,10 +339,10 @@ public class RouteController {
                 well = true;
                 tastatur.next();
             }
-            if (n >= 6 && !route4) {
-                route3 = true;
+            if (n >= 1 && !mayVilleFarm) {
+                mayVilleFarm = true;
                 n = 0;
-                System.out.println("\nRoute 4 have been unlocked!\n");
+                System.out.println("\nRoute 3 have been unlocked!\n");
             }
             startBattle.trainer = false;
             opponentPokemonParty.get(0).remainingHp = 0;
@@ -352,7 +353,7 @@ public class RouteController {
             opponentPokemonParty.get(5).remainingHp = 0;
 
             if (op1.equals("9")) break;
-            System.out.println("\n<Route 3>\n");
+            System.out.println("\n<Mayville Farm>\n");
             System.out.println("Select what you will do:");
             System.out.println("1. Enter the tall grass to look for wild pokemon.");
             System.out.println("2. Find and challenge a trainer on this route.");
@@ -470,6 +471,149 @@ public class RouteController {
             }
         }
     }
+
+    void routeThree (List<GeneratedPokemon> playerPokemonParty, List<GeneratedPokemon> opponentPokemonParty, PlayerBag playerBag) throws IOException {
+        BattleController startBattle = new BattleController(playerPokemonParty, opponentPokemonParty, playerBag);
+        int minValue = 1;
+        int maxValue = 3;
+        op1 = "";
+        op2 = 0;
+        op3 = 0;
+        while (true) {
+            if (n >= 3 && !route3) {
+                route3 = true;
+                n = 0;
+                System.out.println("\nThe second Pokemon Gym have been unlocked!\n");
+            }
+            startBattle.trainer = false;
+            opponentPokemonParty.get(0).remainingHp = 0;
+            opponentPokemonParty.get(1).remainingHp = 0;
+            opponentPokemonParty.get(2).remainingHp = 0;
+            opponentPokemonParty.get(3).remainingHp = 0;
+            opponentPokemonParty.get(4).remainingHp = 0;
+            opponentPokemonParty.get(5).remainingHp = 0;
+
+            if (op1.equals("9")) break;
+            System.out.println("\n<Route 3>\n");
+            System.out.println("Select what you will do:");
+            System.out.println("1. Enter the tall grass to look for wild pokemon.");
+            System.out.println("2. Find and challenge a trainer on this route.");
+            System.out.println("9. Return to the <Route Menu>");
+            op1 = tastatur.next();
+            switch (op1) {
+                case "1":
+                    op1 = "";
+                    op2 = randomNumberGenerator();
+                    if (op2 < 10) {
+                        opponentPokemonParty.get(0).setImportPokemonData("Oddish", randomNumberRange(15, 18));
+                        opponentPokemonParty.get(0).remainingHp = opponentPokemonParty.get(0).hp;
+                        opponentPokemonParty.get(0).move1 = "Absorb";
+                        opponentPokemonParty.get(0).move2 = "Double Hit";
+                        opponentPokemonParty.get(0).move3 = "Leech Seed";
+                    } else if (op2 < 37) {
+                        opponentPokemonParty.get(0).setImportPokemonData("Buneary", randomNumberRange(15, 18));
+                        opponentPokemonParty.get(0).remainingHp = opponentPokemonParty.get(0).hp;
+                        opponentPokemonParty.get(0).move1 = "Double Hit";
+                        opponentPokemonParty.get(0).move2 = "Quick Attack";
+                        opponentPokemonParty.get(0).move3 = "Rock Throw";
+                    } else if (op2 < 61) {
+                        opponentPokemonParty.get(0).setImportPokemonData("", randomNumberRange(14, 19));
+                        opponentPokemonParty.get(0).remainingHp = opponentPokemonParty.get(0).hp;
+                        opponentPokemonParty.get(0).move1 = "";
+                        opponentPokemonParty.get(0).move2 = "";
+                        opponentPokemonParty.get(0).move3 = "";
+                        opponentPokemonParty.get(0).move4 = "";
+                    } else if (op2 < 81) {
+                        opponentPokemonParty.get(0).setImportPokemonData("", randomNumberRange(14, 17));
+                        opponentPokemonParty.get(0).remainingHp = opponentPokemonParty.get(0).hp;
+                        opponentPokemonParty.get(0).move1 = "";
+                        opponentPokemonParty.get(0).move2 = "";
+                        opponentPokemonParty.get(0).move3 = "";
+                    } else if (op2 <= 100) {
+                        opponentPokemonParty.get(0).setImportPokemonData("", randomNumberRange(15, 18));
+                        opponentPokemonParty.get(0).remainingHp = opponentPokemonParty.get(0).hp;
+                        opponentPokemonParty.get(0).move1 = "";
+                        opponentPokemonParty.get(0).move2 = "";
+                        opponentPokemonParty.get(0).move3 = "";
+                        opponentPokemonParty.get(0).move4 = "";
+                    }
+                    System.out.println("A wild "+opponentPokemonParty.get(0).pokemonName+" has appeared!\n");
+                    startBattle.mainBattleController();
+                    break;
+
+                case "2":
+                    op1 = "";
+                    op3 = randomNumberRange(minValue,maxValue);
+                    switch (op3) {
+                        case 1:
+                            op3 = 0;
+                            op4 = false;
+                            startBattle.trainer = true;
+                            System.out.println("You found <Horse Girl Tiffany> on the route, and challenged him to a duel!\n");
+                            opponentPokemonParty.get(0).setImportPokemonData("Ponyta",15);
+                            opponentPokemonParty.get(0).move1 = "Stomp";
+                            opponentPokemonParty.get(0).move2 = "Flame Charge";
+                            opponentPokemonParty.get(1).setImportPokemonData("Ponyta",15);
+                            opponentPokemonParty.get(1).remainingHp = opponentPokemonParty.get(1).hp;
+                            opponentPokemonParty.get(1).move1 = "Stomp";
+                            opponentPokemonParty.get(1).move2 = "Flame Charge";
+                            opponentPokemonParty.get(1).move3 = "Quick Attack";
+                            op4 = startBattle.mainBattleController();
+                            if (op4) {
+                                n++;
+                                System.out.println();
+                                playerBag.pokeDollars = playerBag.pokeDollars + randomNumberRangeForMoney(30,41);
+                            }
+                            break;
+                        case 2:
+                            op3 = 0;
+                            op4 = false;
+                            startBattle.trainer = true;
+                            System.out.println("You found <Fluff-fan Tommy> on the route, and challenged her to a duel!\n");
+                            opponentPokemonParty.get(0).setImportPokemonData("Mareep",14);
+                            opponentPokemonParty.get(0).move1 = "Thunder Shock";
+                            opponentPokemonParty.get(0).move2 = "Tackle";
+                            opponentPokemonParty.get(1).setImportPokemonData("Flaffy",15);
+                            opponentPokemonParty.get(1).remainingHp = opponentPokemonParty.get(1).hp;
+                            opponentPokemonParty.get(1).move1 = "Thunder Shock";
+                            opponentPokemonParty.get(1).move2 = "Take Down";
+                            opponentPokemonParty.get(1).move3 = "Charge Beam";
+                            op4 = startBattle.mainBattleController();
+                            if (op4) {
+                                n++;
+                                playerBag.pokeDollars = playerBag.pokeDollars + randomNumberRangeForMoney(30,41);
+                            }
+                            break;
+                        case 3:
+                            op3 = 0;
+                            op4 = false;
+                            startBattle.trainer = true;
+                            System.out.println("You found <Old Farmer Greg> on the route, and challenged her to a duel!\n");
+                            opponentPokemonParty.get(0).setImportPokemonData("Miltank",15);
+                            opponentPokemonParty.get(0).move1 = "Tackle";
+                            opponentPokemonParty.get(0).move2 = "Stomp";
+                            opponentPokemonParty.get(0).move3 = "Rollout";
+                            opponentPokemonParty.get(0).move4 = "Milk Drink";
+                            opponentPokemonParty.get(1).setImportPokemonData("Tauros",14);
+                            opponentPokemonParty.get(1).remainingHp = opponentPokemonParty.get(1).hp;
+                            opponentPokemonParty.get(1).move1 = "Take Down";
+                            opponentPokemonParty.get(1).move2 = "Stomp";
+                            opponentPokemonParty.get(1).move3 = "Bulldoze";
+                            op4 = startBattle.mainBattleController();
+                            if (op4) {
+                                n++;
+                                playerBag.pokeDollars = playerBag.pokeDollars + randomNumberRangeForMoney(30,41);
+                            }
+                            break;
+                    }
+                    break;
+                case "9":
+                default:
+                    System.out.println("Please make a valid choice.\n");
+            }
+        }
+    }
+
     void well(List<GeneratedPokemon> playerPokemonParty, List<GeneratedPokemon> opponentPokemonParty, PlayerBag playerBag) throws IOException {
         BattleController startBattle = new BattleController(playerPokemonParty, opponentPokemonParty, playerBag);
         op1 = "";

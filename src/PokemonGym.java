@@ -111,7 +111,7 @@ public class PokemonGym {
                 System.out.println("As you have now bested me, I shall grant you entrance to the pokeMall!");
                 System.out.println("The pokeMall contains different shops with different items for sale.");
                 System.out.println("This includes "+CM.getItems+"medicines"+CM.resetColour+", "+CM.getItems+"pokeballs"+CM.resetColour+" and even "+CM.getItems+"moveTMs"+CM.resetColour+"!");
-                System.out.println("However, each Gym Badge you earn will slowly unlock the different items up for graps.");
+                System.out.println("However, each Gym Badge you earn will unlock more items up for graps.");
                 System.out.println("You can find the pokeMall in the <Overworld Menu>");
                 System.out.println("Now go on!");
                 System.out.println("Press a to continue");
