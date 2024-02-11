@@ -74,6 +74,8 @@ Masquerain,100,82,80,70,Bug,Flying,159,75,
 Ghastly,100,35,80,30,Ghost,Poison,62,190,
 Haunter,115,55,95,45,Ghost,Poison,142,90,
 Gengar,130,75,110,60,Ghost,Poison,250,45,
+Phantump,70,60,38,43,Ghost,Grass,62,120,
+Trevenant,110,82,56,85,Ghost,Grass,166,60,
 
 Absol,130,60,75,65,Dark,Null,163,30,
 

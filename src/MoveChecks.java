@@ -8,7 +8,7 @@ public class MoveChecks {
     public int checkSpecialMoveEffect(String usedMove) {
         int effectType = 0;
         effectType = switch (usedMove) {
-            case "Absorb", "Mega Drain", "Giga Drain" -> 1;
+            case "Absorb", "Mega Drain", "Giga Drain", "Horn Leech" -> 1;
             case "Wrap", "Fire Spin" -> 2;
             case "Leech Seed" -> 3;
             case "Flail" -> 4;

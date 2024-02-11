@@ -1798,6 +1798,43 @@ public class PokemonLearnSet {
                         break;
                 }
                 break;
+            case "Phantump", "Trevenant":
+                switch (insertPokemon.lvl) {
+                    case 1:
+                        insertPokemon.move1 = "Tackle";
+                        insertPokemon.move2 = "Branch Poke";
+                        break;
+                    case 5:
+                        learnAndPrintMove(insertPokemon, "Astonish");
+                        break;
+                    case 8:
+                        learnAndPrintMove(insertPokemon,"Leech Seed");
+                        break;
+                    case 13:
+                        learnAndPrintMove(insertPokemon,"Shadow Sneak");
+                        break;
+                    case 17:
+                        learnAndPrintMove(insertPokemon,"Razor Leaf");
+                        break;
+                    case 23:
+                        learnAndPrintMove(insertPokemon,"Shadow Claw");
+                        break;
+                    case 28:
+                        learnAndPrintMove(insertPokemon,"Horn Leech");
+                        break;
+                    case 35:
+                        learnAndPrintMove(insertPokemon, "Shadow Ball");
+                        break;
+                    case 39:
+                        learnAndPrintMove(insertPokemon, "Wood Hammer");
+                        break;
+                    case 45:
+                        learnAndPrintMove(insertPokemon,"Phantom Force");
+                        break;
+                    case 51:
+                        learnAndPrintMove(insertPokemon,"Leaf Storm");
+                }
+                break;
         }
     }
     private void learnAndPrintMove (GeneratedPokemon insertPokemon, String newMove) throws IOException {

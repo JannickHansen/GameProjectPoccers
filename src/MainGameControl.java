@@ -21,7 +21,7 @@ public class MainGameControl {
     PickStarter pickStarter = new PickStarter(playerPokemonParty, opponentPokemonParty);
     BattleController startBattle = new BattleController(playerPokemonParty, opponentPokemonParty, playerBag);
     OverworldControl overworldHub = new OverworldControl(playerPokemonParty, opponentPokemonParty, playerBag);
-    MainGameControl() throws IOException {
+    MainGameControl() {
     }
 
     void mainGameHub() throws IOException {
@@ -36,7 +36,8 @@ public class MainGameControl {
         // PROGRAM ELECTROBALL, Gyro ball
         // ADD LEARN SETS TO ALL POKEMON, ODDISH LINE, BUNEARY LINE
         // FINISH ROUTE 3
-        // CREATE 2ND GYM (TYPE?)
+        // CREATE 2ND GYM (GRASS) (LOTAD, PHANTUMP)
+        // CREATE ZONE / AREA THAT ONLY HAS FUNCTION TO EVOLVE EEVEES - MYTH OF LEGENDARY DOGS (ENTEI, SUICUNE, RAIKU)
         // Transform
 
 
