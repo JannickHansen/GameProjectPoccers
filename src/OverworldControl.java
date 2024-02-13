@@ -12,6 +12,7 @@ public class OverworldControl {
     PokemonGym unlockedGym = new PokemonGym(playerPokemonParty, opponentPokemonParty, playerBag);
     String op1 = "";
     String op2 = "";
+    ArrayList<String> kennelList = new ArrayList<>();
 
     OverworldControl(List<GeneratedPokemon> playerPokemonParty, List<GeneratedPokemon> opponentPokemonParty, PlayerBag playerBag) {
         this.playerPokemonParty = playerPokemonParty;
@@ -106,7 +107,7 @@ public class OverworldControl {
                         System.out.println("1. Route 1");
                         printRouteInMenu(2, 2, unlockedRoute.route1);
                         printSpecialPlaces(3, unlockedGym.pokemonGym1, "Mayville Farm");
-                        printSpecialPlaces(4, unlockedRoute.well,"Dark Well");
+                        printSpecialPlaces(4, unlockedRoute.well, "Dark Well");
                         printRouteInMenu(5, 3, unlockedRoute.mayVilleFarm);
                         printRouteInMenu(6, 4, unlockedRoute.route4);
                         printRouteInMenu(7, 5, unlockedRoute.route5);
@@ -174,7 +175,7 @@ public class OverworldControl {
                     while (true) {
                         if (op2.equals("9")) break;
                         System.out.println("\nSelect Pokemon Gym:");
-                        printGymInMenu(1, unlockedRoute.route2, CM.getNormal+"Normal"+CM.resetColour);
+                        printGymInMenu(1, unlockedRoute.route2, CM.getNormal + "Normal" + CM.resetColour);
                         printGymInMenu(2, unlockedGym.pokemonGym2, "");
                         printGymInMenu(3, unlockedGym.pokemonGym3, "");
                         printGymInMenu(4, unlockedGym.pokemonGym4, "");
@@ -244,7 +245,7 @@ public class OverworldControl {
                     while (true) {
                         System.out.println("\n<PokeMall>\n");
                         System.out.println("1. General Store");
-                        System.out.println("2. Pokemon Kennel");
+                        System.out.println("2. Poke-Kennel");
                         System.out.println("3. TM-Moves Store");
                         System.out.println("4. Evolution Stones Store");
                         System.out.println("5. Restaurant");
@@ -259,6 +260,8 @@ public class OverworldControl {
                             generalStoreLayout();
                             break;
                         case "2":
+                            pokeKennelLayout();
+                            break;
                         case "3":
                         case "4":
                         case "5":
@@ -276,9 +279,10 @@ public class OverworldControl {
             System.out.println(callNumber + ". ");
         }
     }
+
     void printSpecialPlaces(int callNumber, boolean requirement, String nameOfPlace) {
         if (requirement) {
-            System.out.println(callNumber + ". "+nameOfPlace);
+            System.out.println(callNumber + ". " + nameOfPlace);
         } else {
             System.out.println(callNumber + ". ");
         }
@@ -325,7 +329,7 @@ public class OverworldControl {
 
         while (true) {
             System.out.println("\n<General Store>\n");
-            System.out.println("p$: "+CM.getItems+playerBag.pokeDollars+ CM.resetColour+ "\n");
+            System.out.println("p$: " + CM.getItems + playerBag.pokeDollars + CM.resetColour + "\n");
             for (int i = 0; i < storeItem.size(); i++) {
                 System.out.println((i + 1) + ". " + storeItem.get(i) + "\t" + storeItemPrice.get(i) + "p$");
             }
@@ -349,27 +353,27 @@ public class OverworldControl {
                     switch (itemName) {
                         case "Pokeball":
                             tempHold = tempHold + PlayerBag.numberOfItemsInInventory.get(0);
-                            PlayerBag.numberOfItemsInInventory.set(0,tempHold);
+                            PlayerBag.numberOfItemsInInventory.set(0, tempHold);
                             break;
                         case "Greatball":
                             tempHold = tempHold + PlayerBag.numberOfItemsInInventory.get(1);
-                            PlayerBag.numberOfItemsInInventory.set(1,tempHold);
+                            PlayerBag.numberOfItemsInInventory.set(1, tempHold);
                             break;
                         case "Ultraball":
                             tempHold = tempHold + PlayerBag.numberOfItemsInInventory.get(2);
-                            PlayerBag.numberOfItemsInInventory.set(2,tempHold);
+                            PlayerBag.numberOfItemsInInventory.set(2, tempHold);
                             break;
                         case "Potion":
                             tempHold = tempHold + PlayerBag.numberOfItemsInInventory.get(3);
-                            PlayerBag.numberOfItemsInInventory.set(3,tempHold);
+                            PlayerBag.numberOfItemsInInventory.set(3, tempHold);
                             break;
                         case "Super Potion":
                             tempHold = tempHold + PlayerBag.numberOfItemsInInventory.get(4);
-                            PlayerBag.numberOfItemsInInventory.set(4,tempHold);
+                            PlayerBag.numberOfItemsInInventory.set(4, tempHold);
                             break;
                         case "Hyper Potion":
                             tempHold = tempHold + PlayerBag.numberOfItemsInInventory.get(5);
-                            PlayerBag.numberOfItemsInInventory.set(5,tempHold);
+                            PlayerBag.numberOfItemsInInventory.set(5, tempHold);
                             break;
                     }
 
@@ -380,4 +384,84 @@ public class OverworldControl {
             }
         }
     }
+
+    void pokeKennelLayout() throws IOException {
+        ArrayList<String> kennelPokemon = new ArrayList<>();
+        String op3;
+
+        if (unlockedGym.pokemonGym2 && !kennelList.contains("Eevee")) {
+            kennelPokemon.add("Eevee");
+        }
+
+        while (true) {
+            System.out.println("\n<Poke-Kennel>\n");
+            System.out.println("p$: " + CM.getItems + playerBag.pokeDollars + CM.resetColour + "\n");
+            for (int i = 0; i < kennelPokemon.size(); i++) {
+                System.out.println((i + 1) + ". " + kennelPokemon.get(i));
+            }
+            System.out.println("9. Return to <PokeMall>");
+            op3 = tastatur.next();
+
+            if (op3.equals("9")) {
+                break;
+            }
+
+            int selectedItem = Integer.parseInt(op3) - 1;
+
+            if (selectedItem >= 0 && selectedItem < kennelPokemon.size()) {
+                String itemName = kennelPokemon.get(selectedItem);
+                String savePokemonColour =" ";
+
+                    switch (itemName) {
+                        case "Eevee":
+                            kennelList.add("Eevee");
+                            kennelPokemon.remove(selectedItem);
+                            savePokemonColour = "Normal";
+                            if (playerPokemonParty.get(0).pokemonName.equals(" ") && !op3.equals("9")) {
+                                playerPokemonParty.get(0).setImportPokemonData("Eevee", 15);
+                                playerPokemonParty.get(0).move1 = "Tackle";
+                                playerPokemonParty.get(0).move2 = "Quick Attack";
+                                playerPokemonParty.get(0).move3 = "Flail";
+                            break;
+                            } else if (playerPokemonParty.get(1).pokemonName.equals(" ") && !op3.equals("9")) {
+                                playerPokemonParty.get(1).setImportPokemonData("Eevee", 15);
+                                playerPokemonParty.get(1).move1 = "Tackle";
+                                playerPokemonParty.get(1).move2 = "Quick Attack";
+                                playerPokemonParty.get(1).move3 = "Flail";
+                                break;
+                            } else if (playerPokemonParty.get(2).pokemonName.equals(" ") && !op3.equals("9")) {
+                                playerPokemonParty.get(2).setImportPokemonData("Eevee", 15);
+                                playerPokemonParty.get(2).move1 = "Tackle";
+                                playerPokemonParty.get(2).move2 = "Quick Attack";
+                                playerPokemonParty.get(2).move3 = "Flail";
+                                break;
+                            } else if (playerPokemonParty.get(3).pokemonName.equals(" ") && !op3.equals("9")) {
+                                playerPokemonParty.get(3).setImportPokemonData("Eevee", 15);
+                                playerPokemonParty.get(3).move1 = "Tackle";
+                                playerPokemonParty.get(3).move2 = "Quick Attack";
+                                playerPokemonParty.get(3).move3 = "Flail";
+                                break;
+                            } else if (playerPokemonParty.get(4).pokemonName.equals(" ") && !op3.equals("9")) {
+                                playerPokemonParty.get(4).setImportPokemonData("Eevee", 15);
+                                playerPokemonParty.get(4).move1 = "Tackle";
+                                playerPokemonParty.get(4).move2 = "Quick Attack";
+                                playerPokemonParty.get(4).move3 = "Flail";
+                                break;
+                            } else if (playerPokemonParty.get(5).pokemonName.equals(" ") && !op3.equals("9")) {
+                                playerPokemonParty.get(5).setImportPokemonData("Eevee", 15);
+                                playerPokemonParty.get(5).move1 = "Tackle";
+                                playerPokemonParty.get(5).move2 = "Quick Attack";
+                                playerPokemonParty.get(5).move3 = "Flail";
+                                break;
+                            }
+                    }
+                System.out.println();
+                System.out.println("You recieved the "+CM.cM(savePokemonColour)+itemName+CM.resetColour+"!");
+                System.out.println("Please take good care of it.");
+                System.out.println("Press a to continue");
+                tastatur.next();
+            }
+        }
+    }
+    //hvis man vælger en pokemon, giv pokemon til party + tilføj til kennelList (liste over pokemon som spilleren har taget)
 }
