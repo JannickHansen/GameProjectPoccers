@@ -1869,26 +1869,31 @@ public class PokemonLearnSet {
                         System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " forgot "+ CM.cM(callMove(insertPokemon.move1).moveType) + insertPokemon.move1 + CM.resetColour + "...");
                         insertPokemon.move1 = newMove;
                         System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " learnt " + CM.cM(callMove(insertPokemon.move1).moveType) + insertPokemon.move1 + CM.resetColour + "!");
+                        System.out.println();
                         break;
                     } else if (op2.equals("2")) {
                         System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " forgot " + CM.cM(callMove(insertPokemon.move2).moveType) + insertPokemon.move2 + CM.resetColour + "...");
                         insertPokemon.move2 = newMove;
                         System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " learnt " + CM.cM(callMove(insertPokemon.move2).moveType) + insertPokemon.move2 + CM.resetColour + "!");
+                        System.out.println();
                         break;
                     } else if (op2.equals("3")) {
                         System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " forgot " + CM.cM(callMove(insertPokemon.move3).moveType) + insertPokemon.move3 + CM.resetColour + "...");
                         insertPokemon.move3 = newMove;
                         System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " learnt " + CM.cM(callMove(insertPokemon.move3).moveType) + insertPokemon.move3 + CM.resetColour + "!");
+                        System.out.println();
                         break;
                     } else if (op2.equals("4")) {
                         System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " forgot " + CM.cM(callMove(insertPokemon.move4).moveType) + insertPokemon.move4 + CM.resetColour + "...");
                         insertPokemon.move4 = newMove;
                         System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " learnt " + CM.cM(callMove(insertPokemon.move4).moveType) + insertPokemon.move4 + CM.resetColour + "!");
+                        System.out.println();
                         break;
                     }
 
                 } else if (op1.equals("No")) {
                     System.out.println("Your " + CM.cM(insertPokemon.pokemonType1) + insertPokemon.pokemonName + CM.resetColour + " did not learn " + CM.cM(callMove(newMove).moveType) + newMove + ".");
+                    System.out.println();
                     break;
                 }
             }

@@ -348,7 +348,6 @@ public class BattleController {
             playerMoveType = callMove(playerUseMove).moveType;
             playerBasePower = callMove(playerUseMove).basePower;
             playerDamage = damageCalc(playerBasePower, activePlayerPokemon.atk, activeOpponentPokemon.def, activePlayerPokemon.lvl, playerMoveType, activePlayerPokemon.pokemonType1, activePlayerPokemon.pokemonType2, activeOpponentPokemon.pokemonType1, activeOpponentPokemon.pokemonType2, playerUseMove, activePlayerPokemon, activeOpponentPokemon);
-            System.out.println(playerDamage+"////////");
         } else {
 
         System.out.println("Choose your move:");
