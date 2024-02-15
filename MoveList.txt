@@ -110,7 +110,7 @@ Power Gem,80,0,Rock,
 Ancient Power,60,0,Rock,
 
 Iron Head,80,0,Steel,
-Metal Claw,50,0,Steel,
+Metal Claw,60,0,Steel,
 Iron Tail,100,0,Steel,
 Flash Cannon,80,0,Steel,
 Gyro Ball,20,0,Steel,

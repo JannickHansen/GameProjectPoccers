@@ -206,14 +206,14 @@ public class BattleController {
         }
         System.out.println();
         if (!foundWinner && !pokemonFainted) {
-            checkMove.endOfTurnEffects(activePlayerPokemon, activeOpponentPokemon, playerDamage);
-            if (activeOpponentPokemon.remainingHp <= 0 && !foundWinner) {
+            checkMove.endOfTurnEffects(activeOpponentPokemon, activePlayerPokemon, playerDamage);
+            if (activeOpponentPokemon.remainingHp <= 0) {
                 ifOpponentLose();
             }
         }
         if (!foundWinner && !pokemonFainted) {
-            checkMove.endOfTurnEffects(activeOpponentPokemon, activePlayerPokemon, idealMove);
-            if (activePlayerPokemon.remainingHp <= 0 && !foundWinner) {
+            checkMove.endOfTurnEffects(activePlayerPokemon, activeOpponentPokemon, idealMove);
+            if (activePlayerPokemon.remainingHp <= 0) {
                 ifPlayerLose();
             }
         }
