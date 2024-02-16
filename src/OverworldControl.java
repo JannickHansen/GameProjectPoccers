@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -10,6 +11,7 @@ public class OverworldControl {
     PlayerBag playerBag;
     RouteController unlockedRoute = new RouteController(playerPokemonParty, opponentPokemonParty, playerBag);
     PokemonGym unlockedGym = new PokemonGym(playerPokemonParty, opponentPokemonParty, playerBag);
+    SaveState ss = new SaveState();
     String op1 = "";
     String op2 = "";
     ArrayList<String> kennelList = new ArrayList<>();
@@ -35,9 +37,10 @@ public class OverworldControl {
                 if (unlockedGym.pokemonGym1) {
                     System.out.println("5. pokeMall");
                 }
+                System.out.println("8. Save Game");
                 System.out.println("9 to quit game"); // dev command
                 op1 = tastatur.next();
-                if (op1.equals("1") || op1.equals("2") || op1.equals("3") || op1.equals("4") || (op1.equals("5") && unlockedGym.pokemonGym1) || op1.equals("9"))
+                if (op1.equals("1") || op1.equals("2") || op1.equals("3") || op1.equals("4") || (op1.equals("5") && unlockedGym.pokemonGym1) || op1.equals("9") || op1.equals("8"))
                     break;
                 else System.out.println("\nPlease make a valid choice.\n");
             }
@@ -267,6 +270,11 @@ public class OverworldControl {
                         case "5":
                         case "9":
                     }
+                    break;
+                case "8":
+                    System.out.println("Saving...");
+                    ss.SaveStateSave(playerPokemonParty, playerBag, unlockedRoute, unlockedGym);
+                    System.out.println("Your game has been saved.");
                     break;
             }
         }

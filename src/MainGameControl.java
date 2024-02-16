@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class MainGameControl {
     List<GeneratedPokemon> playerPokemonParty = new ArrayList<>();
@@ -25,11 +26,15 @@ public class MainGameControl {
     }
 
     void mainGameHub() throws IOException {
-        initiateGame();
-        pickStarter.selectionStart();
-        startBattle.mainBattleController();
-        pickStarter.postFirstBattle();
-        overworldHub.overworldMenu();
+        boolean op1 = initiateGame();
+        if (!op1) {
+            pickStarter.selectionStart();
+            startBattle.mainBattleController();
+            pickStarter.postFirstBattle();
+        } else if (op1) {
+            overworldHub.ss.SaveStateLoad();
+        }
+            overworldHub.overworldMenu();
 
         //MAIN PRIORITY LIST
         // ADD COLOUR TO ITEMS, MOVES, TYPES, POKEMON <-- TYPES, RED HP ETC
@@ -49,7 +54,7 @@ public class MainGameControl {
         // Add evolutions (mandatory evolution for now at a set level)
         // Make better OpponentAI and give it randomness // 50/50 to use best move etc
     }
-    void initiateGame() {
+    public boolean initiateGame() {
 
         playerPokemonParty.add(playerPokemon1);
         playerPokemonParty.add(playerPokemon2);
@@ -64,5 +69,21 @@ public class MainGameControl {
         opponentPokemonParty.add(uniqueOpponent4);
         opponentPokemonParty.add(uniqueOpponent5);
         opponentPokemonParty.add(uniqueOpponent6);
+
+        while (true) {
+            System.out.println("Would you like to load a Save File? (Yes / No)");
+            Scanner sc = new Scanner(System.in);
+            String op1 = sc.next();
+            op1 = spellingControl(op1);
+            if (op1.matches("Yes")) {
+                return true;
+            } else if (op1.matches("No")) {
+                return false;
+            }
+        }
+    }
+    public String spellingControl(String str) {
+        if (str == null || str.isEmpty()) return str;
+        return str.substring(0,1).toUpperCase() + str.substring(1);
     }
 }
