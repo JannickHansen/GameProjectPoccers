@@ -17,7 +17,7 @@ public class SaveState {
 
         for (int i = 0; i < 5; i++) {
             GeneratedPokemon readPokemon = playerPokemonParty.get(i);
-            ud.print(readPokemon.pokemonName+","+readPokemon.lvl+","+readPokemon.expToNextLvl+","+readPokemon.exp+","+readPokemon.atk+","+readPokemon.def+","+readPokemon.spd+","+readPokemon.hp+","+readPokemon.pokemonType1+","+readPokemon.pokemonType2+","+readPokemon.IVAtk+","+readPokemon.IVDef+","+readPokemon.IVSpd+","+readPokemon.IVHp+","+readPokemon.natureStatsAtk+","+readPokemon.natureStatsDef+","+readPokemon.natureStatsSpd+","+readPokemon.pokemonNature+","+readPokemon.move1+","+readPokemon.move2+","+readPokemon.move3+","+readPokemon.move4+","+readPokemon.expYield+","+readPokemon.catchRate+","+readPokemon.basePower1+","+readPokemon.basePower2+","+readPokemon.basePower3+","+readPokemon.basePower4+",");
+            ud.print(readPokemon.pokemonName+","+readPokemon.lvl+","+readPokemon.expToNextLvl+","+readPokemon.exp+","+readPokemon.atk+","+readPokemon.def+","+readPokemon.spd+","+readPokemon.hp+","+readPokemon.pokemonType1+","+readPokemon.pokemonType2+","+readPokemon.IVAtk+","+readPokemon.IVDef+","+readPokemon.IVSpd+","+readPokemon.IVHp+","+readPokemon.natureStatsAtk+","+readPokemon.natureStatsDef+","+readPokemon.natureStatsSpd+","+readPokemon.pokemonNature+","+readPokemon.move1+","+readPokemon.move2+","+readPokemon.move3+","+readPokemon.move4+","+readPokemon.expYield+","+readPokemon.catchRate+","+readPokemon.basePower1+","+readPokemon.basePower2+","+readPokemon.basePower3+","+readPokemon.basePower4+","+readPokemon.hasBeenGenerated+",");
         }
         ud.print(playerBag.pokeDollars+",");
         for (String l : playerBag.getNameOfItemsInInventory()) {
@@ -31,7 +31,7 @@ public class SaveState {
         ud.close();
     }
 
-    public void SaveStateLoad() throws IOException {
+    public void SaveStateLoad(List<GeneratedPokemon> playerPokemonParty, PlayerBag playerBag, RouteController unlockedRoute, PokemonGym unlockedGym) throws IOException {
         FileReader pokemonList = new FileReader("SaveState.txt");
         BufferedReader readIn = new BufferedReader(pokemonList);
         String line = readIn.readLine();
@@ -40,7 +40,7 @@ public class SaveState {
 
         for (int i = 0; i < 5; i++) {
 
-          playerPokemonParty.get(0).pokemonName = extractData(line,currentLocation);
+          playerPokemonParty.get(i).pokemonName = extractData(line,currentLocation);
             currentLocation++;
           playerPokemonParty.get(i).lvl = convertReadStats.getOrDefault(extractData(line,currentLocation),0);
             currentLocation++;
@@ -104,12 +104,60 @@ public class SaveState {
           playerPokemonParty.get(i).basePower4 = convertReadStats.getOrDefault(extractData(line,currentLocation),0);
             currentLocation++;
 
-          playerPokemonParty.get(i).hasBeenGenerated = true;
+          playerPokemonParty.get(i).hasBeenGenerated = convertBoolean.getOrDefault(extractData(line,currentLocation),false);
+          currentLocation++;
 
         }
 
-        playerBag.pokeDollars = convertReadStats.getOrDefault(line,167);
+        playerBag.pokeDollars = convertReadStats.getOrDefault(line,currentLocation);
+        currentLocation++;
 
+        for (int i = 0; i < 6; i++) {
+            playerBag.setNameOfItemsInInventory(extractData(line,currentLocation));
+            currentLocation++;
+        }
+
+        for (int i = 0; i < 6; i++) {
+            playerBag.setNumberOfItemsInInventory(convertReadStats.getOrDefault(extractData(line,currentLocation),0));
+            currentLocation++;
+        }
+
+        unlockedRoute.route1 = convertBoolean.getOrDefault(extractData(line,currentLocation),false);
+        currentLocation++;
+        unlockedRoute.route2 = convertBoolean.getOrDefault(extractData(line,currentLocation),false);
+        currentLocation++;
+        unlockedRoute.route3 = convertBoolean.getOrDefault(extractData(line,currentLocation),false);
+        currentLocation++;
+        unlockedRoute.route4 = convertBoolean.getOrDefault(extractData(line,currentLocation),false);
+        currentLocation++;
+        unlockedRoute.route5 = convertBoolean.getOrDefault(extractData(line,currentLocation),false);
+        currentLocation++;
+        unlockedRoute.route6 = convertBoolean.getOrDefault(extractData(line,currentLocation),false);
+        currentLocation++;
+        unlockedRoute.route7 = convertBoolean.getOrDefault(extractData(line,currentLocation),false);
+        currentLocation++;
+        unlockedRoute.route8 = convertBoolean.getOrDefault(extractData(line,currentLocation),false);
+        currentLocation++;
+        unlockedRoute.well = convertBoolean.getOrDefault(extractData(line,currentLocation),false);
+        currentLocation++;
+        unlockedRoute.mayVilleFarm = convertBoolean.getOrDefault(extractData(line,currentLocation),false);
+        currentLocation++;
+
+        unlockedGym.pokemonGym1 = convertBoolean.getOrDefault(extractData(line,currentLocation),false);
+        currentLocation++;
+        unlockedGym.pokemonGym2 = convertBoolean.getOrDefault(extractData(line,currentLocation),false);
+        currentLocation++;
+        unlockedGym.pokemonGym3 = convertBoolean.getOrDefault(extractData(line,currentLocation),false);
+        currentLocation++;
+        unlockedGym.pokemonGym4 = convertBoolean.getOrDefault(extractData(line,currentLocation),false);
+        currentLocation++;
+        unlockedGym.pokemonGym5 = convertBoolean.getOrDefault(extractData(line,currentLocation),false);
+        currentLocation++;
+        unlockedGym.pokemonGym6 = convertBoolean.getOrDefault(extractData(line,currentLocation),false);
+        currentLocation++;
+        unlockedGym.pokemonGym7 = convertBoolean.getOrDefault(extractData(line,currentLocation),false);
+        currentLocation++;
+        unlockedGym.pokemonGym8 = convertBoolean.getOrDefault(extractData(line,currentLocation),false);
 
     }
     public String extractData(String line, int i) {
@@ -379,5 +427,9 @@ public class SaveState {
         convertReadStats.put("259", 259);
         convertReadStats.put("260", 260);
     }
-
+    private static final Map<String, Boolean> convertBoolean = new HashMap<>();
+    static {
+        convertBoolean.put("true",true);
+        convertBoolean.put("false",false);
+    }
 }

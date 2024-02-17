@@ -32,7 +32,7 @@ public class MainGameControl {
             startBattle.mainBattleController();
             pickStarter.postFirstBattle();
         } else if (op1) {
-            overworldHub.ss.SaveStateLoad();
+            overworldHub.ss.SaveStateLoad(playerPokemonParty, playerBag, overworldHub.unlockedRoute, overworldHub.unlockedGym);
         }
             overworldHub.overworldMenu();
 
