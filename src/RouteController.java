@@ -504,7 +504,7 @@ public class RouteController {
                 case "1":
                     op1 = "";
                     op2 = randomNumberGenerator();
-                    if (op2 < 10) {
+                    if (op2 < 30) {
                         opponentPokemonParty.get(0).setImportPokemonData("Oddish", randomNumberRange(15, 18));
                         opponentPokemonParty.get(0).remainingHp = opponentPokemonParty.get(0).hp;
                         opponentPokemonParty.get(0).move1 = "Absorb";
