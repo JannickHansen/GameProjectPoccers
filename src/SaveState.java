@@ -20,9 +20,7 @@ public class SaveState {
             ud.print(readPokemon.pokemonName+","+readPokemon.lvl+","+readPokemon.expToNextLvl+","+readPokemon.exp+","+readPokemon.atk+","+readPokemon.def+","+readPokemon.spd+","+readPokemon.hp+","+readPokemon.pokemonType1+","+readPokemon.pokemonType2+","+readPokemon.IVAtk+","+readPokemon.IVDef+","+readPokemon.IVSpd+","+readPokemon.IVHp+","+readPokemon.natureStatsAtk+","+readPokemon.natureStatsDef+","+readPokemon.natureStatsSpd+","+readPokemon.pokemonNature+","+readPokemon.move1+","+readPokemon.move2+","+readPokemon.move3+","+readPokemon.move4+","+readPokemon.expYield+","+readPokemon.catchRate+","+readPokemon.basePower1+","+readPokemon.basePower2+","+readPokemon.basePower3+","+readPokemon.basePower4+","+readPokemon.hasBeenGenerated+",");
         }
         ud.print(playerBag.pokeDollars+",");
-        for (String l : playerBag.getNameOfItemsInInventory()) {
-            ud.print(l+",");
-        }
+
         for (Integer l : playerBag.getNumberOfItemsInInventory()) {
             ud.print(l+",");
         }
@@ -112,13 +110,8 @@ public class SaveState {
         playerBag.pokeDollars = convertReadStats.getOrDefault(line,currentLocation);
         currentLocation++;
 
-        for (int i = 0; i < 6; i++) {
-            playerBag.setNameOfItemsInInventory(extractData(line,currentLocation));
-            currentLocation++;
-        }
-
-        for (int i = 0; i < 6; i++) {
-            playerBag.setNumberOfItemsInInventory(convertReadStats.getOrDefault(extractData(line,currentLocation),0));
+        for (int i = 0; i < 7; i++) {
+            playerBag.setNumberOfItemsInInventory(i, convertReadStats.getOrDefault(extractData(line,currentLocation),0));
             currentLocation++;
         }
 

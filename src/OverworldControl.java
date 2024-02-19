@@ -202,10 +202,12 @@ public class OverworldControl {
                                     System.out.println("You have not unlocked this Gym yet.");
                                 break;
                             case "2":
-                                if (!unlockedGym.pokemonGym1) {
-                                    System.out.println("You have not unlocked this Gym yet.");
+                                if (unlockedRoute.route3) {
+                                    unlockedGym.pokemonGym2(playerPokemonParty, opponentPokemonParty, playerBag);
                                     break;
-                                }
+                                } else
+                                    System.out.println("You have not unlocked this Gym yet.");
+                                break;
                             /*case "3":
                                 if (!unlockedGym.unlockedGym3) {
                                     System.out.println("You have not unlocked this Gym yet.");

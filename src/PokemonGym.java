@@ -8,14 +8,14 @@ public class PokemonGym {
     PlayerBag playerBag;
     Scanner tastatur = new Scanner(System.in);
     String op1;
-    boolean pokemonGym1 = false;
-    boolean pokemonGym2 = false;
-    boolean pokemonGym3 = false;
-    boolean pokemonGym4 = false;
-    boolean pokemonGym5 = false;
-    boolean pokemonGym6 = false;
-    boolean pokemonGym7 = false;
-    boolean pokemonGym8 = false;
+    boolean pokemonGym1;
+    boolean pokemonGym2;
+    boolean pokemonGym3;
+    boolean pokemonGym4;
+    boolean pokemonGym5;
+    boolean pokemonGym6;
+    boolean pokemonGym7;
+    boolean pokemonGym8;
     PokemonGym(List<GeneratedPokemon> playerPokemonParty, List<GeneratedPokemon> opponentPokemonParty, PlayerBag playerBag) {
         this.playerPokemonParty = playerPokemonParty;
         this.opponentPokemonParty = opponentPokemonParty;

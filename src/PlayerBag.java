@@ -152,8 +152,10 @@ public class PlayerBag {
     public List<Integer> getNumberOfItemsInInventory () {
         return numberOfItemsInInventory;
     }
-    public void setNameOfItemsInInventory (String input) {nameOfItemsInInventory.add(input);}
-    public void setNumberOfItemsInInventory (Integer input) {numberOfItemsInInventory.add(input);}
+
+    public void setNumberOfItemsInInventory (int i, Integer input) {
+        numberOfItemsInInventory.set(i, input);
+    }
 
 }
 

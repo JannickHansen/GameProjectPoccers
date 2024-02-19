@@ -115,7 +115,7 @@ public class PickStarter {
         System.out.println("You'll get "+ CM.getItems+"5 pokeballs"+ CM.resetColour+" right now! Do use them wisely.");
         System.out.println("Oh well, I'll also throw in "+ CM.getItems+"a Potion"+ CM.resetColour+" just for you!");
         PlayerBag.numberOfItemsInInventory.set(0, PlayerBag.numberOfItemsInInventory.get(0) + 5);
-        PlayerBag.numberOfItemsInInventory.set(6, PlayerBag.numberOfItemsInInventory.get(6) + 10000000);
+        PlayerBag.numberOfItemsInInventory.set(6, PlayerBag.numberOfItemsInInventory.get(6) + 100);
         System.out.println("Press a to continue");
         tastatur.next();
         System.out.println("Now its time for you to proceed to route 1!");
