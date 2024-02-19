@@ -146,5 +146,14 @@ public class PlayerBag {
             }
         }
     }
+    public List<String> getNameOfItemsInInventory () {
+        return nameOfItemsInInventory;
+    }
+    public List<Integer> getNumberOfItemsInInventory () {
+        return numberOfItemsInInventory;
+    }
+    public void setNameOfItemsInInventory (String input) {nameOfItemsInInventory.add(input);}
+    public void setNumberOfItemsInInventory (Integer input) {numberOfItemsInInventory.add(input);}
+
 }
 

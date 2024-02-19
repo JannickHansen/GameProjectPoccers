@@ -61,15 +61,15 @@ public class GeneratedPokemon {
         natureStatsDef = (((importPokemonData.def*stats.natureChangeDef)*lvl)/1000);
         natureStatsSpd = (((importPokemonData.spd*stats.natureChangeSpd)*lvl)/1000);
 
-        IVAtk = ((lvl*stats.atk)/100);
-        IVDef = ((lvl*stats.def)/100);
-        IVSpd = ((lvl*stats.spd)/100);
-        IVHp  = ((lvl*stats.hp)/100);
+        IVAtk = stats.atk;
+        IVDef = stats.def;
+        IVSpd = stats.spd;
+        IVHp = stats.hp;
 
-        atk = 5 + ((IVAtk) + ((lvl*importPokemonData.atk)/50) + natureStatsAtk);
-        def = 5 + ((IVDef) + ((lvl*importPokemonData.def)/50) + natureStatsDef);
-        spd = 5 + ((IVSpd) + ((lvl*importPokemonData.spd)/50) + natureStatsSpd);
-        hp  = 11 + ((IVHp) + lvl + ((lvl*importPokemonData.hp)/50));
+        atk = 5 + (((lvl*IVAtk)/100) + ((lvl*importPokemonData.atk)/50) + natureStatsAtk);
+        def = 5 + ((lvl*IVDef/100) + ((lvl*importPokemonData.def)/50) + natureStatsDef);
+        spd = 5 + ((lvl*IVSpd/100) + ((lvl*importPokemonData.spd)/50) + natureStatsSpd);
+        hp  = 11 + ((lvl*IVHp/100) + lvl + ((lvl*importPokemonData.hp)/50));
 
         this.pokemonType1 = importPokemonData.pokemonType1;
         this.pokemonType2 = importPokemonData.pokemonType2;
@@ -83,10 +83,10 @@ public class GeneratedPokemon {
         importPokemonData.getBasePokemon(importPokemonData.getPokemon(pokemonName));
         System.out.println(((lvl*importPokemonData.atk)/50));
         inputPokemon.lvl++;
-        atk = 5 + ((lvl* inputPokemon.IVAtk) + ((lvl*importPokemonData.atk)/50) + inputPokemon.natureStatsAtk);
-        def = 5 + ((lvl* inputPokemon.IVDef) + ((lvl*importPokemonData.def)/50) + inputPokemon.natureStatsDef);
-        spd = 5 + ((lvl* inputPokemon.IVSpd) + ((lvl*importPokemonData.spd)/50) + inputPokemon.natureStatsSpd);
-        hp  = 11 + ((lvl* inputPokemon.IVHp) + lvl + ((lvl*importPokemonData.hp)/50));
+        atk = 5 + ((lvl * inputPokemon.IVAtk / 100) + ((lvl*importPokemonData.atk)/50) + ((inputPokemon.atk*stats.natureChangeAtk)*lvl)/1000);
+        def = 5 + ((lvl * inputPokemon.IVDef / 100) + ((lvl*importPokemonData.def)/50) + ((inputPokemon.def*stats.natureChangeDef)*lvl)/1000);
+        spd = 5 + ((lvl * inputPokemon.IVSpd / 100) + ((lvl*importPokemonData.spd)/50) + ((inputPokemon.spd*stats.natureChangeSpd)*lvl)/1000);
+        hp  = 11 + ((lvl * inputPokemon.IVHp / 100) + lvl + ((lvl*importPokemonData.hp)/50));
         exp = exp - expToNextLvl;
         expToNextLvl = ((4*(lvl*(lvl*lvl)))/9);
         System.out.println("Your "+pokemonName+" has reached level "+CM.getLevels + lvl+ CM.resetColour+"!\n");
