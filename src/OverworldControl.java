@@ -179,7 +179,7 @@ public class OverworldControl {
                         if (op2.equals("9")) break;
                         System.out.println("\nSelect Pokemon Gym:");
                         printGymInMenu(1, unlockedRoute.route2, CM.getNormal + "Normal" + CM.resetColour);
-                        printGymInMenu(2, unlockedGym.pokemonGym2, CM.getGrass + "Grass"+ CM.resetColour);
+                        printGymInMenu(2, unlockedRoute.route3, CM.getGrass + "Grass"+ CM.resetColour);
                         printGymInMenu(3, unlockedGym.pokemonGym3, "");
                         printGymInMenu(4, unlockedGym.pokemonGym4, "");
                         printGymInMenu(5, unlockedGym.pokemonGym5, "");
