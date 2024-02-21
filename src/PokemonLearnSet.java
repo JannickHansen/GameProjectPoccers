@@ -831,10 +831,7 @@ public class PokemonLearnSet {
                 switch (insertPokemon.lvl) {
                     case 1:
                         insertPokemon.move1 = "Tackle";
-                        insertPokemon.move3 = "Tail Whip";
-                        break;
-                    case 5:
-                        learnAndPrintMove(insertPokemon, "Sand-Attack");
+                        insertPokemon.move2 = "Tail Whip";
                         break;
                     case 13:
                         learnAndPrintMove(insertPokemon, "Quick Attack");
@@ -843,9 +840,9 @@ public class PokemonLearnSet {
                         learnAndPrintMove(insertPokemon, "Bite");
                         break;
                     case 21:
-                        learnAndPrintMove(insertPokemon, "Focus Energy");
+                        learnAndPrintMove(insertPokemon, "Return");
                         break;
-                    case 25:
+                    case 27:
                         learnAndPrintMove(insertPokemon, "Take Down");
                         break;
                     case 35:
