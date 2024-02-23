@@ -1,13 +1,9 @@
 import java.io.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class SaveState {
-    List<GeneratedPokemon> playerPokemonParty;
-    PlayerBag playerBag;
-    OverworldControl overworldControl;
     SaveState () {
     }
     public void SaveStateSave(List<GeneratedPokemon> playerPokemonParty, PlayerBag playerBag, RouteController unlockedRoute, PokemonGym unlockedGym) throws IOException {

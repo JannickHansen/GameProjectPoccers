@@ -831,7 +831,6 @@ public class PokemonLearnSet {
                 switch (insertPokemon.lvl) {
                     case 1:
                         insertPokemon.move1 = "Tackle";
-                        insertPokemon.move2 = "Tail Whip";
                         break;
                     case 13:
                         learnAndPrintMove(insertPokemon, "Quick Attack");
