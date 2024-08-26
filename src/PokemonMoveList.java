@@ -22,7 +22,7 @@ public class PokemonMoveList {
         moveType = extractData(foundMove.get(0), 3);
         priorityMove = priorityCheck(priorityCheck);
 
-        basePower = convertReadBasePower.getOrDefault(movePower, 0);
+        basePower = ConvertReadStats.convert(movePower);
     }
     public ArrayList<String> getMove(String moveID) throws IOException {
         FileReader MoveList = new FileReader("MoveList.txt");
@@ -51,43 +51,4 @@ public class PokemonMoveList {
             return false;
         else return false;
         }
-    private static final Map<String, Integer> convertReadBasePower = new HashMap<>();
-    static {
-        convertReadBasePower.put("5", 5);
-        convertReadBasePower.put("10", 10);
-        convertReadBasePower.put("15", 15);
-        convertReadBasePower.put("20", 20);
-        convertReadBasePower.put("25", 25);
-        convertReadBasePower.put("30", 30);
-        convertReadBasePower.put("35", 35);
-        convertReadBasePower.put("40", 40);
-        convertReadBasePower.put("45", 45);
-        convertReadBasePower.put("50", 50);
-        convertReadBasePower.put("55", 55);
-        convertReadBasePower.put("60", 60);
-        convertReadBasePower.put("65", 65);
-        convertReadBasePower.put("70", 70);
-        convertReadBasePower.put("75", 75);
-        convertReadBasePower.put("80", 80);
-        convertReadBasePower.put("85", 85);
-        convertReadBasePower.put("90", 90);
-        convertReadBasePower.put("95", 95);
-        convertReadBasePower.put("100", 100);
-        convertReadBasePower.put("105", 105);
-        convertReadBasePower.put("110", 110);
-        convertReadBasePower.put("115", 115);
-        convertReadBasePower.put("120", 120);
-        convertReadBasePower.put("125", 125);
-        convertReadBasePower.put("130", 130);
-        convertReadBasePower.put("135", 135);
-        convertReadBasePower.put("140", 140);
-        convertReadBasePower.put("145", 145);
-        convertReadBasePower.put("150", 150);
-        convertReadBasePower.put("155", 155);
-        convertReadBasePower.put("160", 160);
-        convertReadBasePower.put("165", 165);
-        convertReadBasePower.put("170", 170);
-        convertReadBasePower.put("175", 175);
-        convertReadBasePower.put("180", 180);
-    }
 }
