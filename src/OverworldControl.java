@@ -145,30 +145,30 @@ public class OverworldControl {
                                     unlockedRoute.well(playerPokemonParty, opponentPokemonParty, playerBag);
                                 } else {
                                     System.out.println("You have not unlocked this Route yet.");
-                                    break;
                                 }
+                                break;
                             case "5":
                                 if (unlockedRoute.mayVilleFarm) {
                                     unlockedRoute.routeThree(playerPokemonParty, opponentPokemonParty, playerBag);
                                 } else {
                                     System.out.println("You have not unlocked this Route yet.");
-                                    break;
                                 }
+                                break;
                             case "6":
                                 if (!unlockedRoute.route6) {
                                     System.out.println("You have not unlocked this Route yet.");
-                                    break;
                                 }
+                                break;
                             case "7":
                                 if (!unlockedRoute.route7) {
                                     System.out.println("You have not unlocked this Route yet.");
-                                    break;
                                 }
+                                break;
                             case "8":
                                 if (!unlockedRoute.route8) {
                                     System.out.println("You have not unlocked this Route yet.");
-                                    break;
                                 }
+                                break;
                             case "9":
                                 break;
                         }

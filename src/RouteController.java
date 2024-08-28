@@ -620,12 +620,12 @@ public class RouteController {
             opponentPokemonParty.get(4).remainingHp = 0;
             opponentPokemonParty.get(5).remainingHp = 0;
 
-            if (op1.equals("9")) break;
             System.out.println("\n<Dark Well>\n");
             System.out.println("Select what you will do:");
             System.out.println("1. Look around in the dark to see what you can find.");
             System.out.println("9. Crawl out of the well, and return to the <Route Menu>");
             op1 = tastatur.next();
+            if (op1.equals("9")) break;
             if (op1.equals("1")) {
                 op1 = "";
                 op2 = randomNumberGenerator();
@@ -650,7 +650,7 @@ public class RouteController {
                     System.out.println("You found a "+CM.getItems+"Pokeball"+CM.resetColour+"!");
                     PlayerBag.numberOfItemsInInventory.set(0, PlayerBag.numberOfItemsInInventory.get(0) + 1);
                 } else if (op2 == 100) {
-                    System.out.println("You found a piece of "+CM.getItems+"Rare Candy"+CM.resetColour+"!");
+                    System.out.println("You found a "+CM.getItems+"Rare Candy"+CM.resetColour+"!");
                     PlayerBag.numberOfItemsInInventory.set(6, PlayerBag.numberOfItemsInInventory.get(6) + 1);
                 }
             }
