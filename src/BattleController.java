@@ -73,6 +73,8 @@ public class BattleController {
         int moveFirst = speedCalc(activePlayerPokemon.spd, activeOpponentPokemon.spd);
         String opponentColorCode = CM.cM(callMove(saveMoveName).moveType);
         String playerColorCode = CM.cM(playerMoveType);
+        activePlayerPokemon.numberOfHits = 0;
+        activeOpponentPokemon.numberOfHits = 0;
         if (isCaught) {
             foundWinner = true;
         } else if (playerUsedItem) { // IF PLAYER USED AN ITEM // CAN MAKE DUPLICATE IF OPPONENT USE ITEM
@@ -736,36 +738,36 @@ public class BattleController {
 
     void partyGainsExp() throws IOException {
         playerPokemonParty.get(0).exp = playerPokemonParty.get(0).exp + expCalc();
-        if (playerPokemonParty.get(0).exp > playerPokemonParty.get(0).expToNextLvl) {
+        if (playerPokemonParty.get(0).exp >= playerPokemonParty.get(0).expToNextLvl) {
             levelUp(playerPokemonParty.get(0));
         }
         if (!playerPokemonParty.get(1).pokemonName.equals(" ")) {
             playerPokemonParty.get(1).exp = playerPokemonParty.get(1).exp + expCalc();
-            if (playerPokemonParty.get(1).exp > playerPokemonParty.get(1).expToNextLvl) {
+            if (playerPokemonParty.get(1).exp >= playerPokemonParty.get(1).expToNextLvl) {
                 levelUp(playerPokemonParty.get(1));
             }
         }
         if (!playerPokemonParty.get(2).pokemonName.equals(" ")) {
             playerPokemonParty.get(2).exp = playerPokemonParty.get(2).exp + expCalc();
-            if (playerPokemonParty.get(2).exp > playerPokemonParty.get(2).expToNextLvl) {
+            if (playerPokemonParty.get(2).exp >= playerPokemonParty.get(2).expToNextLvl) {
                 levelUp(playerPokemonParty.get(2));
             }
         }
         if (!playerPokemonParty.get(3).pokemonName.equals(" ")) {
             playerPokemonParty.get(3).exp = playerPokemonParty.get(3).exp + expCalc();
-            if (playerPokemonParty.get(3).exp > playerPokemonParty.get(3).expToNextLvl) {
+            if (playerPokemonParty.get(3).exp >= playerPokemonParty.get(3).expToNextLvl) {
                 levelUp(playerPokemonParty.get(3));
             }
         }
         if (!playerPokemonParty.get(4).pokemonName.equals(" ")) {
             playerPokemonParty.get(4).exp = playerPokemonParty.get(4).exp + expCalc();
-            if (playerPokemonParty.get(4).exp > playerPokemonParty.get(4).expToNextLvl) {
+            if (playerPokemonParty.get(4).exp >= playerPokemonParty.get(4).expToNextLvl) {
                 levelUp(playerPokemonParty.get(4));
             }
         }
         if (!playerPokemonParty.get(5).pokemonName.equals(" ")) {
             playerPokemonParty.get(5).exp = playerPokemonParty.get(5).exp + expCalc();
-            if (playerPokemonParty.get(5).exp > playerPokemonParty.get(5).expToNextLvl) {
+            if (playerPokemonParty.get(5).exp >= playerPokemonParty.get(5).expToNextLvl) {
                 levelUp(playerPokemonParty.get(5));
             }
         }
@@ -838,6 +840,7 @@ public class BattleController {
         activePlayerPokemon.lockedState = 0;
         activePlayerPokemon.lockedMove = 0;
         activePlayerPokemon.avoidDamage = false;
+        activePlayerPokemon.numberOfHits = 0;
 
         activeOpponentPokemon = opponentPokemonParty.get(0);
         activeOpponentPokemon.remainingHp = activeOpponentPokemon.hp;
@@ -849,6 +852,7 @@ public class BattleController {
         activeOpponentPokemon.lockedState = 0;
         activeOpponentPokemon.lockedMove = 0;
         activeOpponentPokemon.avoidDamage = false;
+        activeOpponentPokemon.numberOfHits = 0;
 
         foundWinner = false;
         isCaught = false;

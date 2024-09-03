@@ -42,8 +42,6 @@ public class MainGameControl {
         // CREATE ZONE / AREA THAT ONLY HAS FUNCTION TO EVOLVE EEVEES - MYTH OF LEGENDARY DOGS (ENTEI, SUICUNE, RAIKU)
         // Transform
 
-        // NUMBER OF ITEMS HARDCAPPED AT 260
-
         // POKEMALL
 
         // OTHER TO-DO LIST

@@ -57,6 +57,16 @@ public class MoveChecks {
                     System.out.println(moveUser.pokemonName + " recovered " + (moveUser.remainingHp + (moveUser.hp / 2)) + " health!");
                 }
                 break;
+            case 8:
+                if (usedMove.equals("Double Hit")) {
+                    System.out.println(moveUser.pokemonName + "'s " + usedMove + " hits twice!");
+                    break;
+                }
+                else if(usedMove.equals("Pin Missile") || usedMove.equals("Fury Swipes") || usedMove.equals("Bullet Seed")) {
+                    System.out.println(moveUser.pokemonName + "'s " + usedMove + " hit "+moveUser.numberOfHits+" times!");
+                }
+                break;
+
             default:
                 break;
         }
@@ -77,7 +87,6 @@ public class MoveChecks {
             } else basePower = 20;
             break;
             case 9:
-                System.out.println(moveUser.lockedState);
                 if (moveUser.lockedState > 0 ) {
                     switch (moveUser.lockedState) {
                         case 1:
@@ -127,12 +136,11 @@ public class MoveChecks {
                 Random r = new Random();
                 if (usedMove.equals("Double Hit")) {
                     resultDamage = resultDamage * 2;
-                    System.out.println(moveUser.pokemonName + "'s " + usedMove + " hits twice!");
                 }
                 else if (usedMove.equals("Pin Missile") || usedMove.equals("Fury Swipes") || usedMove.equals("Bullet Seed")) {
                     int numberOfHits = r.nextInt(2,5+1);
                     resultDamage = resultDamage * numberOfHits;
-                    System.out.println(moveUser.pokemonName + "'s " + usedMove + " hit "+numberOfHits+" times!");
+                    moveUser.numberOfHits = numberOfHits;
                 }
                 break;
         }

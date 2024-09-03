@@ -42,6 +42,7 @@ public class GeneratedPokemon {
     int catchRate;
     int lockedState;
     int lockedMove;
+    int numberOfHits = 0;
     String lockedMoveName;
     boolean avoidDamage;
 

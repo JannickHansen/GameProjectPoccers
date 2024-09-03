@@ -295,7 +295,7 @@ public class RouteController {
                             op3 = 0;
                             op4 = false;
                             startBattle.trainer = true;
-                            System.out.println("You found <Lemonade Stand Seller Ashley> on the route, and challenged her to a duel!\n");
+                            System.out.println("You found <Bike Girl Anna> on the route, and challenged her to a duel!\n");
                             opponentPokemonParty.get(0).setImportPokemonData("Pidove",10);
                             opponentPokemonParty.get(0).move1 = "Quick Attack";
                             opponentPokemonParty.get(0).move2 = "Gust";
@@ -407,7 +407,7 @@ public class RouteController {
                             op3 = 0;
                             op4 = false;
                             startBattle.trainer = true;
-                            System.out.println("You found <Horse Girl Tiffany> on the route, and challenged him to a duel!\n");
+                            System.out.println("You found <Horse Girl Tiffany> on the route, and challenged her to a duel!\n");
                             opponentPokemonParty.get(0).setImportPokemonData("Ponyta",15);
                             opponentPokemonParty.get(0).move1 = "Stomp";
                             opponentPokemonParty.get(0).move2 = "Flame Charge";
@@ -427,7 +427,7 @@ public class RouteController {
                             op3 = 0;
                             op4 = false;
                             startBattle.trainer = true;
-                            System.out.println("You found <Fluff-fan Tommy> on the route, and challenged her to a duel!\n");
+                            System.out.println("You found <Fluff-fan Tommy> on the route, and challenged him to a duel!\n");
                             opponentPokemonParty.get(0).setImportPokemonData("Mareep",14);
                             opponentPokemonParty.get(0).move1 = "Thunder Shock";
                             opponentPokemonParty.get(0).move2 = "Tackle";
@@ -446,7 +446,7 @@ public class RouteController {
                             op3 = 0;
                             op4 = false;
                             startBattle.trainer = true;
-                            System.out.println("You found <Old Farmer Greg> on the route, and challenged her to a duel!\n");
+                            System.out.println("You found <Old Farmer Greg> on the route, and challenged him to a duel!\n");
                             opponentPokemonParty.get(0).setImportPokemonData("Miltank",15);
                             opponentPokemonParty.get(0).move1 = "Tackle";
                             opponentPokemonParty.get(0).move2 = "Stomp";
@@ -542,7 +542,7 @@ public class RouteController {
                             op3 = 0;
                             op4 = false;
                             startBattle.trainer = true;
-                            System.out.println("You found <Flower Girl Melanie> on the route, and challenged him to a duel!\n");
+                            System.out.println("You found <Flower Girl Melanie> on the route, and challenged her to a duel!\n");
                             opponentPokemonParty.get(0).setImportPokemonData("Oddish",18);
                             opponentPokemonParty.get(0).move1 = "Absorb";
                             opponentPokemonParty.get(0).move2 = "Bullet Seed";
@@ -563,7 +563,7 @@ public class RouteController {
                             op3 = 0;
                             op4 = false;
                             startBattle.trainer = true;
-                            System.out.println("You found <Airheaded Ben> on the route, and challenged her to a duel!\n");
+                            System.out.println("You found <Airheaded Ben> on the route, and challenged him to a duel!\n");
                             opponentPokemonParty.get(0).setImportPokemonData("Skiploom",21);
                             opponentPokemonParty.get(0).move1 = "Mega Drain";
                             opponentPokemonParty.get(0).move2 = "Leech Seed";
@@ -579,7 +579,7 @@ public class RouteController {
                             op3 = 0;
                             op4 = false;
                             startBattle.trainer = true;
-                            System.out.println("You found <New Trainer Mike> on the route, and challenged her to a duel!\n");
+                            System.out.println("You found <New Trainer Mike> on the route, and challenged him to a duel!\n");
                             opponentPokemonParty.get(0).setImportPokemonData("Pidgey",16);
                             opponentPokemonParty.get(0).move1 = "Quick Attack";
                             opponentPokemonParty.get(0).move2 = "Twister";
