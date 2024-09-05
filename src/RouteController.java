@@ -522,7 +522,7 @@ public class RouteController {
                         opponentPokemonParty.get(0).move1 = "Tackle";
                         opponentPokemonParty.get(0).move2 = "Leech Seed";
                         opponentPokemonParty.get(0).move3 = "Absorb";
-                    } else if (op2 < 81) {
+                    } else if (op2 <= 100) {
                         opponentPokemonParty.get(0).setImportPokemonData("Skiploom", randomNumberRange(16, 19));
                         opponentPokemonParty.get(0).remainingHp = opponentPokemonParty.get(0).hp;
                         opponentPokemonParty.get(0).move1 = "Tackle";

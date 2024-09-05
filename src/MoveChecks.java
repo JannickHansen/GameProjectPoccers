@@ -64,6 +64,7 @@ public class MoveChecks {
                 }
                 else if(usedMove.equals("Pin Missile") || usedMove.equals("Fury Swipes") || usedMove.equals("Bullet Seed")) {
                     System.out.println(moveUser.pokemonName + "'s " + usedMove + " hit "+moveUser.numberOfHits+" times!");
+                    moveUser.setNumberOfHits(0);
                 }
                 break;
 
@@ -140,7 +141,7 @@ public class MoveChecks {
                 else if (usedMove.equals("Pin Missile") || usedMove.equals("Fury Swipes") || usedMove.equals("Bullet Seed")) {
                     int numberOfHits = r.nextInt(2,5+1);
                     resultDamage = resultDamage * numberOfHits;
-                    moveUser.numberOfHits = numberOfHits;
+                    moveUser.setNumberOfHits(numberOfHits);
                 }
                 break;
         }

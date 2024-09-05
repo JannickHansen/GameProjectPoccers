@@ -41,9 +41,6 @@ public class MainGameControl {
         // PROGRAM ELECTROBALL, Gyro ball
         // CREATE ZONE / AREA THAT ONLY HAS FUNCTION TO EVOLVE EEVEES - MYTH OF LEGENDARY DOGS (ENTEI, SUICUNE, RAIKU)
         // Transform
-        // bullet seed said it hit 0 times?
-        // route 5, no pokemon appeared.
-
         // POKEMALL
 
         // OTHER TO-DO LIST

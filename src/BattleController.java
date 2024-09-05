@@ -73,8 +73,6 @@ public class BattleController {
         int moveFirst = speedCalc(activePlayerPokemon.spd, activeOpponentPokemon.spd);
         String opponentColorCode = CM.cM(callMove(saveMoveName).moveType);
         String playerColorCode = CM.cM(playerMoveType);
-        activePlayerPokemon.numberOfHits = 0;
-        activeOpponentPokemon.numberOfHits = 0;
         if (isCaught) {
             foundWinner = true;
         } else if (playerUsedItem) { // IF PLAYER USED AN ITEM // CAN MAKE DUPLICATE IF OPPONENT USE ITEM

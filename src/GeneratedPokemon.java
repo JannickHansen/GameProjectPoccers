@@ -42,11 +42,15 @@ public class GeneratedPokemon {
     int catchRate;
     int lockedState;
     int lockedMove;
-    int numberOfHits = 0;
+    int numberOfHits;
     String lockedMoveName;
     boolean avoidDamage;
 
     GeneratedPokemon() {
+    }
+
+    public void setNumberOfHits(int numberOfHits) {
+        this.numberOfHits = numberOfHits;
     }
     public void setImportPokemonData(String pokemonName, int lvl) throws IOException {
         if (!pokemonName.equals(" ")) {hasBeenGenerated = true;}
